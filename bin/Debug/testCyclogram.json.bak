@@ -1,0 +1,118 @@
+{
+	"length": 50,
+
+	"categories": [
+		{
+			"name": "Category 1"
+		},
+		{
+			"name": "Category 2"
+		},
+		{
+			"name": "Category 3"
+		}
+	],
+
+	"titles": [
+		{
+			"titleId": "title1",
+			"text": "Title 1",
+			"category": "Category 1"
+		},
+		{
+			"titleId": "title2",
+			"text": "Title 2",
+			"category": "Category 1"
+		},
+		{
+			"titleId": "title3",
+			"text": "Title 3",
+			"category": "Category 1"
+		},
+		{
+			"titleId": "title4",
+			"text": "Title 4",
+			"category": "Category 2"
+		},
+		{
+			"titleId": "title5",
+			"text": "Title 5",
+			"category": "Category 3"
+		},
+		{
+			"titleId": "title6",
+			"text": "Title 6",
+			"category": "Category 3"
+		}
+	],
+	
+	"operations": [
+		{
+			"name": "Operation 1"
+		},
+		{
+			"name": "Operation 2"
+		},
+		{
+			"name": "Operation 3"
+		},
+		{
+			"name": "Operation 4"
+		}
+	],
+	
+	"sequences": [{
+		"sequence_id": "sq1",
+		"after_id" : "",
+		"title_id": "Title 1",
+		"length": 1
+	},
+	{
+		"sequence_id": "sq2",
+		"after_id" : "sq1",
+		"title_id": "Title 3",
+		"length": 4
+	},
+	{
+		"sequence_id": "sq3",
+		"after_id" : "sq2",
+		"title_id": "Title 2",
+		"length": 8
+	},
+	{
+		"sequence_id": "sq4",
+		"after_id" : "sq3",
+		"title_id": "Title 1",
+		"length": 1
+	},
+	{
+		"sequence_id": "sq5",
+		"after_id" : "sq4",
+		"title_id": "Title 4",
+		"length": 3
+	},
+	{
+		"sequence_id": "sq6",
+		"after_id" : "sq5",
+		"title_id": "Title 1",
+		"length": 3
+	},
+	{
+		"sequence_id": "sq7",
+		"after_id" : "sq6",
+		"title_id": "Title 3",
+		"length": 3
+	},
+	{
+		"sequence_id": "sq8",
+		"after_id" : "sq7",
+		"title_id": "Title 1",
+		"length": 3
+	},
+	{
+		"sequence_id": "sq9",
+		"after_id" : "sq8",
+		"title_id": "Title 6",
+		"length": 10
+	}]
+}

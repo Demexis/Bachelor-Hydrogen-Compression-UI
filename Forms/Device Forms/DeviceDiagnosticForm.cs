@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,15 +37,26 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             }
             else
             {
-                string[] values = data.Split('_');
+                JObject json = JsonConvert.DeserializeObject<JObject>(data);
 
-                if (values.Length >= 1) this.chart_TemperatureGraph.Series[0].Points.AddY(values[0]);
-                if (DeviceGovernForm.Instance.EnabledChannels)
+                try
                 {
-                    if (values.Length >= 2) this.chart1.Series[0].Points.AddY(values[1]);
-                    if (values.Length >= 3) this.chart2.Series[0].Points.AddY(values[2]);
-                    if (values.Length >= 4) this.chart3.Series[0].Points.AddY(values[3]);
+                    this.chart1.Series[0].Points.AddY(int.Parse(json["arduino"]["termistor"].ToString()));
                 }
+                catch (Exception)
+                {
+                    // ...
+                }
+
+                //string[] values = data.Split('_');
+
+                //if (values.Length >= 1) this.chart_TemperatureGraph.Series[0].Points.AddY(values[0]);
+                //if (DeviceGovernForm.Instance.EnabledChannels)
+                //{
+                //    if (values.Length >= 2) this.chart1.Series[0].Points.AddY(values[1]);
+                //    if (values.Length >= 3) this.chart2.Series[0].Points.AddY(values[2]);
+                //    if (values.Length >= 4) this.chart3.Series[0].Points.AddY(values[3]);
+                //}
             }
 
             Console.WriteLine(data);

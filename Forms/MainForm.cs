@@ -42,17 +42,18 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             SetCurrentSubmenuFromButton(null);
         }
 
-        private void InitializeSubmenus()
+        private void InitializeChildForms()
         {
             ChildForms = new Dictionary<Button, Form>()
             {
                 [this.button_ChildForm_Connect] = new DeviceConnectionForm(),
                 [this.button_ChildForm_Govern] = new DeviceGovernForm(),
-                [this.button_ChildForm_Diagnostic] = new DeviceDiagnosticForm()
+                [this.button_ChildForm_Diagnostic] = new DeviceDiagnosticForm(),
+                [this.button_ChildForm_Device] = new DeviceForm()
             };
         }
 
-        private void InitializeChildForms()
+        private void InitializeSubmenus()
         {
             Submenus = new Dictionary<Button, Panel>()
             {
@@ -115,7 +116,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            SerialPortDataSender?.Invoke(_serialData);
+            //SerialPortDataSender?.Invoke(_serialData);
         }
 
         private string _serialData = string.Empty;
@@ -124,6 +125,10 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             string temp = serialPort_Main.ReadLine();
 
             _serialData = temp;
+
+            Console.WriteLine(temp);
+
+            SerialPortDataSender?.Invoke(_serialData);
         }
     }
 }

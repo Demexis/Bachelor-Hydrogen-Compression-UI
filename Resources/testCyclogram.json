@@ -1,0 +1,19 @@
+{
+	"first": {
+		"text": "sdasd",
+		"backColor": "103-120-30",
+		"childs": [{
+				"second": {
+					"text": "sdasd",
+					"backColor": "103-120-30"
+				}
+			},
+			{
+				"third": {
+					"text": "sdasd",
+					"backColor": "103-120-30"
+				}
+			}
+		]
+	}
+}

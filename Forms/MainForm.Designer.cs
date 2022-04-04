@@ -40,6 +40,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button10 = new System.Windows.Forms.Button();
             this.button_SideMenu_Options = new System.Windows.Forms.Button();
             this.panel_ControlSubmenu = new System.Windows.Forms.Panel();
+            this.button_ChildForm_Device = new System.Windows.Forms.Button();
             this.button_ChildForm_Diagnostic = new System.Windows.Forms.Button();
             this.button_ChildForm_Govern = new System.Windows.Forms.Button();
             this.button_ChildForm_Connect = new System.Windows.Forms.Button();
@@ -78,7 +79,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.panel_OptionsSubmenu.Controls.Add(this.button9);
             this.panel_OptionsSubmenu.Controls.Add(this.button10);
             this.panel_OptionsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_OptionsSubmenu.Location = new System.Drawing.Point(0, 322);
+            this.panel_OptionsSubmenu.Location = new System.Drawing.Point(0, 361);
             this.panel_OptionsSubmenu.Name = "panel_OptionsSubmenu";
             this.panel_OptionsSubmenu.Size = new System.Drawing.Size(233, 241);
             this.panel_OptionsSubmenu.TabIndex = 5;
@@ -174,7 +175,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_SideMenu_Options.FlatAppearance.BorderSize = 0;
             this.button_SideMenu_Options.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_SideMenu_Options.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button_SideMenu_Options.Location = new System.Drawing.Point(0, 277);
+            this.button_SideMenu_Options.Location = new System.Drawing.Point(0, 316);
             this.button_SideMenu_Options.Name = "button_SideMenu_Options";
             this.button_SideMenu_Options.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button_SideMenu_Options.Size = new System.Drawing.Size(233, 45);
@@ -189,12 +190,31 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.panel_ControlSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Diagnostic);
             this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Govern);
+            this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Device);
             this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Connect);
             this.panel_ControlSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_ControlSubmenu.Location = new System.Drawing.Point(0, 145);
             this.panel_ControlSubmenu.Name = "panel_ControlSubmenu";
-            this.panel_ControlSubmenu.Size = new System.Drawing.Size(233, 132);
+            this.panel_ControlSubmenu.Size = new System.Drawing.Size(233, 171);
             this.panel_ControlSubmenu.TabIndex = 2;
+            // 
+            // button_ChildForm_Device
+            // 
+            this.button_ChildForm_Device.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_ChildForm_Device.FlatAppearance.BorderSize = 0;
+            this.button_ChildForm_Device.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
+            this.button_ChildForm_Device.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
+            this.button_ChildForm_Device.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_ChildForm_Device.ForeColor = System.Drawing.Color.LightGray;
+            this.button_ChildForm_Device.Location = new System.Drawing.Point(0, 40);
+            this.button_ChildForm_Device.Name = "button_ChildForm_Device";
+            this.button_ChildForm_Device.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.button_ChildForm_Device.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Device.TabIndex = 3;
+            this.button_ChildForm_Device.Text = "Device";
+            this.button_ChildForm_Device.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_ChildForm_Device.UseVisualStyleBackColor = true;
+            this.button_ChildForm_Device.Click += new System.EventHandler(this.ChildFormButton_Click);
             // 
             // button_ChildForm_Diagnostic
             // 
@@ -204,7 +224,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_ChildForm_Diagnostic.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
             this.button_ChildForm_Diagnostic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_ChildForm_Diagnostic.ForeColor = System.Drawing.Color.LightGray;
-            this.button_ChildForm_Diagnostic.Location = new System.Drawing.Point(0, 80);
+            this.button_ChildForm_Diagnostic.Location = new System.Drawing.Point(0, 120);
             this.button_ChildForm_Diagnostic.Name = "button_ChildForm_Diagnostic";
             this.button_ChildForm_Diagnostic.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button_ChildForm_Diagnostic.Size = new System.Drawing.Size(233, 40);
@@ -222,7 +242,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_ChildForm_Govern.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
             this.button_ChildForm_Govern.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_ChildForm_Govern.ForeColor = System.Drawing.Color.LightGray;
-            this.button_ChildForm_Govern.Location = new System.Drawing.Point(0, 40);
+            this.button_ChildForm_Govern.Location = new System.Drawing.Point(0, 80);
             this.button_ChildForm_Govern.Name = "button_ChildForm_Govern";
             this.button_ChildForm_Govern.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button_ChildForm_Govern.Size = new System.Drawing.Size(233, 40);
@@ -346,6 +366,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         private System.Windows.Forms.Panel panel_ChildForm;
         private System.IO.Ports.SerialPort serialPort_Main;
         private System.Windows.Forms.Timer timer_ToSendSerialData;
+        private System.Windows.Forms.Button button_ChildForm_Device;
     }
 }
 
