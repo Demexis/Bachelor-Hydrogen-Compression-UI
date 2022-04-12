@@ -18,13 +18,15 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             InitializeComponent();
 
             button_ConnectToPort.Enabled = false;
+
+            RefreshPorts();
         }
 
         private void button_ConnectToPort_Click(object sender, EventArgs e)
         {
-            SerialPort serialPort = MainForm.Instance.GetMainSerialPort;
+            SerialPort serialPort = COM_Handler.MainSerialPort;
 
-            if (!MainForm.ConnectedToPort)
+            if (!COM_Handler.ConnectedToPort)
             {
                 try
                 {
@@ -35,7 +37,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                     button_ConnectToPort.Text = "Disconnect";
 
                     MainForm.Instance.TimerEnabled = true;
-                    MainForm.ConnectedToPort = !MainForm.ConnectedToPort;
+                    COM_Handler.ConnectedToPort = !COM_Handler.ConnectedToPort;
                 }
                 catch
                 {
@@ -45,7 +47,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             else
             {
                 MainForm.Instance.TimerEnabled = false;
-                MainForm.ConnectedToPort = !MainForm.ConnectedToPort;
+                COM_Handler.ConnectedToPort = !COM_Handler.ConnectedToPort;
 
 
                 try
@@ -63,6 +65,11 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         }
 
         private void button_RefreshPorts_Click(object sender, EventArgs e)
+        {
+            RefreshPorts();
+        }
+
+        private void RefreshPorts()
         {
             string[] ports = SerialPort.GetPortNames();
             comboBox_PortsList.Text = "";

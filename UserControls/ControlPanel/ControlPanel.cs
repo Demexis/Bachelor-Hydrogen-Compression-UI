@@ -12,7 +12,22 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
 {
     public partial class ControlPanel : UserControl
     {
-        public bool PlayButtonStatus = false;
+        private bool _playButtonStatus = false;
+
+        public bool PlayButtonStatus 
+        {
+            get
+            {
+                return _playButtonStatus;
+            }
+            set
+            {
+                _playButtonStatus = value;
+
+                button_PlayPause.BackgroundImage = 
+                    _playButtonStatus ? Properties.Resources.pause_button : Properties.Resources.play_button;
+            }
+        }
 
         public Action<bool> OnPlayPauseClick;
         public Action OnStepForwardClick;
@@ -29,8 +44,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
         private void button_PlayPause_Click(object sender, EventArgs e)
         {
             PlayButtonStatus = !PlayButtonStatus;
-
-            button_PlayPause.BackgroundImage = PlayButtonStatus ? Properties.Resources.pause_button : Properties.Resources.play_button;
 
             OnPlayPauseClick?.Invoke(PlayButtonStatus);
         }

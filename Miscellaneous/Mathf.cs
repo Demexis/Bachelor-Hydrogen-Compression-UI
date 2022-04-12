@@ -58,5 +58,25 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.Miscellaneous
 
             return (float)x / dp;
         }
+
+        public static bool LineSegmentsIntersect(int x1, int y1, int x2, int y2)
+        {
+            if (x1 > y1) throw new Exception("Incorrect arguments (The y1 should be greater than x1).");
+            if (x2 > y2) throw new Exception("Incorrect arguments (The y2 should be greater than x2).");
+
+            return (
+                Mathf.Between(x1, x2, y2) ||
+                Mathf.Between(x1 + y1, x2, y2) ||
+                Mathf.Between(x2, x1, y1) ||
+                Mathf.Between(x2 + y2, x1, y1)
+            );
+        }
+
+        public static (int x, int y) LineSegmentsConjunction(int x1, int y1, int x2, int y2)
+        {
+            if (LineSegmentsIntersect(x1, y1, x2, y2) == false) throw new Exception("Incorrect arguments (Lines don't intersect).");
+
+            return (Math.Max(x1, x2), Math.Min(y1, y2));
+        }
     }
 }

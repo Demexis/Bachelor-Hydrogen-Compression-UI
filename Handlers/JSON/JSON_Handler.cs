@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Bachelor_Project_Hydrogen_Compression_WinForms.Extensions;
+using Bachelor_Project_Hydrogen_Compression_WinForms.Handlers;
+using Bachelor_Project_Hydrogen_Compression_WinForms.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Bachelor_Project_Hydrogen_Compression_WinForms
 {
-    public static class JSON_Loader
+    public static class JSON_Handler
     {
+        #region Cyclogram
+
         public static void InitializeCyclogramWithJson(Cyclogram cyclogram, string json)
         {
             JsonDocument doc = JsonDocument.Parse(json);
@@ -176,5 +182,78 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
             return sequenceObj;
         }
+
+        #endregion
+
+        #region Sensors
+
+        public static void InitializeSensorReaderWithJson(SensorReadingHelper sensorReadingHelper, string json)
+        {
+            JsonDocument doc = JsonDocument.Parse(json);
+            JsonElement root = doc.RootElement;
+
+            if (root.TryGetProperty("sensors", out JsonElement categoryMainProperty))
+            {
+                foreach (JsonElement categoryElement in categoryMainProperty.EnumerateArray())
+                {
+                    sensorReadingHelper.Sensors.Add(PrepareSensor(categoryElement));
+                }
+            }
+
+        }
+
+        private static Sensor PrepareSensor(JsonElement childElement)
+        {
+            string name = "";
+
+            if (childElement.TryGetProperty("name", out JsonElement nameProperty))
+            {
+                name = nameProperty.GetString();
+            }
+
+            string type = "";
+            Sensor.SensorType sensorType = Sensor.SensorType.Unknown;
+
+            if (childElement.TryGetProperty("type", out JsonElement typeProperty))
+            {
+                type = typeProperty.GetString();
+
+                try
+                {
+                    type = type.FirstCharToUpper();
+                }
+                catch(Exception ex)
+                {
+                    // Skip...
+                }
+
+                if (!Enum.TryParse<Sensor.SensorType>(type, out sensorType))
+                {
+                    MessageBox.Show($"Can't parse sensor type for {name} - {type}.");
+                }
+            }
+
+            int maxReadingsCount = -1;
+
+            if (childElement.TryGetProperty("maxReadingsCount", out JsonElement maxReadingsCountProperty))
+            {
+                maxReadingsCount = maxReadingsCountProperty.GetInt32();
+            }
+
+            Sensor sensor;
+
+            if (maxReadingsCount <= 0)
+            {
+                sensor = new Sensor(name, sensorType);
+            }
+            else
+            {
+                sensor = new Sensor(name, sensorType, maxReadingsCount);
+            }
+
+            return sensor;
+        }
+
+        #endregion
     }
 }

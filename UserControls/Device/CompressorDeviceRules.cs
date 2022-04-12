@@ -4,11 +4,31 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorComponent;
 
 namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
 {
     public static class CompressorDeviceRules
     {
+        public static Dictionary<string, Image> GetComponentImages(ComponentType type)
+        {
+            switch (type)
+            {
+                case ComponentType.Valve:
+                    return CompressorDeviceRules.ValveImages;
+                case ComponentType.Reservoir:
+                    return CompressorDeviceRules.ReservoirImages;
+                case ComponentType.Pump:
+                    return CompressorDeviceRules.PumpImages;
+                case ComponentType.CounterTrigger:
+                    return CompressorDeviceRules.CounterImages;
+                case ComponentType.OpticalSensor:
+                    return CompressorDeviceRules.OpticalSensorImages;
+                default:
+                    return new Dictionary<string, Image>();
+            }
+        }
+
         public static Dictionary<string, Image> ValveImages = new Dictionary<string, Image>()
         {
             ["HorizontalDisabled"] = Properties.Resources.valve_horizontal,
@@ -64,19 +84,47 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
             ["VerticalInactive"] = Properties.Resources.opticalSensor_vertical_inactive,
         };
 
-        public static Dictionary<char, Image> RoadImages = new Dictionary<char, Image>()
+        public static Dictionary<string, Image> GetPipeImages(CompressorPipe.PipeType type)
         {
-            ['1'] = Properties.Resources.vertical_line,
-            ['2'] = Properties.Resources.horizontal_line,
-            ['3'] = Properties.Resources.LU_corner_line,
-            ['4'] = Properties.Resources.RU_corner_line,
-            ['5'] = Properties.Resources.RD_corner_line,
-            ['6'] = Properties.Resources.LD_corner_line,
-            ['7'] = Properties.Resources.TD_tpose_line,
-            ['8'] = Properties.Resources.TL_tpose_line,
-            ['9'] = Properties.Resources.TU_tpose_line,
-            ['0'] = Properties.Resources.TR_tpose_line,
-            ['+'] = Properties.Resources.C_pluspose_line
+            switch (type)
+            {
+                case CompressorPipe.PipeType.Gas:
+                    return CompressorDeviceRules.GasPipeImages;
+                case CompressorPipe.PipeType.Oil:
+                    return CompressorDeviceRules.OilPipeImages;
+                default:
+                    return new Dictionary<string, Image>();
+            }
+        }
+
+        public static Dictionary<string, Image> GasPipeImages = new Dictionary<string, Image>()
+        {
+            ["StraightHorizontalEmpty"] = Properties.Resources.horizontal_line,
+            ["StraightVerticalEmpty"] = Properties.Resources.vertical_line,
+            ["CrossEmpty"] = Properties.Resources.C_pluspose_line,
+            ["T_LeftEmpty"] = Properties.Resources.TL_tpose_line,
+            ["T_UpEmpty"] = Properties.Resources.TU_tpose_line,
+            ["T_RightEmpty"] = Properties.Resources.TR_tpose_line,
+            ["T_DownEmpty"] = Properties.Resources.TD_tpose_line,
+            ["LU_CornerEmpty"] = Properties.Resources.LU_corner_line,
+            ["RU_CornerEmpty"] = Properties.Resources.RU_corner_line,
+            ["LD_CornerEmpty"] = Properties.Resources.LD_corner_line,
+            ["RD_CornerEmpty"] = Properties.Resources.RD_corner_line,
+        };
+
+        public static Dictionary<string, Image> OilPipeImages = new Dictionary<string, Image>()
+        {
+            ["StraightHorizontalEmpty"] = Properties.Resources.horizontal_line,
+            ["StraightVerticalEmpty"] = Properties.Resources.vertical_line,
+            ["CrossEmpty"] = Properties.Resources.C_pluspose_line,
+            ["T_LeftEmpty"] = Properties.Resources.TL_tpose_line,
+            ["T_UpEmpty"] = Properties.Resources.TU_tpose_line,
+            ["T_RightEmpty"] = Properties.Resources.TR_tpose_line,
+            ["T_DownEmpty"] = Properties.Resources.TD_tpose_line,
+            ["LU_CornerEmpty"] = Properties.Resources.LU_corner_line,
+            ["RU_CornerEmpty"] = Properties.Resources.RU_corner_line,
+            ["LD_CornerEmpty"] = Properties.Resources.LD_corner_line,
+            ["RD_CornerEmpty"] = Properties.Resources.RD_corner_line,
         };
     }
 }

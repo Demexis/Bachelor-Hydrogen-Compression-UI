@@ -13,29 +13,60 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
 {
     public partial class CompressorDevice : UserControl
     {
+        public enum DeviceAlignment { Left, Middle, Right }
+
+        [Category("Appearance"), Description("Sets or gets alignment for device scheme.")]
+        public DeviceAlignment Alignment
+        {
+            get => _alignment;
+            set => _alignment = value;
+        }
+
+        private DeviceAlignment _alignment;
+
         public Size TilemapSize;
-
-        private char[,] _roadSymbols;
-        private char[,] _componentSymbols;
-
-        private Dictionary<char, Image> _roadCharRules = CompressorDeviceRules.RoadImages;
 
         private bool _initialized;
 
-        private Dictionary<char, CompressorComponent> _components;
+        public bool StretchImageLayout = false;
+
+        public CompressorComponent[] GetComponents 
+        {
+            get
+            {
+                List<CompressorComponent> components = new List<CompressorComponent>();
+
+                for (int i = 0; i < _components.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _components.GetLength(1); j++)
+                    {
+                        if (_components[i, j] != null) components.Add(_components[i, j]);
+                    }
+                }
+
+                return components.ToArray();
+            }
+        }
+
+        private CompressorComponent[,] _components;
+
+        private CompressorPipe[,] _gasPipes;
+        private CompressorPipe[,] _oilPipes;
 
         private Task _drawingTask;
 
 
         public void SetComponentStatus(string name, CompressorComponent.ComponentStatus status)
         {
-            foreach(char key in _components.Keys)
+            foreach(CompressorComponent component in _components)
             {
-                if(_components[key].Name.Equals(name))
-                {
-                    _components[key].Status = status;
+                if (component == null) continue;
 
-                    Console.WriteLine($"{_components[key].Name} {_components[key].Status}");
+                if(component.Name.Equals(name))
+                {
+                    component.Status = status;
+
+                    //Console.WriteLine($"{component.Name} {component.Status}");
 
                     this.RepaintComponents();
 
@@ -49,59 +80,48 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
             InitializeComponent();
         }
 
-        public void InitializeRoadMap(string roadTilemapData)
+        public void InitializeRoadmap(Size tilemapSize)
         {
-            int width = 0, height = 1;
+            this.TilemapSize = tilemapSize;
+        }
+
+        public void InitializePipes(string roadTilemapData, CompressorPipe.PipeType pipeType)
+        {
+            char[,] roadSymbols = new char[TilemapSize.Width, TilemapSize.Height];
+
+
+            if(pipeType == CompressorPipe.PipeType.Gas)
+                _gasPipes = new CompressorPipe[TilemapSize.Width, TilemapSize.Height];
+            else if(pipeType == CompressorPipe.PipeType.Oil)
+                _oilPipes = new CompressorPipe[TilemapSize.Width, TilemapSize.Height];
+
+            CompressorPipe[,] arrayRef;
+
+            if (pipeType == CompressorPipe.PipeType.Gas)
+                arrayRef = _gasPipes;
+            else if (pipeType == CompressorPipe.PipeType.Oil)
+                arrayRef = _oilPipes;
+            else
+                return;
+
 
             int localWidth = 0;
-            foreach (char c in roadTilemapData)
-            {
-                if(c.Equals('\n'))
-                {
-                    if (localWidth > width) width = localWidth;
-
-                    localWidth = 0;
-                    height++;
-                }
-                else
-                {
-                    localWidth++;
-                }
-
-            }
-
-            TilemapSize = new Size(width, height);
-            _roadSymbols = new char[width, height];
-
-            localWidth = 0;
             int localHeight = 0;
             foreach (char c in roadTilemapData)
             {
                 if (c.Equals('\n'))
                 {
-                    if (localWidth > width) width = localWidth;
-
                     localWidth = 0;
                     localHeight++;
                 }
                 else
                 {
-                    _roadSymbols[localWidth, localHeight] = c;
+                    roadSymbols[localWidth, localHeight] = c;
 
                     localWidth++;
                 }
 
             }
-
-            //for (int j = 0; j < TilemapSize.Height; j++)
-            //{
-            //    for (int i = 0; i < TilemapSize.Width; i++)
-            //    {
-            //        Console.Write(_roadSymbols[i, j]);
-            //    }
-
-            //    Console.WriteLine();
-            //}
 
             char[,] temp = new char[TilemapSize.Width, TilemapSize.Height];
 
@@ -109,71 +129,71 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
             {
                 for (int j = 0; j < TilemapSize.Height; j++)
                 {
-                    if(_roadSymbols[i, j].Equals('1'))
+                    if(roadSymbols[i, j].Equals('1'))
                     {
-                        bool left = i > 0 && _roadSymbols[i - 1, j].Equals('1');
-                        bool right = i + 1 < TilemapSize.Width && _roadSymbols[i + 1, j].Equals('1');
+                        bool left = i > 0 && roadSymbols[i - 1, j].Equals('1');
+                        bool right = i + 1 < TilemapSize.Width && roadSymbols[i + 1, j].Equals('1');
 
-                        bool up = j > 0 && _roadSymbols[i, j - 1].Equals('1');
-                        bool down = j + 1 < TilemapSize.Height && _roadSymbols[i, j + 1].Equals('1');
+                        bool up = j > 0 && roadSymbols[i, j - 1].Equals('1');
+                        bool down = j + 1 < TilemapSize.Height && roadSymbols[i, j + 1].Equals('1');
 
                         if(left && right && up && down)
                         {
-                            temp[i, j] = '+';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.Cross);
                         }
 
                         else if(left && right && up)
                         {
-                            temp[i, j] = '9';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.T_Up);
                         }
                         else if (left && right && down)
                         {
-                            temp[i, j] = '7';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.T_Down);
                         }
                         else if (left && down && up)
                         {
-                            temp[i, j] = '8';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.T_Left);
                         }
                         else if (right && down && up)
                         {
-                            temp[i, j] = '0';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.T_Right);
                         }
 
                         else if (right && down)
                         {
-                            temp[i, j] = '3';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.LU_Corner);
                         }
                         else if (left && down)
                         {
-                            temp[i, j] = '4';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.RU_Corner);
                         }
                         else if (left && up)
                         {
-                            temp[i, j] = '5';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.RD_Corner);
                         }
                         else if (right && up)
                         {
-                            temp[i, j] = '6';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.LD_Corner);
                         }
 
                         else if (right || left)
                         {
-                            temp[i, j] = '2';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.StraightHorizontal);
                         }
                         else if (up || down)
                         {
-                            temp[i, j] = '1';
+                            arrayRef[i, j] = new CompressorPipe(pipeType, CompressorPipe.PipeOrientation.StraightVertical);
                         }
 
                         else
                         {
-                            temp[i, j] = 'n';
+                            arrayRef[i, j] = null;
                         }
                     }
                 }
             }
 
-            _roadSymbols = temp;
+            roadSymbols = temp;
 
             //Console.WriteLine(TilemapSize);
 
@@ -196,9 +216,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
 
         public void InitializeDeviceComponents(string componentsTilemapData, Dictionary<char, CompressorComponent> components)
         {
-            _components = components;
-
-            _componentSymbols = new char[TilemapSize.Width, TilemapSize.Height];
+            _components = new CompressorComponent[TilemapSize.Width, TilemapSize.Height];
 
             int xi = 0, xj = 0;
 
@@ -206,9 +224,9 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
             {
                 if(componentsTilemapData[i] != '\n')
                 {
-                    if(_components.ContainsKey(componentsTilemapData[i]))
+                    if(components.ContainsKey(componentsTilemapData[i]))
                     {
-                        _componentSymbols[xi, xj] = componentsTilemapData[i];
+                        _components[xi, xj] = components[componentsTilemapData[i]];
                     }
 
                     xi++;
@@ -234,87 +252,59 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
 
         public void DrawRoadmap()
         {
-            if (_initialized == false || _roadCharRules == null) return;
+            Draw(_gasPipes);
+            Draw(_oilPipes);
+        }
 
-            int x = 0, y = 0, width, height;
+        private void Draw<T>(T[,] charData)
+        {
+            if (_initialized == false || charData == null || charData.GetLength(0) != TilemapSize.Width || charData.GetLength(1) != TilemapSize.Height) return;
+
+            int x, y, width, height, tileWidth, tileHeight;
+
+            (x, y, width, height, tileWidth, tileHeight) = GetTilemapData();
 
             for (int i = 0; i < TilemapSize.Width; i++)
             {
-                width = (this.Width - x) / (TilemapSize.Width - i);
+                if (StretchImageLayout) tileWidth = (width - x) / (TilemapSize.Width - i);
                 y = 0;
 
                 for (int j = 0; j < TilemapSize.Height; j++)
                 {
-                    height = (this.Height - y) / (TilemapSize.Height - j);
+                    if (StretchImageLayout) tileHeight = (height - y) / (TilemapSize.Height - j);
 
                     Graphics g = this.CreateGraphics();
 
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(i * (255 / TilemapSize.Width), j * (255 / TilemapSize.Height), 0)), new Rectangle(x,
-                            y,
-                            width,
-                            height));
+                    //g.FillRectangle(new SolidBrush(Color.FromArgb(i * (255 / TilemapSize.Width), j * (255 / TilemapSize.Height), 0)), new Rectangle(x,
+                    //        y,
+                    //        tileWidth,
+                    //        tileHeight));
 
-                    if (_roadCharRules.ContainsKey(_roadSymbols[i, j]))
+                    if (charData[i, j] != null)
                     {
-                        Image unscaledComponentImg = _roadCharRules[_roadSymbols[i, j]];
-                        Image interpolatedComponentImg = BitmapProcessing.GetInterpolatedBitmap((Bitmap)unscaledComponentImg, new Size(width + 1, height + 1));
+                        Image unscaledComponentImg = (charData[i, j] as IContainImage).GetImage();
+                        Image interpolatedComponentImg = BitmapProcessing.GetInterpolatedBitmap((Bitmap)unscaledComponentImg, new Size(tileWidth + 1, tileHeight + 1));
 
                         g.DrawImage(interpolatedComponentImg,
                             x,
                             y,
-                            width + 1,
-                            height + 1
-                            );
-
-                        Console.WriteLine($"OOO   {x} {y} {width} {height}");
+                            tileWidth + 1,
+                            tileHeight + 1
+                        );
                     }
 
                     g.Dispose();
 
-                    y += height;
+                    y += tileHeight;
                 }
 
-                x += width;
+                x += tileWidth;
             }
         }
 
         public void DrawComponents()
         {
-            if (_initialized == false || _components == null) return;
-
-            int x = 0, y = 0, width, height;
-
-            for (int i = 0; i < TilemapSize.Width; i++)
-            {
-                width = (this.Width - x) / (TilemapSize.Width - i);
-                y = 0;
-
-                for (int j = 0; j < TilemapSize.Height; j++)
-                {
-                    height = (this.Height - y) / (TilemapSize.Height - j);
-
-                    Graphics g = this.CreateGraphics();
-
-                    if (_components.ContainsKey(_componentSymbols[i, j]))
-                    {
-                        Image unscaledComponentImg = _components[_componentSymbols[i, j]].GetImage;
-                        Image interpolatedComponentImg = BitmapProcessing.GetInterpolatedBitmap((Bitmap)unscaledComponentImg, new Size(width + 1, height + 1));
-
-                        g.DrawImage(interpolatedComponentImg,
-                            x,
-                            y,
-                            width + 1,
-                            height + 1
-                            );
-                    }
-
-                    g.Dispose();
-
-                    y += height;
-                }
-
-                x += width;
-            }
+            Draw(_components);
         }
 
         private void CompressorDevice_Resize(object sender, EventArgs e)
@@ -352,6 +342,46 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
             }
 
             //DrawComponents();
+        }
+
+        private Tuple<int, int, int, int, int, int> GetTilemapData()
+        {
+            int x = 0, y = 0, width, height;
+
+            int tileWidth, tileHeight;
+
+            tileWidth = this.Width / TilemapSize.Width;
+            tileHeight = this.Height / TilemapSize.Height;
+
+            if (StretchImageLayout)
+            {
+                width = this.Width;
+                height = this.Height;
+            }
+            else
+            {
+                width = tileWidth > tileHeight ? tileHeight * TilemapSize.Width : tileWidth * TilemapSize.Width;
+                height = tileWidth > tileHeight ? tileHeight * TilemapSize.Height : tileWidth * TilemapSize.Height;
+
+                tileWidth = tileWidth > tileHeight ? tileHeight : tileWidth;
+                tileHeight = tileWidth > tileHeight ? tileHeight : tileWidth;
+
+                switch(_alignment)
+                {
+                    case DeviceAlignment.Left:
+                        break;
+                    case DeviceAlignment.Middle:
+                        x = this.Width / 2 - width / 2;
+                        y = this.Height / 2 - height / 2;
+                        break;
+                    case DeviceAlignment.Right:
+                        x = this.Width - width;
+                        y = this.Height - height;
+                        break;
+                }
+            }
+
+            return new Tuple<int, int, int, int, int, int>(x, y, width, height, tileWidth, tileHeight);
         }
     }
 }

@@ -1,0 +1,1307 @@
+{
+	"categories": [
+		{
+			"name": "s1"
+		},
+		{
+			"name": "s2"
+		},
+		{
+			"name": "s3"
+		},
+		{
+			"name": "s4"
+		},
+		{
+			"name": "s5"
+		},
+		{
+			"name": "s6"
+		},
+		{
+			"name": "s7"
+		},
+		{
+			"name": "s8"
+		},
+		{
+			"name": "s9"
+		},
+		{
+			"name": "s10"
+		},
+		{
+			"name": "d1"
+		},
+		{
+			"name": "d2"
+		},
+		{
+			"name": "d3"
+		},
+		{
+			"name": "d4"
+		},
+		{
+			"name": "v1"
+		},
+		{
+			"name": "v2"
+		},
+		{
+			"name": "h1"
+		},
+		{
+			"name": "buffer"
+		},
+		{
+			"name": "p1"
+		}
+	],
+
+	"titles": [
+		{
+			"titleId": "s1_active",
+			"text": "Open",
+			"category": "s1"
+		},
+		{
+			"titleId": "s1_inactive",
+			"text": "Closed",
+			"category": "s1"
+		},
+		{
+			"titleId": "s2_active",
+			"text": "Open",
+			"category": "s2"
+		},
+		{
+			"titleId": "s2_inactive",
+			"text": "Closed",
+			"category": "s2"
+		},
+		{
+			"titleId": "s3_active",
+			"text": "Open",
+			"category": "s3"
+		},
+		{
+			"titleId": "s3_inactive",
+			"text": "Closed",
+			"category": "s3"
+		},
+		{
+			"titleId": "s4_active",
+			"text": "Open",
+			"category": "s4"
+		},
+		{
+			"titleId": "s4_inactive",
+			"text": "Closed",
+			"category": "s4"
+		},
+		{
+			"titleId": "s5_active",
+			"text": "Open",
+			"category": "s5"
+		},
+		{
+			"titleId": "s5_inactive",
+			"text": "Closed",
+			"category": "s5"
+		},
+		{
+			"titleId": "s6_active",
+			"text": "Open",
+			"category": "s6"
+		},
+		{
+			"titleId": "s6_inactive",
+			"text": "Closed",
+			"category": "s6"
+		},
+		{
+			"titleId": "s7_active",
+			"text": "Open",
+			"category": "s7"
+		},
+		{
+			"titleId": "s7_inactive",
+			"text": "Closed",
+			"category": "s7"
+		},
+		{
+			"titleId": "s8_active",
+			"text": "Open",
+			"category": "s8"
+		},
+		{
+			"titleId": "s8_inactive",
+			"text": "Closed",
+			"category": "s8"
+		},
+		{
+			"titleId": "s9_active",
+			"text": "Open",
+			"category": "s9"
+		},
+		{
+			"titleId": "s9_inactive",
+			"text": "Closed",
+			"category": "s9"
+		},
+		{
+			"titleId": "s10_active",
+			"text": "Open",
+			"category": "s10"
+		},
+		{
+			"titleId": "s10_inactive",
+			"text": "Closed",
+			"category": "s10"
+		},
+		{
+			"titleId": "d1_active",
+			"text": "Open",
+			"category": "d1"
+		},
+		{
+			"titleId": "d1_inactive",
+			"text": "Closed",
+			"category": "d1"
+		},
+		{
+			"titleId": "d2_active",
+			"text": "Open",
+			"category": "d2"
+		},
+		{
+			"titleId": "d2_inactive",
+			"text": "Closed",
+			"category": "d2"
+		},
+		{
+			"titleId": "d3_active",
+			"text": "Open",
+			"category": "d3"
+		},
+		{
+			"titleId": "d3_inactive",
+			"text": "Closed",
+			"category": "d3"
+		},
+		{
+			"titleId": "d4_active",
+			"text": "Open",
+			"category": "d4"
+		},
+		{
+			"titleId": "d4_inactive",
+			"text": "Closed",
+			"category": "d4"
+		},
+		{
+			"titleId": "v1_active",
+			"text": "Open",
+			"category": "v1"
+		},
+		{
+			"titleId": "v1_inactive",
+			"text": "Closed",
+			"category": "v1"
+		},
+		{
+			"titleId": "v2_active",
+			"text": "Open",
+			"category": "v2"
+		},
+		{
+			"titleId": "v2_inactive",
+			"text": "Closed",
+			"category": "v2"
+		},
+		{
+			"titleId": "h1_active",
+			"text": "Open",
+			"category": "h1"
+		},
+		{
+			"titleId": "h1_inactive",
+			"text": "Closed",
+			"category": "h1"
+		},
+		{
+			"titleId": "buffer_active",
+			"text": "Open",
+			"category": "buffer"
+		},
+		{
+			"titleId": "buffer_inactive",
+			"text": "Closed",
+			"category": "buffer"
+		},
+		{
+			"titleId": "p1_active",
+			"text": "Open",
+			"category": "p1"
+		},
+		{
+			"titleId": "p1_inactive",
+			"text": "Closed",
+			"category": "p1"
+		}
+	],
+	
+	"operations": [
+		{
+			"name": "Step_00",
+			"length": 750,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_active"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_inactive"
+				}
+			]
+		},
+		{
+			"name": "Step_00_start",
+			"length": 500,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_active"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_inactive"
+				}
+			]
+		},
+		{
+			"name": "Step_00_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_inactive"
+				}
+			]
+		},
+		{
+			"name": "Step_01_start",
+			"length": 500,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_01_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_active"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_02_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_02_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_03_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_active"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_active"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_03_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_active"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_active"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_04_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_active"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_active"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_04_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_05_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_05_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_active"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_06_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_06_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_active"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_07_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_active"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_07_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_active"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_inactive"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_active"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_active"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_08_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_08_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_active"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_inactive"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_inactive"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_09_start",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		},
+		{
+			"name": "Step_09_end",
+			"length": 250,
+			"sequences": [
+				{
+					"sequence_id": "sq11",
+					"title_id": "s1_inactive"
+				},
+				{
+					"sequence_id": "sq12",
+					"title_id": "s2_inactive"
+				},
+				{
+					"sequence_id": "sq13",
+					"title_id": "s3_inactive"
+				},
+				{
+					"sequence_id": "sq14",
+					"title_id": "s4_inactive"
+				},
+				{
+					"sequence_id": "sq15",
+					"title_id": "s5_active"
+				},
+				{
+					"sequence_id": "sq16",
+					"title_id": "s6_active"
+				},
+				{
+					"sequence_id": "sq17",
+					"title_id": "s7_inactive"
+				},
+				{
+					"sequence_id": "sq18",
+					"title_id": "s8_inactive"
+				},
+				{
+					"sequence_id": "sq19",
+					"title_id": "s9_inactive"
+				},
+				{
+					"sequence_id": "sq20",
+					"title_id": "s10_active"
+				},
+				{
+					"sequence_id": "sq21",
+					"title_id": "p1_active"
+				}
+			]
+		}
+	]
+}

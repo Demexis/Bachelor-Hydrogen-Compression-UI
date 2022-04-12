@@ -81,8 +81,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppPreferences.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Handlers\DataLogger.cs" />
+    <Compile Include="Handlers\COM\COM_Handler.cs" />
     <Compile Include="Figures\RoundedRectangle.cs" />
-    <Compile Include="JSON_Loader.cs" />
+    <Compile Include="Handlers\JSON\JSON_Handler.cs" />
+    <Compile Include="Handlers\SensorReadingHelper.cs" />
     <Compile Include="Miscellaneous\Mathf.cs" />
     <Compile Include="Processing\BitmapProcessing.cs" />
     <Compile Include="UserControls\ControlPanel\ControlPanel.cs">
@@ -141,6 +146,15 @@
       <DependentUpon>CompressorDevice.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Device\CompressorDeviceRules.cs" />
+    <Compile Include="Interfaces\IContainImage.cs" />
+    <Compile Include="UserControls\Device\CompressorPipe.cs" />
+    <Compile Include="UserControls\SensorChart\Sensor.cs" />
+    <Compile Include="UserControls\SensorChart\SensorChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SensorChart\SensorChart.Designer.cs">
+      <DependentUpon>SensorChart.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="UserControls\ControlPanel\ControlPanel.resx">
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +189,10 @@
     <EmbeddedResource Include="UserControls\Device\CompressorDevice.resx">
       <DependentUpon>CompressorDevice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SensorChart\SensorChart.resx">
+      <DependentUpon>SensorChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="MainClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

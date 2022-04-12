@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bachelor_Project_Hydrogen_Compression_WinForms
 {
-    public class CyclogramComponentElement
+    class AppPreferences
     {
-        public string Name { get; set; }
+        public static bool ApplicationIsTerminating = false;
 
-        public List<CyclogramStatusElement> Titles = new List<CyclogramStatusElement>();
     }
 }

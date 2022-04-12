@@ -32,7 +32,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void button_ActivateChannels_Click(object sender, EventArgs e)
         {
-            MainForm.Instance.GetMainSerialPort.WriteLine(!EnabledChannels ? "a" : "b");
+            COM_Handler.MainSerialPort.WriteLine(!EnabledChannels ? "a" : "b");
             button_ActivateChannels.Text = EnabledChannels ? "Activate Channels" : "Deactivate Channels";
             EnabledChannels = !EnabledChannels;
         }

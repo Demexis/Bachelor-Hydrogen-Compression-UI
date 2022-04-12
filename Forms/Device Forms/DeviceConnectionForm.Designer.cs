@@ -49,6 +49,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // comboBox_PortsList
             // 
             this.comboBox_PortsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox_PortsList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_PortsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_PortsList.FormattingEnabled = true;
             this.comboBox_PortsList.ItemHeight = 37;

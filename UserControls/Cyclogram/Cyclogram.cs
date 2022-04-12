@@ -26,17 +26,37 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             set
             {
                 _active = value;
-                timer_main.Enabled = _active;
             }
         }
 
+        public bool VerticalScrollerFollowMouse;
+        private Point _verticalMouseStartLocation;
+        private int _verticalPosWhenMouseStarted;
+        public bool HorizontalScrollerFollowMouse;
+        private Point _horizontalMouseStartLocation;
+        private int _horizontalPosWhenMouseStarted;
+
         public Action<string, string> OnComponentStatusChange;
+
+        [Category("Appearance"), Description("Name of the cyclogram.")]
+        public string CyclogramName { get; set; }
 
         public enum CyclogramPlayMode { Single, Loop };
 
-        public CyclogramPlayMode PlayMode;
+        [Category("Behavior"), Description("Play mode defines if the cyclogram's execution will stop after reaching the end.")]
+        public CyclogramPlayMode PlayMode { get { return _playMode; } set { _playMode = value; } }
+
+        private CyclogramPlayMode _playMode;
 
         public int CurrentTimeStamp { get; set; }
+
+        public void SetCurrentTimeStamp(int valueMilliseconds, bool checkSteps = true) 
+        { 
+            CurrentTimeStamp = valueMilliseconds;
+            UpdateVisionPos();
+            if(checkSteps) CheckSteps();
+            this.Refresh(); 
+        }
 
         public List<CyclogramComponentElement> Components = new List<CyclogramComponentElement>();
         public List<CyclogramStatusElement> Statuses = new List<CyclogramStatusElement>();
@@ -46,15 +66,33 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         public float CyclogramRulerHeightRatio = 0.1f;
 
         public int VerticalScrollerPos = 0;
-        public int HorizontalScrollerPos = 0;
 
         public int ScrollerWidth = 20;
 
         public int MaxSimultaneousRecords = 20;
-        public int MaxSimultaneousSteps = 8;
 
         private bool _shiftKeyPressed;
 
+        public Action OnSingleExecutionEnd;
+
+        public int VisionPos = 0;
+        public int VisionRange = 2000; // Milliseconds
+
+        public int FollowSleepTime = 2000;
+        public int _followStopTime = 0;
+
+        private float _verticalPosScroll = 0.1f; // [0 - 1]
+        public float VerticalPosScroll
+        {
+            get { return _verticalPosScroll; }
+            set { _verticalPosScroll = Mathf.Clamp(value, 0, 1); }
+        }
+
+        private float _timeStampFollowPoint = 0.5f; // [0 - 1]
+        public float TimeStampFollowPoint { 
+            get { return _timeStampFollowPoint; } 
+            set { _timeStampFollowPoint = Mathf.Clamp(value, 0, 1); } 
+        } 
 
         public int GetTotalLengthInMilliseconds 
         { 
@@ -131,6 +169,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         public Color DefaultTextColor = Color.FromArgb(180, 160, 220);
         public Color BrightTextColor = Color.FromArgb(250, 250, 250);
 
+        public Color ActiveOutlineColor = Color.FromArgb(200, 150, 50);
+
         #endregion
 
         public Cyclogram()
@@ -148,6 +188,13 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         {
             this.Active = value;
             this.Refresh();
+        }
+
+        public void Stop()
+        {
+            this.Active = false;
+            this.CurrentTimeStamp = 0;
+            OnSingleExecutionEnd?.Invoke();
         }
 
         public void StepForward()
@@ -175,6 +222,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 }
             }
 
+            UpdateVisionPos();
+
             this.Refresh();
         }
 
@@ -197,6 +246,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 }
             }
 
+            UpdateVisionPos();
+
             this.Refresh();
         }
 
@@ -207,6 +258,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.CurrentTimeStamp = traveledLength;
             this.CheckSteps();
 
+            UpdateVisionPos();
+
             this.Refresh();
         }
 
@@ -215,14 +268,23 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.CurrentTimeStamp = 0;
             this.CheckSteps();
 
+            UpdateVisionPos();
+
             this.Refresh();
+        }
+
+        public void Clear()
+        {
+            Components.Clear();
+            Statuses.Clear();
+            Steps.Clear();
         }
 
         #endregion
 
         private void IncrementTimeStamp()
         {
-            if (this.CurrentTimeStamp >= this.GetTotalLengthInMilliseconds)
+            if (this.CurrentTimeStamp >= this.GetTotalLengthInMilliseconds - 1)
             {
                 if (this.PlayMode == Cyclogram.CyclogramPlayMode.Single)
                 {
@@ -236,11 +298,20 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 }
             }
 
-            this.CurrentTimeStamp += timer_main.Interval;
+            if (this.CurrentTimeStamp + timer_main.Interval >= this.GetTotalLengthInMilliseconds - 1)
+            {
+                this.CurrentTimeStamp = this.GetTotalLengthInMilliseconds - 1;
+            }
+            else
+            {
+                this.CurrentTimeStamp += timer_main.Interval;
+            }
 
-            if (this.CurrentTimeStamp >= this.GetTotalLengthInMilliseconds &&
+            if (this.CurrentTimeStamp >= this.GetTotalLengthInMilliseconds - 1 &&
                 this.PlayMode == Cyclogram.CyclogramPlayMode.Single)
             {
+                Stop();
+
                 Console.WriteLine("Cyclogram reached the end.");
             }
 
@@ -267,13 +338,13 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                     {
                         sequence.Active = !sequence.Active;
 
-                        Console.WriteLine($"Sequence [{sequence.SequenceID}] has been {(sequence.Active ? "activated" : "deactivated")}");
+                        //Console.WriteLine($"Sequence [{sequence.SequenceID}] has been {(sequence.Active ? "activated" : "deactivated")}");
 
                         foreach (CyclogramStatusElement title in this.Statuses)
                         {
                             if (title.TitleID.Equals(sequence.TitleID))
                             {
-                                Console.WriteLine($"Title [{title.Text}] has been {(sequence.Active ? "activated" : "deactivated")}");
+                                //Console.WriteLine($"Title [{title.Text}] has been {(sequence.Active ? "activated" : "deactivated")}");
 
                                 if (sequence.Active)
                                 {
@@ -293,6 +364,21 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             }
         }
 
+        private void UncheckSteps()
+        {
+            foreach(CyclogramStepElement step in this.Steps)
+            {
+                foreach (CyclogramSequenceElement sequence in step.Sequences)
+                {
+                    sequence.Active = false;
+                }
+            }
+        }
+
+        
+
+        #region Events
+
         private void Cyclogram_Paint(object sender, PaintEventArgs e)
         {
             if (Steps.Count == 0) return;
@@ -304,8 +390,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             Rectangle TitlesRect = GetTitlesRect;
             Rectangle SequencesRect = GetSequencesRect;
 
-            //int oneCellHeight = (this.Height - StepsRect.Height) / (Components.Count + Statuses.Count);
-            int oneCellHeight = (this.GetTitlesRect.Height) / (MaxSimultaneousRecords);
 
             // Drawing Background
             g.FillRectangle(new SolidBrush(BackgroundColor), new Rectangle(default(Point), this.Size));
@@ -314,47 +398,69 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             {
                 g.FillRectangle(new SolidBrush(CyclogramTitleColor), new RectangleF(MainTitleRect.Location, MainTitleRect.Size));
                 g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(MainTitleRect.Location, MainTitleRect.Size));
-                g.DrawString(" " + "Cyclogram Name", Font, new SolidBrush(BrightTextColor), MainTitleRect.Location);
+                g.DrawString(" " + CyclogramName, Font, new SolidBrush(BrightTextColor), MainTitleRect.Location);
             }
+
+            // Setting vision range
+            
+            if(_followStopTime <= 0 && this.Active)
+            {
+                UpdateVisionPos();
+            }
+
+            int visionStartPos = Mathf.Clamp(VisionPos + VisionRange, 0, GetTotalLengthInMilliseconds) - VisionRange;
+            int visionEndPos = Mathf.Clamp(visionStartPos + VisionRange, 0, GetTotalLengthInMilliseconds);
 
             // Drawing Steps
 
-            int[] stepWidths = new int[Steps.Count];
+            Dictionary<CyclogramStepElement, Point> stepLines = new Dictionary<CyclogramStepElement, Point>();
             {
                 Point stepsLocation = StepsRect.Location;
 
-                int lineWidth = StepsRect.Width;
-                int totalLengthMilliseconds = 0;
+                //int lineWidth = StepsRect.Width;
 
-                for(int i = 0; i < MaxSimultaneousSteps && HorizontalScrollerPos + i < Steps.Count; i++)
+
+                for (int i = 0; i < Steps.Count; i++)
                 {
-                    totalLengthMilliseconds += Steps[HorizontalScrollerPos + i].LengthMilliseconds;
-                }
+                    int localPos = 0;
 
-                for (int i = 0; i < MaxSimultaneousSteps && HorizontalScrollerPos + i < Steps.Count; i++)
-                {
-                    int operationsWidth = (int)(lineWidth * ((float)Steps[HorizontalScrollerPos + i].LengthMilliseconds / totalLengthMilliseconds));
-                    totalLengthMilliseconds -= Steps[HorizontalScrollerPos + i].LengthMilliseconds;
-                    lineWidth -= operationsWidth;
+                    for (int j = 0; j < i; j++)
+                    {
+                        localPos += Steps[j].LengthMilliseconds;
+                    }
 
-                    g.FillRectangle(new SolidBrush(CategoryFillColor), new RectangleF(stepsLocation, new Size(operationsWidth, StepsRect.Height)));
-                    g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(stepsLocation, new Size(operationsWidth, StepsRect.Height)));
-                    g.DrawString(" " + Steps[HorizontalScrollerPos + i].Name, Font, new SolidBrush(BrightTextColor), stepsLocation);
-                    stepsLocation.X += operationsWidth;
+                    // If step is within the range
+                    if (Mathf.LineSegmentsIntersect(localPos, localPos + Steps[i].LengthMilliseconds, visionStartPos, visionEndPos))
+                    {
+                        (int x, int y) = Mathf.LineSegmentsConjunction(localPos, localPos + Steps[i].LengthMilliseconds, visionStartPos, visionEndPos);
 
-                    stepWidths[HorizontalScrollerPos + i] = operationsWidth;
+                        int operationWidth = (int)((y - x) / (float)(visionEndPos - visionStartPos) * StepsRect.Width);
+
+                        int operationX = StepsRect.X + (int)((x - visionStartPos) / (float)(visionEndPos - visionStartPos) * StepsRect.Width);
+
+                        g.FillRectangle(new SolidBrush(CategoryFillColor), new RectangleF(operationX, stepsLocation.Y, operationWidth, StepsRect.Height));
+                        g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(operationX, stepsLocation.Y, operationWidth, StepsRect.Height));
+                        g.DrawString(" " + Steps[i].Name, Font, new SolidBrush(BrightTextColor), new Point(operationX, stepsLocation.Y));
+
+                        stepLines.Add(Steps[i], new Point(operationX, operationWidth));
+                    }
                 }
             }
 
             // Drawing roads
             {
+                int height = TitlesRect.Height;
+
                 int segments = 4 * Steps.Count;
 
                 Point location = SequencesRect.Location;
 
-                for (int i = 0; i < Components.Count + Statuses.Count; i++)
+                for (int i = 0; i < MaxSimultaneousRecords; i++)
                 {
                     int lineWidth = SequencesRect.Width;
+
+                    int cellHeight = height / (MaxSimultaneousRecords - i);
+                    height -= cellHeight;
 
                     for (int j = 0; j < segments; j++)
                     {
@@ -362,13 +468,13 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                         lineWidth -= segmentWidth;
 
                         if (j % 2 == 0)
-                            g.FillRectangle(new SolidBrush(SecondBackgroundColor), new Rectangle(location, new Size(segmentWidth, oneCellHeight)));
+                            g.FillRectangle(new SolidBrush(SecondBackgroundColor), new Rectangle(location, new Size(segmentWidth, cellHeight)));
 
-                        g.DrawRectangle(new Pen(OutlineColor), new Rectangle(location, new Size(segmentWidth, oneCellHeight)));
+                        g.DrawRectangle(new Pen(OutlineColor), new Rectangle(location, new Size(segmentWidth, cellHeight)));
                         location.X += segmentWidth;
                     }
                     location.X = SequencesRect.Left;
-                    location.Y += oneCellHeight;
+                    location.Y += cellHeight;
                 }
             }
 
@@ -377,28 +483,35 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
             // Drawing Categories and Titles
             {
-                Size oneCellSize = new Size(TitlesRect.Width, oneCellHeight);
                 Point location = TitlesRect.Location;
 
-                foreach (CyclogramComponentElement category in Components)
+                int width = TitlesRect.Width;
+                int height = TitlesRect.Height;
+
+                for (int i = 0; i < Components.Count; i++)
                 {
-                    if(countOfSkips == 0)
+                    CyclogramComponentElement component = Components[i];
+
+                    if (countOfSkips == 0)
                     {
                         if (countOfRecords >= MaxSimultaneousRecords) break;
 
                         countOfRecords++;
 
-                        g.FillRectangle(new SolidBrush(CategoryFillColor), new RectangleF(location, oneCellSize));
-                        g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location, oneCellSize));
-                        g.DrawString(" " + category.Name, Font, new SolidBrush(BrightTextColor), location + new Size(0, oneCellHeight / 3));
+                        int cellHeight = height / (MaxSimultaneousRecords - countOfRecords + 1);
+                        height -= cellHeight;
 
-                        int rectSide = oneCellSize.Width > oneCellSize.Height ? oneCellSize.Height / 5 : oneCellSize.Width / 5;
+                        g.FillRectangle(new SolidBrush(CategoryFillColor), new RectangleF(location.X, location.Y, width, cellHeight));
+                        g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location.X, location.Y, width, cellHeight));
+                        g.DrawString(" " + component.Name, Font, new SolidBrush(BrightTextColor), location + new Size(0, cellHeight / 4));
 
-                        Point p = new Point(location.X + oneCellSize.Width - rectSide, location.Y);
-                        g.DrawRectangle(new Pen(OutlineColor), new Rectangle(p, new Size(rectSide, oneCellSize.Height)));
-                        g.FillRectangle(new SolidBrush(CyclogramTitleColor), new Rectangle(p, new Size(rectSide, oneCellSize.Height)));
+                        int rectSide = width > cellHeight ? cellHeight / 5 : width / 5;
 
-                        location.Y += oneCellHeight;
+                        Point p = new Point(location.X + width - rectSide, location.Y);
+                        g.DrawRectangle(new Pen(OutlineColor), new Rectangle(p, new Size(rectSide, cellHeight)));
+                        g.FillRectangle(new SolidBrush(CyclogramTitleColor), new Rectangle(p, new Size(rectSide, cellHeight)));
+
+                        location.Y += cellHeight;
                     }
                     else
                     {
@@ -407,7 +520,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                     
 
-                    foreach (CyclogramStatusElement title in category.Titles)
+                    foreach (CyclogramStatusElement title in component.Titles)
                     {
                         if(countOfSkips > 0)
                         {
@@ -419,81 +532,66 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                         countOfRecords++;
 
-                        g.FillRectangle(new SolidBrush(TitleFillColor), new RectangleF(location, oneCellSize));
-                        g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location, oneCellSize));
-                        g.DrawString("   " + title.Text, Font, new SolidBrush(DefaultTextColor), location + new Size(0, oneCellSize.Height / 3));
+                        int cellHeight = height / (MaxSimultaneousRecords - countOfRecords + 1);
+                        height -= cellHeight;
+
+                        g.FillRectangle(new SolidBrush(TitleFillColor), new RectangleF(location.X, location.Y, width, cellHeight));
+                        g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location.X, location.Y, width, cellHeight));
+                        g.DrawString("   " + title.Text, Font, new SolidBrush(DefaultTextColor), location + new Size(0, cellHeight / 4));
 
                         // Drawing sequences
 
                         for (int k = 0; k < Steps.Count; k++)
                         {
-                            int currentCellPos = 0;
-                            
-                            for (int k2 = 0; k2 < k; k2++)
+                            if(stepLines.TryGetValue(Steps[k], out Point stepLine))
                             {
-                                currentCellPos += stepWidths[k2];
-                            }
+                                int currentCellPos = stepLine.X;
+                                int currentCellWidth = stepLine.Y;
 
-                            for (int i = 0; i < Steps[k].Sequences.Count; i++)
-                            {
-                                if (!Steps[k].Sequences[i].TitleID.Equals(title.TitleID)) continue;
-
-                                LinearGradientBrush linGrBrush = new LinearGradientBrush(
-                                   location + new Size(SequencesRect.Left + currentCellPos, 0),
-                                   location + new Size(SequencesRect.Left + currentCellPos, 0) + new Size(stepWidths[k], oneCellHeight),
-                                   CyclogramTitleColor,
-                                   DefaultTextColor);
-
-                                g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location + new Size(SequencesRect.Left + currentCellPos, 0), new Size(stepWidths[k], oneCellHeight)));
-                                //g.DrawString(Steps[k].Sequences[i].SequenceID, this.Font, new SolidBrush(Color.FromArgb(255, 0, 0)), new Rectangle(location + new Size(stepWidths[k], 0), new Size(SequencesRect.Width / Steps.Count, oneCellHeight)));
-                                g.FillRectangle(linGrBrush, new Rectangle(location + new Size(SequencesRect.Left + currentCellPos, 0), new Size(stepWidths[k], oneCellHeight)));
-
-                                
-
-                                if (Steps[k].Sequences[i].Active)
+                                for (int k3 = 0; k3 < Steps[k].Sequences.Count; k3++)
                                 {
-                                    g.DrawRectangle(new Pen(Color.FromArgb(255, 0, 0), 2), new Rectangle(location + new Size(SequencesRect.Left + currentCellPos, 0), new Size(stepWidths[k], oneCellHeight)));
+                                    if (!Steps[k].Sequences[k3].TitleID.Equals(title.TitleID)) continue;
+
+                                    LinearGradientBrush linGrBrush = new LinearGradientBrush(
+                                       location + new Size(currentCellPos, 0),
+                                       location + new Size(currentCellPos, 0) + new Size(currentCellWidth, cellHeight),
+                                       CyclogramTitleColor,
+                                       DefaultTextColor);
+
+                                    g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location + new Size(currentCellPos, 0), new Size(currentCellWidth, cellHeight)));
+                                    g.FillRectangle(linGrBrush, new Rectangle(location + new Size(currentCellPos, 0), new Size(currentCellWidth, cellHeight)));
+
+
+                                    if (Steps[k].Sequences[k3].Active)
+                                    {
+                                        g.DrawRectangle(new Pen(ActiveOutlineColor, 2), new Rectangle(location + new Size(currentCellPos, 0), new Size(currentCellWidth, cellHeight)));
+                                    }
                                 }
                             }
                         }
 
-                        location.Y += oneCellHeight;
+                        location.Y += cellHeight;
                     }
                 }
             }
 
             // Drawing Time Stamp line
 
-            int beforeLengthMilliseconds = 0;
-            int visibleLengthMilliseconds = 0;
-
             Point timeStampLocation;
 
             if (GetTotalLengthInMilliseconds != 0)
             {
-                for (int i = 0; i < HorizontalScrollerPos; i++)
+                if (Mathf.Between(CurrentTimeStamp, visionStartPos, visionEndPos))
                 {
-                    beforeLengthMilliseconds += Steps[i].LengthMilliseconds;
-                }
+                    timeStampLocation = new Point(SequencesRect.Left + (int)(SequencesRect.Width * Mathf.NormalizedRelationBetween(CurrentTimeStamp, visionStartPos, visionEndPos)), SequencesRect.Top);
 
-                for (int i = 0; i < MaxSimultaneousSteps && HorizontalScrollerPos + i < Steps.Count; i++)
-                {
-                    visibleLengthMilliseconds += Steps[HorizontalScrollerPos + i].LengthMilliseconds;
-                }
-
-                if (Mathf.Between(CurrentTimeStamp, beforeLengthMilliseconds, beforeLengthMilliseconds + visibleLengthMilliseconds))
-                {
-                    timeStampLocation = new Point(SequencesRect.Left + (int)(SequencesRect.Width * Mathf.NormalizedRelationBetween(CurrentTimeStamp, beforeLengthMilliseconds, beforeLengthMilliseconds + visibleLengthMilliseconds)), SequencesRect.Top);
-
-                    //timeStampLocation = new Point(SequencesRect.Left + (int)(SequencesRect.Width * ((float)CurrentTimeStamp / GetTotalLengthInMilliseconds)), SequencesRect.Top);
-
-                    g.DrawRectangle(new Pen(Color.FromArgb(255, 0, 0), 2), new Rectangle(timeStampLocation, new Size(1, SequencesRect.Height)));
+                    g.DrawRectangle(new Pen(ActiveOutlineColor, 2), new Rectangle(timeStampLocation, new Size(1, SequencesRect.Height)));
                 }
             }
             else
             {
                 timeStampLocation = new Point(SequencesRect.Left, SequencesRect.Top);
-                g.DrawRectangle(new Pen(Color.FromArgb(255, 0, 0), 2), new Rectangle(timeStampLocation, new Size(1, SequencesRect.Height)));
+                g.DrawRectangle(new Pen(ActiveOutlineColor, 2), new Rectangle(timeStampLocation, new Size(1, SequencesRect.Height)));
             }
 
 
@@ -538,14 +636,14 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             g.DrawRectangle(new Pen(OutlineColor), GetHorizontalScrollerRect);
             g.FillRectangle(new SolidBrush(OutlineColor), GetHorizontalScrollerRect);
 
-            if (Steps.Count > MaxSimultaneousSteps)
+            if (GetTotalLengthInMilliseconds > VisionRange)
             {
-                // Draw up button
+                // Draw left button
                 Rectangle upButtonRect = new Rectangle(0, this.Height - ScrollerWidth, ScrollerWidth, ScrollerWidth);
                 g.DrawRectangle(new Pen(OutlineColor), upButtonRect);
                 g.FillRectangle(new SolidBrush(TitleFillColor), upButtonRect);
 
-                // Draw down button
+                // Draw right button
                 Rectangle downButtonRect = new Rectangle(
                     this.Width - ScrollerWidth,
                     this.Height - ScrollerWidth,
@@ -558,16 +656,29 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                 // Draw scroller part
 
-                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * ((float)MaxSimultaneousSteps / (Steps.Count)));
+                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * (VisionRange / (float)(GetTotalLengthInMilliseconds)));
 
                 Rectangle scrollerPartRect = new Rectangle(
-                    ScrollerWidth + (int)(HorizontalScrollerPos * (this.Width - 2 * ScrollerWidth - scrollerPartWidth) / ((float)(Steps.Count - MaxSimultaneousSteps))),
+                    ScrollerWidth + (int)(visionStartPos / (float)(GetTotalLengthInMilliseconds - VisionRange) * (this.Width - 2 * ScrollerWidth - scrollerPartWidth)),
                     this.Height - ScrollerWidth,
                     scrollerPartWidth,
                     ScrollerWidth
                 );
                 g.DrawRectangle(new Pen(OutlineColor), scrollerPartRect);
                 g.FillRectangle(new SolidBrush(CyclogramTitleColor), scrollerPartRect);
+            }
+        }
+
+        public void UpdateVisionPos()
+        {
+            if (CurrentTimeStamp > VisionPos + (int)(VisionRange * TimeStampFollowPoint))
+            {
+                VisionPos = CurrentTimeStamp - (int)(VisionRange * TimeStampFollowPoint);
+            }
+
+            if (VisionPos > CurrentTimeStamp)
+            {
+                VisionPos = CurrentTimeStamp;
             }
         }
 
@@ -578,6 +689,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void timer_main_Tick(object sender, EventArgs e)
         {
+            _followStopTime -= timer_main.Interval;
+
             if (this.Active)
             {
                 IncrementTimeStamp();
@@ -594,18 +707,26 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             {
                 if(_shiftKeyPressed)
                 {
-                    if(HorizontalScrollerPos > 0)
-                    {
-                        HorizontalScrollerPos--;
+                    VisionPos = Mathf.Clamp(VisionPos - (int)(VisionRange * _verticalPosScroll), 0, GetTotalLengthInMilliseconds - VisionRange);
 
-                        this.Refresh();
-                    }
+                    _followStopTime = FollowSleepTime;
+
+                    this.Refresh();
+
+                    //if (HorizontalScrollerPos > 0)
+                    //{
+                    //    HorizontalScrollerPos--;
+
+                    //    this.Refresh();
+                    //}
                 }
                 else
                 {
                     if (VerticalScrollerPos > 0)
                     {
                         VerticalScrollerPos--;
+
+                        if (_followStopTime > 0) _followStopTime = FollowSleepTime;
 
                         this.Refresh();
                     }
@@ -615,18 +736,26 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             {
                 if (_shiftKeyPressed)
                 {
-                    if (HorizontalScrollerPos < Steps.Count - MaxSimultaneousSteps)
-                    {
-                        HorizontalScrollerPos++;
+                    VisionPos = Mathf.Clamp(VisionPos + (int)(VisionRange * _verticalPosScroll), 0, GetTotalLengthInMilliseconds - VisionRange);
 
-                        this.Refresh();
-                    }
+                    _followStopTime = FollowSleepTime;
+
+                    this.Refresh();
+
+                    //if (HorizontalScrollerPos < Steps.Count - MaxSimultaneousSteps)
+                    //{
+                    //    HorizontalScrollerPos++;
+
+                    //    this.Refresh();
+                    //}
                 }
                 else
                 {
                     if (VerticalScrollerPos < Components.Count + Statuses.Count - MaxSimultaneousRecords)
                     {
                         VerticalScrollerPos++;
+
+                        if (_followStopTime > 0) _followStopTime = FollowSleepTime;
 
                         this.Refresh();
                     }
@@ -647,6 +776,95 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             if (e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.Shift)
             {
                 _shiftKeyPressed = false;
+            }
+        }
+
+
+
+
+        #endregion
+
+        private void Cyclogram_MouseDown(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("MOUSE DOWN");
+
+            // Vertical Scroller
+            int scrollerPartHeight = (int)((this.Height - 2 * ScrollerWidth) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
+
+            Rectangle verticalScrollerPartRect = new Rectangle(
+                    this.Width - ScrollerWidth,
+                    ScrollerWidth + (int)(VerticalScrollerPos * (this.Height - 2 * ScrollerWidth - scrollerPartHeight) / ((float)(Components.Count + Statuses.Count - MaxSimultaneousRecords))),
+                    ScrollerWidth,
+                    scrollerPartHeight
+                );
+
+            if (verticalScrollerPartRect.Contains(e.Location) && Components.Count + Statuses.Count > MaxSimultaneousRecords)
+            {
+                Console.WriteLine("MOUSE DOWN VERTICAL SET");
+
+                VerticalScrollerFollowMouse = true;
+                _verticalMouseStartLocation = e.Location;
+                _verticalPosWhenMouseStarted = VerticalScrollerPos;
+            }
+
+            // Horizontal Scroller
+            int visionStartPos = Mathf.Clamp(VisionPos + VisionRange, 0, GetTotalLengthInMilliseconds) - VisionRange;
+            int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * (VisionRange / (float)(GetTotalLengthInMilliseconds)));
+
+            Rectangle horizontalScrollerPartRect = new Rectangle(
+                ScrollerWidth + (int)(visionStartPos / (float)(GetTotalLengthInMilliseconds - VisionRange) * (this.Width - 2 * ScrollerWidth - scrollerPartWidth)),
+                this.Height - ScrollerWidth,
+                scrollerPartWidth,
+                ScrollerWidth
+            );
+
+            if (horizontalScrollerPartRect.Contains(e.Location))
+            {
+                HorizontalScrollerFollowMouse = true;
+                _horizontalMouseStartLocation = e.Location;
+            }
+        }
+
+        private void Cyclogram_MouseUp(object sender, MouseEventArgs e)
+        {
+            VerticalScrollerFollowMouse = false;
+            HorizontalScrollerFollowMouse = false;
+        }
+
+        private void Cyclogram_MouseMove(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("MOVES");
+
+            if(VerticalScrollerFollowMouse)
+            {
+                Console.WriteLine("MOVES VERTICAL");
+
+                int scrollerPartHeight = (int)((this.Height - 2 * ScrollerWidth) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
+                int step = scrollerPartHeight / MaxSimultaneousRecords;
+
+                int y = _verticalPosWhenMouseStarted + (e.Location.Y - _verticalMouseStartLocation.Y) / step;
+
+                VerticalScrollerPos = Mathf.Clamp(y, 0, Components.Count + Statuses.Count - MaxSimultaneousRecords);
+
+                Console.WriteLine("VERTICAL POS " + VerticalScrollerPos);
+
+                this.Refresh();
+            }
+
+            if(HorizontalScrollerFollowMouse)
+            {
+                Console.WriteLine("MOVES HORIZONTAL");
+
+                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * (VisionRange / (float)(GetTotalLengthInMilliseconds)));
+                float step = (float)scrollerPartWidth / VisionRange;
+
+                int x = (int)(_horizontalPosWhenMouseStarted + (e.Location.X - _horizontalMouseStartLocation.X) / step);
+
+                VisionPos = Mathf.Clamp(x, 0, GetTotalLengthInMilliseconds - VisionRange);
+
+                Console.WriteLine("HORIZONTAL POS " + VisionPos);
+
+                this.Refresh();
             }
         }
     }

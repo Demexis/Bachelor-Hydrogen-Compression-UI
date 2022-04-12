@@ -35,7 +35,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // 
             // timer_main
             // 
-            this.timer_main.Interval = 50;
+            this.timer_main.Enabled = true;
+            this.timer_main.Interval = 10;
             this.timer_main.Tick += new System.EventHandler(this.timer_main_Tick);
             // 
             // Cyclogram
@@ -50,6 +51,9 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Cyclogram_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cyclogram_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Cyclogram_KeyUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Cyclogram_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Cyclogram_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Cyclogram_MouseUp);
             this.Resize += new System.EventHandler(this.Cyclogram_Resize);
             this.ResumeLayout(false);
 

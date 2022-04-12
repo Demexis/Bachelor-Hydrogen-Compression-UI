@@ -14,9 +14,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
     public partial class MainForm : Form
     {
         public static MainForm Instance; // Singleton
-        public static bool ConnectedToPort { get; set; }
 
-        public SerialPort GetMainSerialPort { get { return this.serialPort_Main; } }
         public bool TimerEnabled { 
             get { return timer_ToSendSerialData.Enabled; } 
             set { timer_ToSendSerialData.Enabled = value; } 
@@ -25,7 +23,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         public Dictionary<Button, Panel> Submenus = new Dictionary<Button, Panel>();
         public Dictionary<Button, Form> ChildForms = new Dictionary<Button, Form>();
 
-        public Action<string> SerialPortDataSender;
 
         public MainForm()
         {
@@ -40,6 +37,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             InitializeChildForms();
 
             SetCurrentSubmenuFromButton(null);
+
+            COM_Handler.MainSerialPort = this.serialPort_Main;
         }
 
         private void InitializeChildForms()
@@ -128,7 +127,13 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
             Console.WriteLine(temp);
 
-            SerialPortDataSender?.Invoke(_serialData);
+            COM_Handler.SerialPortDataSender?.Invoke(_serialData);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AppPreferences.ApplicationIsTerminating = true;
+            DeviceForm.TempTestingFlag = false;
         }
     }
 }
