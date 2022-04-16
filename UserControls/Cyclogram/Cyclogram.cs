@@ -16,7 +16,16 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 {
     public partial class Cyclogram : UserControl
     {
-        private bool _active;
+        #region Enums
+
+        public enum CyclogramPlayMode { Single, Loop };
+
+        #endregion
+
+
+        #region CyclogramPreferences
+
+        [Category("Behavior"), Description("Determines when the timestamp of the cyclogram starts to change depending on the ticks of the timer.")]
         public bool Active
         {
             get
@@ -28,6 +37,37 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 _active = value;
             }
         }
+        private bool _active;
+
+        [Category("Appearance"), Description("Name of the cyclogram.")]
+        public string CyclogramName { get; set; }
+
+        
+        [Category("Behavior"), Description("Play mode defines if the cyclogram's execution will stop after reaching the end.")]
+        public CyclogramPlayMode PlayMode { get { return _playMode; } set { _playMode = value; } }
+
+        private CyclogramPlayMode _playMode;
+
+        [Category("Appearance"), Description("Specifies the part of the cyclogram in width, which will be assigned to the column with the names of the components and their statuses.")]
+        public float TitleWidthRatio = 0.2f;
+
+        [Category("Appearance"), Description("Determines the part of the cyclogram in height, which will be assigned to one row with the name of the cyclogram and with the names of the steps.")]
+        public float CyclogramRulerHeightRatio = 0.1f;
+
+        [Category("Appearance"), Description("Specifies the number of displayed components and their statuses.")]
+        public int MaxSimultaneousRecords = 20;
+
+        [Category("Appearance"), Description("Specifies the time interval that will be visible horizontally on the cyclogram.")]
+        public int HorizontalVisionRange = 2000; // Milliseconds
+
+        [Category("Behavior"), Description("The time after which the cyclogram will focus on the current position of the timestamp.")]
+        public int FollowSleepTime = 2000;
+
+
+        #endregion
+
+
+        #region CyclogramScrollers
 
         public bool VerticalScrollerFollowMouse;
         private Point _verticalMouseStartLocation;
@@ -36,53 +76,16 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         private Point _horizontalMouseStartLocation;
         private int _horizontalPosWhenMouseStarted;
 
-        public Action<string, string> OnComponentStatusChange;
-
-        [Category("Appearance"), Description("Name of the cyclogram.")]
-        public string CyclogramName { get; set; }
-
-        public enum CyclogramPlayMode { Single, Loop };
-
-        [Category("Behavior"), Description("Play mode defines if the cyclogram's execution will stop after reaching the end.")]
-        public CyclogramPlayMode PlayMode { get { return _playMode; } set { _playMode = value; } }
-
-        private CyclogramPlayMode _playMode;
-
-        public int CurrentTimeStamp { get; set; }
-
-        public void SetCurrentTimeStamp(int valueMilliseconds, bool checkSteps = true) 
-        { 
-            CurrentTimeStamp = valueMilliseconds;
-            UpdateVisionPos();
-            if(checkSteps) CheckSteps();
-            this.Refresh(); 
-        }
-
-        public List<CyclogramComponentElement> Components = new List<CyclogramComponentElement>();
-        public List<CyclogramStatusElement> Statuses = new List<CyclogramStatusElement>();
-        public List<CyclogramStepElement> Steps = new List<CyclogramStepElement>();
-
-        public float TitleWidthRatio = 0.2f;
-        public float CyclogramRulerHeightRatio = 0.1f;
-
         public int VerticalScrollerPos = 0;
 
-        public int ScrollerWidth = 20;
-
-        public int MaxSimultaneousRecords = 20;
-
-        private bool _shiftKeyPressed;
-
-        public Action OnSingleExecutionEnd;
-
-        public int VisionPos = 0;
-        public int VisionRange = 2000; // Milliseconds
-
-        public int FollowSleepTime = 2000;
+        public int ScrollerSize = 20;
+        
+        public int HorizontalVisionPos { get; private set; } = 0;
         public int _followStopTime = 0;
 
+
         private float _verticalPosScroll = 0.1f; // [0 - 1]
-        public float VerticalPosScroll
+        public float HorizontalPosScrollCoeff
         {
             get { return _verticalPosScroll; }
             set { _verticalPosScroll = Mathf.Clamp(value, 0, 1); }
@@ -93,6 +96,41 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             get { return _timeStampFollowPoint; } 
             set { _timeStampFollowPoint = Mathf.Clamp(value, 0, 1); } 
         } 
+
+        private bool _shiftKeyPressed;
+
+        #endregion
+
+
+        #region Actions
+
+        public Action<string, string> OnComponentStatusChange;
+        public Action OnSingleExecutionEnd;
+
+
+        #endregion
+
+
+        #region Collections
+
+        public List<CyclogramComponentElement> Components = new List<CyclogramComponentElement>();
+        public List<CyclogramStatusElement> Statuses = new List<CyclogramStatusElement>();
+        public List<CyclogramStepElement> Steps = new List<CyclogramStepElement>();
+
+        #endregion
+
+        
+        #region TimeStamp
+
+        public int CurrentTimeStamp { get; set; }
+
+        public void SetCurrentTimeStamp(int valueMilliseconds, bool checkSteps = true) 
+        { 
+            CurrentTimeStamp = valueMilliseconds;
+            UpdateVisionPos();
+            if(checkSteps) CheckSteps();
+            this.Refresh(); 
+        }
 
         public int GetTotalLengthInMilliseconds 
         { 
@@ -109,6 +147,9 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             } 
         }
 
+        #endregion
+
+
         #region Rectangles
 
         public Rectangle GetCyclogramTitleRect => new Rectangle(
@@ -121,7 +162,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         public Rectangle GetStepsRect => new Rectangle(
             (int)(this.Width * TitleWidthRatio),
             0,
-            (int)(this.Width * (1 - TitleWidthRatio)) - ScrollerWidth,
+            (int)(this.Width * (1 - TitleWidthRatio)) - ScrollerSize,
             (int)(this.Height * CyclogramRulerHeightRatio)
         );
 
@@ -129,28 +170,28 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             0,
             (int)(this.Height * CyclogramRulerHeightRatio),
             (int)(this.Width * TitleWidthRatio),
-            (int)(this.Height - (int)(this.Height * CyclogramRulerHeightRatio)) - ScrollerWidth
+            (int)(this.Height - (int)(this.Height * CyclogramRulerHeightRatio)) - ScrollerSize
         );
 
         public Rectangle GetSequencesRect => new Rectangle(
             (int)(this.Width * TitleWidthRatio),
             (int)(this.Height * CyclogramRulerHeightRatio),
-            (int)(this.Width * (1 - TitleWidthRatio)) - ScrollerWidth,
-            (int)(this.Height - (int)(this.Height * CyclogramRulerHeightRatio)) - ScrollerWidth
+            (int)(this.Width * (1 - TitleWidthRatio)) - ScrollerSize,
+            (int)(this.Height - (int)(this.Height * CyclogramRulerHeightRatio)) - ScrollerSize
         );
 
         public Rectangle GetVerticalScrollerRect => new Rectangle(
-            this.Width - ScrollerWidth,
+            this.Width - ScrollerSize,
             0,
-            ScrollerWidth,
+            ScrollerSize,
             this.Height            
         );
 
         public Rectangle GetHorizontalScrollerRect => new Rectangle(
             0,
-            this.Height - ScrollerWidth,
+            this.Height - ScrollerSize,
             this.Width,
-            ScrollerWidth
+            ScrollerSize
         );
 
         #endregion
@@ -408,8 +449,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 UpdateVisionPos();
             }
 
-            int visionStartPos = Mathf.Clamp(VisionPos + VisionRange, 0, GetTotalLengthInMilliseconds) - VisionRange;
-            int visionEndPos = Mathf.Clamp(visionStartPos + VisionRange, 0, GetTotalLengthInMilliseconds);
+            int visionStartPos = Mathf.Clamp(HorizontalVisionPos + HorizontalVisionRange, 0, GetTotalLengthInMilliseconds) - HorizontalVisionRange;
+            int visionEndPos = Mathf.Clamp(visionStartPos + HorizontalVisionRange, 0, GetTotalLengthInMilliseconds);
 
             // Drawing Steps
 
@@ -602,16 +643,16 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             if(Components.Count + Statuses.Count > MaxSimultaneousRecords)
             {
                 // Draw up button
-                Rectangle upButtonRect = new Rectangle(this.Width - ScrollerWidth, 0, ScrollerWidth, ScrollerWidth);
+                Rectangle upButtonRect = new Rectangle(this.Width - ScrollerSize, 0, ScrollerSize, ScrollerSize);
                 g.DrawRectangle(new Pen(OutlineColor), upButtonRect);
                 g.FillRectangle(new SolidBrush(TitleFillColor), upButtonRect);
 
                 // Draw down button
                 Rectangle downButtonRect = new Rectangle(
-                    this.Width - ScrollerWidth, 
-                    this.Height - ScrollerWidth, 
-                    ScrollerWidth, 
-                    ScrollerWidth
+                    this.Width - ScrollerSize, 
+                    this.Height - ScrollerSize, 
+                    ScrollerSize, 
+                    ScrollerSize
                 );
 
                 g.DrawRectangle(new Pen(OutlineColor), downButtonRect);
@@ -619,12 +660,12 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                 // Draw scroller part
 
-                int scrollerPartHeight = (int)((this.Height - 2 * ScrollerWidth) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
+                int scrollerPartHeight = (int)((this.Height - 2 * ScrollerSize) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
 
                 Rectangle scrollerPartRect = new Rectangle(
-                    this.Width - ScrollerWidth, 
-                    ScrollerWidth + (int)(VerticalScrollerPos * (this.Height - 2 * ScrollerWidth - scrollerPartHeight) / ((float)(Components.Count + Statuses.Count - MaxSimultaneousRecords) ) ), 
-                    ScrollerWidth,
+                    this.Width - ScrollerSize, 
+                    ScrollerSize + (int)(VerticalScrollerPos * (this.Height - 2 * ScrollerSize - scrollerPartHeight) / ((float)(Components.Count + Statuses.Count - MaxSimultaneousRecords) ) ), 
+                    ScrollerSize,
                     scrollerPartHeight
                 );
                 g.DrawRectangle(new Pen(OutlineColor), scrollerPartRect);
@@ -636,19 +677,19 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             g.DrawRectangle(new Pen(OutlineColor), GetHorizontalScrollerRect);
             g.FillRectangle(new SolidBrush(OutlineColor), GetHorizontalScrollerRect);
 
-            if (GetTotalLengthInMilliseconds > VisionRange)
+            if (GetTotalLengthInMilliseconds > HorizontalVisionRange)
             {
                 // Draw left button
-                Rectangle upButtonRect = new Rectangle(0, this.Height - ScrollerWidth, ScrollerWidth, ScrollerWidth);
+                Rectangle upButtonRect = new Rectangle(0, this.Height - ScrollerSize, ScrollerSize, ScrollerSize);
                 g.DrawRectangle(new Pen(OutlineColor), upButtonRect);
                 g.FillRectangle(new SolidBrush(TitleFillColor), upButtonRect);
 
                 // Draw right button
                 Rectangle downButtonRect = new Rectangle(
-                    this.Width - ScrollerWidth,
-                    this.Height - ScrollerWidth,
-                    ScrollerWidth,
-                    ScrollerWidth
+                    this.Width - ScrollerSize,
+                    this.Height - ScrollerSize,
+                    ScrollerSize,
+                    ScrollerSize
                 );
 
                 g.DrawRectangle(new Pen(OutlineColor), downButtonRect);
@@ -656,13 +697,13 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                 // Draw scroller part
 
-                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * (VisionRange / (float)(GetTotalLengthInMilliseconds)));
+                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerSize) * (HorizontalVisionRange / (float)(GetTotalLengthInMilliseconds)));
 
                 Rectangle scrollerPartRect = new Rectangle(
-                    ScrollerWidth + (int)(visionStartPos / (float)(GetTotalLengthInMilliseconds - VisionRange) * (this.Width - 2 * ScrollerWidth - scrollerPartWidth)),
-                    this.Height - ScrollerWidth,
+                    ScrollerSize + (int)(visionStartPos / (float)(GetTotalLengthInMilliseconds - HorizontalVisionRange) * (this.Width - 2 * ScrollerSize - scrollerPartWidth)),
+                    this.Height - ScrollerSize,
                     scrollerPartWidth,
-                    ScrollerWidth
+                    ScrollerSize
                 );
                 g.DrawRectangle(new Pen(OutlineColor), scrollerPartRect);
                 g.FillRectangle(new SolidBrush(CyclogramTitleColor), scrollerPartRect);
@@ -671,14 +712,14 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         public void UpdateVisionPos()
         {
-            if (CurrentTimeStamp > VisionPos + (int)(VisionRange * TimeStampFollowPoint))
+            if (CurrentTimeStamp > HorizontalVisionPos + (int)(HorizontalVisionRange * TimeStampFollowPoint))
             {
-                VisionPos = CurrentTimeStamp - (int)(VisionRange * TimeStampFollowPoint);
+                HorizontalVisionPos = CurrentTimeStamp - (int)(HorizontalVisionRange * TimeStampFollowPoint);
             }
 
-            if (VisionPos > CurrentTimeStamp)
+            if (HorizontalVisionPos > CurrentTimeStamp)
             {
-                VisionPos = CurrentTimeStamp;
+                HorizontalVisionPos = CurrentTimeStamp;
             }
         }
 
@@ -689,7 +730,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void timer_main_Tick(object sender, EventArgs e)
         {
-            _followStopTime -= timer_main.Interval;
+            if(!HorizontalScrollerFollowMouse)
+                _followStopTime -= timer_main.Interval;
 
             if (this.Active)
             {
@@ -707,7 +749,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             {
                 if(_shiftKeyPressed)
                 {
-                    VisionPos = Mathf.Clamp(VisionPos - (int)(VisionRange * _verticalPosScroll), 0, GetTotalLengthInMilliseconds - VisionRange);
+                    HorizontalVisionPos = Mathf.Clamp(HorizontalVisionPos - (int)(HorizontalVisionRange * HorizontalPosScrollCoeff), 0, GetTotalLengthInMilliseconds - HorizontalVisionRange);
 
                     _followStopTime = FollowSleepTime;
 
@@ -736,7 +778,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             {
                 if (_shiftKeyPressed)
                 {
-                    VisionPos = Mathf.Clamp(VisionPos + (int)(VisionRange * _verticalPosScroll), 0, GetTotalLengthInMilliseconds - VisionRange);
+                    HorizontalVisionPos = Mathf.Clamp(HorizontalVisionPos + (int)(HorizontalVisionRange * _verticalPosScroll), 0, GetTotalLengthInMilliseconds - HorizontalVisionRange);
 
                     _followStopTime = FollowSleepTime;
 
@@ -786,42 +828,41 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void Cyclogram_MouseDown(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("MOUSE DOWN");
-
             // Vertical Scroller
-            int scrollerPartHeight = (int)((this.Height - 2 * ScrollerWidth) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
+            int scrollerPartHeight = (int)((this.Height - 2 * ScrollerSize) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
 
             Rectangle verticalScrollerPartRect = new Rectangle(
-                    this.Width - ScrollerWidth,
-                    ScrollerWidth + (int)(VerticalScrollerPos * (this.Height - 2 * ScrollerWidth - scrollerPartHeight) / ((float)(Components.Count + Statuses.Count - MaxSimultaneousRecords))),
-                    ScrollerWidth,
+                    this.Width - ScrollerSize,
+                    ScrollerSize + (int)(VerticalScrollerPos * (this.Height - 2 * ScrollerSize - scrollerPartHeight) / ((float)(Components.Count + Statuses.Count - MaxSimultaneousRecords))),
+                    ScrollerSize,
                     scrollerPartHeight
                 );
 
             if (verticalScrollerPartRect.Contains(e.Location) && Components.Count + Statuses.Count > MaxSimultaneousRecords)
             {
-                Console.WriteLine("MOUSE DOWN VERTICAL SET");
-
                 VerticalScrollerFollowMouse = true;
                 _verticalMouseStartLocation = e.Location;
                 _verticalPosWhenMouseStarted = VerticalScrollerPos;
             }
 
             // Horizontal Scroller
-            int visionStartPos = Mathf.Clamp(VisionPos + VisionRange, 0, GetTotalLengthInMilliseconds) - VisionRange;
-            int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * (VisionRange / (float)(GetTotalLengthInMilliseconds)));
+            int visionStartPos = Mathf.Clamp(HorizontalVisionPos + HorizontalVisionRange, 0, GetTotalLengthInMilliseconds) - HorizontalVisionRange;
+            int scrollerPartWidth = (int)((this.Width - 2 * ScrollerSize) * (HorizontalVisionRange / (float)(GetTotalLengthInMilliseconds)));
 
             Rectangle horizontalScrollerPartRect = new Rectangle(
-                ScrollerWidth + (int)(visionStartPos / (float)(GetTotalLengthInMilliseconds - VisionRange) * (this.Width - 2 * ScrollerWidth - scrollerPartWidth)),
-                this.Height - ScrollerWidth,
+                ScrollerSize + (int)(visionStartPos / (float)(GetTotalLengthInMilliseconds - HorizontalVisionRange) * (this.Width - 2 * ScrollerSize - scrollerPartWidth)),
+                this.Height - ScrollerSize,
                 scrollerPartWidth,
-                ScrollerWidth
+                ScrollerSize
             );
 
             if (horizontalScrollerPartRect.Contains(e.Location))
             {
                 HorizontalScrollerFollowMouse = true;
                 _horizontalMouseStartLocation = e.Location;
+                _horizontalPosWhenMouseStarted = HorizontalVisionPos;
+
+                _followStopTime = FollowSleepTime;
             }
         }
 
@@ -833,37 +874,29 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void Cyclogram_MouseMove(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("MOVES");
-
             if(VerticalScrollerFollowMouse)
             {
-                Console.WriteLine("MOVES VERTICAL");
-
-                int scrollerPartHeight = (int)((this.Height - 2 * ScrollerWidth) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
+                int scrollerPartHeight = (int)((this.Height - 2 * ScrollerSize) * ((float)MaxSimultaneousRecords / (Components.Count + Statuses.Count)));
                 int step = scrollerPartHeight / MaxSimultaneousRecords;
 
                 int y = _verticalPosWhenMouseStarted + (e.Location.Y - _verticalMouseStartLocation.Y) / step;
 
                 VerticalScrollerPos = Mathf.Clamp(y, 0, Components.Count + Statuses.Count - MaxSimultaneousRecords);
 
-                Console.WriteLine("VERTICAL POS " + VerticalScrollerPos);
-
+                //Task.Run(() => this.Refresh());
                 this.Refresh();
             }
 
             if(HorizontalScrollerFollowMouse)
             {
-                Console.WriteLine("MOVES HORIZONTAL");
-
-                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerWidth) * (VisionRange / (float)(GetTotalLengthInMilliseconds)));
-                float step = (float)scrollerPartWidth / VisionRange;
+                int scrollerPartWidth = (int)((this.Width - 2 * ScrollerSize) * (HorizontalVisionRange / (float)(GetTotalLengthInMilliseconds)));
+                float step = (float)scrollerPartWidth / HorizontalVisionRange;
 
                 int x = (int)(_horizontalPosWhenMouseStarted + (e.Location.X - _horizontalMouseStartLocation.X) / step);
 
-                VisionPos = Mathf.Clamp(x, 0, GetTotalLengthInMilliseconds - VisionRange);
+                HorizontalVisionPos = Mathf.Clamp(x, 0, GetTotalLengthInMilliseconds - HorizontalVisionRange);
 
-                Console.WriteLine("HORIZONTAL POS " + VisionPos);
-
+                //Task.Run(() => this.Refresh());
                 this.Refresh();
             }
         }

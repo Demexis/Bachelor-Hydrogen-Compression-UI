@@ -14,7 +14,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AIIBhUAmACEAANgEAASAAAgKDgESQARgoABQEEREAQQ=</HashCode>
+      <HashCode>ApIBjUEuACNAINgMACSAAAhaDoGSQERkoABSkEREBQQ=</HashCode>
       <FileName>UserControls\Cyclogram\Cyclogram.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -35,14 +35,14 @@
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DeviceDiagnosticForm" Collapsed="true">
     <Position X="12.75" Y="12.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAACAACAAAAAAAACAAAACAAAAAQAEAAAAAQAAAAA=</HashCode>
+      <HashCode>AAQAIAACECACAAAIIAGAgAACAAAAQQAAUBAACwAAACA=</HashCode>
       <FileName>Forms\Device Forms\DeviceDiagnosticForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DeviceForm" Collapsed="true">
     <Position X="13" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAMAACACAAAABgAACAAABCCAAAQQAAEAAACAAABCA=</HashCode>
+      <HashCode>AAAAMAACACACAABsIACAAABCAAAAQQAAEAAACQAADCA=</HashCode>
       <FileName>Forms\Device Forms\DeviceForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -63,7 +63,7 @@
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.JSON_Handler">
     <Position X="8.5" Y="14.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAABAAACAAAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAQAAAAgAAIAAAAAAAAAAAAABAAACAAEAAA=</HashCode>
       <FileName>Handlers\JSON\JSON_Handler.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -182,7 +182,7 @@
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Miscellaneous.Mathf">
     <Position X="10.25" Y="14.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAA=</HashCode>
+      <HashCode>BAAAAAABAAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Miscellaneous\Mathf.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -229,14 +229,14 @@
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Handlers.SensorReadingHelper" Collapsed="true">
     <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAgAAAAAAAAQAAAAAAIAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAQABAAA=</HashCode>
       <FileName>Handlers\SensorReadingHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.SensorChart" Collapsed="true">
     <Position X="13.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAEACAACEARAAAAACAAAACAAAAAQEAAAAAAAAAgAA=</HashCode>
+      <HashCode>AoAAEACAASAABAAAAACAQAACAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>UserControls\SensorChart\SensorChart.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -45,11 +45,11 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_ChildForm_Device = new System.Windows.Forms.Button();
             this.button_ChildForm_Connect = new System.Windows.Forms.Button();
             this.button_SideMenu_Control = new System.Windows.Forms.Button();
-            this.panel_Logo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel_ChildForm = new System.Windows.Forms.Panel();
             this.serialPort_Main = new System.IO.Ports.SerialPort(this.components);
             this.timer_ToSendSerialData = new System.Windows.Forms.Timer(this.components);
+            this.panel_ChildForm = new System.Windows.Forms.Panel();
+            this.panel_Logo = new System.Windows.Forms.Panel();
             this.panel_SideMenu.SuspendLayout();
             this.panel_OptionsSubmenu.SuspendLayout();
             this.panel_ControlSubmenu.SuspendLayout();
@@ -286,17 +286,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_SideMenu_Control.UseVisualStyleBackColor = true;
             this.button_SideMenu_Control.Click += new System.EventHandler(this.SideMenuButton_Click);
             // 
-            // panel_Logo
-            // 
-            this.panel_Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.panel_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Logo.BackgroundImage")));
-            this.panel_Logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel_Logo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_Logo.Location = new System.Drawing.Point(0, 0);
-            this.panel_Logo.Name = "panel_Logo";
-            this.panel_Logo.Size = new System.Drawing.Size(233, 100);
-            this.panel_Logo.TabIndex = 0;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
@@ -305,15 +294,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(684, 100);
             this.panel1.TabIndex = 1;
-            // 
-            // panel_ChildForm
-            // 
-            this.panel_ChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.panel_ChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_ChildForm.Location = new System.Drawing.Point(250, 0);
-            this.panel_ChildForm.Name = "panel_ChildForm";
-            this.panel_ChildForm.Size = new System.Drawing.Size(684, 461);
-            this.panel_ChildForm.TabIndex = 2;
             // 
             // serialPort_Main
             // 
@@ -324,6 +304,27 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // 
             this.timer_ToSendSerialData.Interval = 1000;
             this.timer_ToSendSerialData.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panel_ChildForm
+            // 
+            this.panel_ChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            this.panel_ChildForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel_ChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_ChildForm.Location = new System.Drawing.Point(250, 0);
+            this.panel_ChildForm.Name = "panel_ChildForm";
+            this.panel_ChildForm.Size = new System.Drawing.Size(684, 461);
+            this.panel_ChildForm.TabIndex = 2;
+            // 
+            // panel_Logo
+            // 
+            this.panel_Logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.panel_Logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel_Logo.BackgroundImage")));
+            this.panel_Logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel_Logo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_Logo.Location = new System.Drawing.Point(0, 0);
+            this.panel_Logo.Name = "panel_Logo";
+            this.panel_Logo.Size = new System.Drawing.Size(233, 100);
+            this.panel_Logo.TabIndex = 0;
             // 
             // MainForm
             // 

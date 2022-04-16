@@ -139,6 +139,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.cyclogram1.CyclogramName = "Cyclogram";
             this.cyclogram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cyclogram1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cyclogram1.HorizontalPosScrollCoeff = 0.1F;
             this.cyclogram1.Location = new System.Drawing.Point(0, 0);
             this.cyclogram1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cyclogram1.MinimumSize = new System.Drawing.Size(200, 200);
@@ -147,7 +148,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.cyclogram1.Size = new System.Drawing.Size(349, 253);
             this.cyclogram1.TabIndex = 1;
             this.cyclogram1.TimeStampFollowPoint = 0.5F;
-            this.cyclogram1.VerticalPosScroll = 0.1F;
             // 
             // splitContainer2
             // 

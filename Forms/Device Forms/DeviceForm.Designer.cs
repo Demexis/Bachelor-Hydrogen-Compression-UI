@@ -232,7 +232,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.cyclogram1.Size = new System.Drawing.Size(468, 365);
             this.cyclogram1.TabIndex = 1;
             this.cyclogram1.TimeStampFollowPoint = 0.5F;
-            this.cyclogram1.VerticalPosScroll = 0.1F;
             // 
             // compressorDevice1
             // 

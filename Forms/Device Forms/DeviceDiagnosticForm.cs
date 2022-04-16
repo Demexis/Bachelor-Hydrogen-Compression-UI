@@ -277,6 +277,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         {
             if(comboBox_LogFilesList.SelectedItem != null)
             {
+                logRecords.Clear();
+
                 string fileName = comboBox_LogFilesList.SelectedItem.ToString();
 
                 if (File.Exists(fileName))
@@ -345,7 +347,9 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            (string timeInfo, string sensorName, float sensorValue, bool cyclogramActiveStatus, int timeStampValue) p = logRecords[trackBar1.Value];
+            int trackbarValue = trackBar1.Value;
+
+            (string timeInfo, string sensorName, float sensorValue, bool cyclogramActiveStatus, int timeStampValue) p = logRecords[trackbarValue];
 
             textBox1.Text = $"{p.timeInfo} : ( {p.sensorName}, {p.sensorValue}, {p.cyclogramActiveStatus}, {p.timeStampValue} )";
 
@@ -360,7 +364,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
             Dictionary<string, List<float>> sensors = new Dictionary<string, List<float>>();
 
-            foreach((string timeInfo, string sensorName, float sensorValue, bool cyclogramActiveStatus, int timeStampValue) p2 in logRecords.GetRange(0, trackBar1.Value + 1))
+            foreach((string timeInfo, string sensorName, float sensorValue, bool cyclogramActiveStatus, int timeStampValue) p2 in logRecords.GetRange(0, trackbarValue + 1))
             {
                 if(sensors.ContainsKey(p2.sensorName))
                 {
