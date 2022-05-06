@@ -228,7 +228,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
         {
             if (comboBox_SelectCyclogram.SelectedItem != null)
             {
-                JSON_Handler.InitializeCyclogramWithJsonTEMP(this.cyclogram1, File.ReadAllText((string)comboBox_SelectCyclogram.SelectedItem));
+                JSON_Handler.InitializeCyclogramWithJson(this.cyclogram1, File.ReadAllText((string)comboBox_SelectCyclogram.SelectedItem));
             }
 
             UpdateStepsListBox();

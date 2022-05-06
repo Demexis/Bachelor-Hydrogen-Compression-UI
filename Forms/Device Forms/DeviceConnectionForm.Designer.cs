@@ -40,9 +40,11 @@ namespace Bachelor_Project
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_SensorSets = new System.Windows.Forms.ComboBox();
             this.comboBox_DeviceSchemes = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_SimulationMode = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.checkBox_GenerateReadings = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -61,6 +63,10 @@ namespace Bachelor_Project
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.Panel2.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_PortsList
@@ -155,7 +161,7 @@ namespace Bachelor_Project
             // 
             // splitContainer4.Panel2
             // 
-            this.splitContainer4.Panel2.Controls.Add(this.checkBox1);
+            this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
             this.splitContainer4.Size = new System.Drawing.Size(312, 139);
             this.splitContainer4.SplitterDistance = 103;
             this.splitContainer4.TabIndex = 0;
@@ -216,6 +222,7 @@ namespace Bachelor_Project
             this.comboBox_SensorSets.Name = "comboBox_SensorSets";
             this.comboBox_SensorSets.Size = new System.Drawing.Size(129, 45);
             this.comboBox_SensorSets.TabIndex = 6;
+            this.comboBox_SensorSets.SelectedIndexChanged += new System.EventHandler(this.comboBox_SensorSets_SelectedIndexChanged);
             // 
             // comboBox_DeviceSchemes
             // 
@@ -229,19 +236,21 @@ namespace Bachelor_Project
             this.comboBox_DeviceSchemes.Name = "comboBox_DeviceSchemes";
             this.comboBox_DeviceSchemes.Size = new System.Drawing.Size(129, 45);
             this.comboBox_DeviceSchemes.TabIndex = 7;
+            this.comboBox_DeviceSchemes.SelectedIndexChanged += new System.EventHandler(this.comboBox_DeviceSchemes_SelectedIndexChanged);
             // 
-            // checkBox1
+            // checkBox_SimulationMode
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.checkBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(312, 32);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Generate Random Readings";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox_SimulationMode.AutoSize = true;
+            this.checkBox_SimulationMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox_SimulationMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_SimulationMode.ForeColor = System.Drawing.Color.Gainsboro;
+            this.checkBox_SimulationMode.Location = new System.Drawing.Point(0, 0);
+            this.checkBox_SimulationMode.Name = "checkBox_SimulationMode";
+            this.checkBox_SimulationMode.Size = new System.Drawing.Size(156, 32);
+            this.checkBox_SimulationMode.TabIndex = 0;
+            this.checkBox_SimulationMode.Text = "Simulation Mode";
+            this.checkBox_SimulationMode.UseVisualStyleBackColor = true;
+            this.checkBox_SimulationMode.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // splitContainer1
             // 
@@ -279,6 +288,36 @@ namespace Bachelor_Project
             this.splitContainer2.SplitterDistance = 208;
             this.splitContainer2.TabIndex = 0;
             // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.checkBox_SimulationMode);
+            // 
+            // splitContainer5.Panel2
+            // 
+            this.splitContainer5.Panel2.Controls.Add(this.checkBox_GenerateReadings);
+            this.splitContainer5.Size = new System.Drawing.Size(312, 32);
+            this.splitContainer5.SplitterDistance = 156;
+            this.splitContainer5.TabIndex = 1;
+            // 
+            // checkBox_GenerateReadings
+            // 
+            this.checkBox_GenerateReadings.AutoSize = true;
+            this.checkBox_GenerateReadings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox_GenerateReadings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_GenerateReadings.ForeColor = System.Drawing.Color.Gainsboro;
+            this.checkBox_GenerateReadings.Location = new System.Drawing.Point(0, 0);
+            this.checkBox_GenerateReadings.Name = "checkBox_GenerateReadings";
+            this.checkBox_GenerateReadings.Size = new System.Drawing.Size(152, 32);
+            this.checkBox_GenerateReadings.TabIndex = 1;
+            this.checkBox_GenerateReadings.Text = "Generate Readings";
+            this.checkBox_GenerateReadings.UseVisualStyleBackColor = true;
+            // 
             // DeviceConnectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -298,7 +337,6 @@ namespace Bachelor_Project
             this.splitContainer3.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
-            this.splitContainer4.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -311,6 +349,12 @@ namespace Bachelor_Project
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel1.PerformLayout();
+            this.splitContainer5.Panel2.ResumeLayout(false);
+            this.splitContainer5.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -326,10 +370,12 @@ namespace Bachelor_Project
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_SimulationMode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBox_SensorSets;
         private System.Windows.Forms.ComboBox comboBox_DeviceSchemes;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.CheckBox checkBox_GenerateReadings;
     }
 }

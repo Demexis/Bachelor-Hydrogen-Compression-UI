@@ -18,11 +18,14 @@ using ComponentOrientation = Bachelor_Project.UserControls.Device.CompressorComp
 using Bachelor_Project.UserControls;
 using Bachelor_Project.Miscellaneous;
 using Bachelor_Project.Handlers;
+using System.Text.Json;
 
 namespace Bachelor_Project
 {
     public partial class DeviceForm : Form
     {
+        public static DeviceForm Instance;
+
         private SensorReadingHelper _sensorReadingHelper;
 
         private string _previousFile = string.Empty;
@@ -33,18 +36,20 @@ namespace Bachelor_Project
         {
             InitializeComponent();
 
+            if (Instance == null) Instance = this;
+            else this.Close();
+
             _sensorReadingHelper = MainForm.Instance.SensorReadingHelper;
             _sensorReadingHelper.OnSensorsChanged += ReinitializeSensorCharts;
 
-            ReinitializeSensorCharts();
-
-            InitializeCompressorDeviceScheme();
-
-            InitializeCyclogram();
-
             InitializeControlPanel();
 
-            SendTestData();
+            //SendTestData();
+
+            this.VisibleChanged += (s, e) =>
+            {
+                ReinitializeSensorCharts();
+            };
         }
 
         public void ReinitializeSensorCharts()
@@ -74,13 +79,6 @@ namespace Bachelor_Project
                 _sensorReadingHelper.AddSensorChart(sensorChart);
             }
 
-            //Console.WriteLine("TEMP1: " + _sensorReadingHelper.Sensors.Count);
-            //Console.WriteLine("TEMP3: " + tableLayoutPanel1.RowCount);
-            //foreach (RowStyle rowStyle in tableLayoutPanel1.RowStyles)
-            //{
-            //    Console.WriteLine("TEMP2: " + rowStyle.Height);
-            //    //rowStyle.Height = 1f / tableLayoutPanel1.RowStyles.Count;
-            //}
         }
 
         private void InitializeControlPanel()
@@ -92,147 +90,111 @@ namespace Bachelor_Project
             this.controlPanel1.OnLeftEndClick += this.cyclogram1.SetLeftEnd;
         }
 
-        private void InitializeCyclogram()
+        public void ReinitializeCyclogram()
         {
-            foreach (string file in Directory.GetFiles("Cyclograms"))
+            List<string> filePaths = Directory.GetFiles(@"Cyclograms", "*.*", SearchOption.AllDirectories)
+            .Where(s => s.EndsWith(".json")).ToList();
+
             {
-                this.comboBox_CyclogramList.Items.Add(file);
+                List<string> toDelete = new List<string>();
+                foreach (string item in comboBox_SelectCyclogram.Items)
+                {
+                    if (!filePaths.Contains(item))
+                    {
+                        toDelete.Add(item);
+                    }
+                }
+                toDelete.ForEach(x => comboBox_SelectCyclogram.Items.Remove(x));
             }
 
-            if (this.comboBox_CyclogramList.Items.Count > 0)
+            foreach (string filePath in filePaths)
             {
-                this.comboBox_CyclogramList.SelectedIndex = 0;
+                string json = File.ReadAllText(filePath);
+
+                JsonDocument doc = JsonDocument.Parse(json);
+                JsonElement root = doc.RootElement;
+
+                if (root.TryGetProperty("cyclogram", out JsonElement cyclogramProperty))
+                {
+                    if (cyclogramProperty.TryGetProperty("deviceScheme", out JsonElement deviceSchemeProperty))
+                    {
+                        if ((DeviceConnectionForm.Instance.SelectedDeviceScheme).Equals(deviceSchemeProperty.GetString()))
+                        {
+                            if (!comboBox_SelectCyclogram.Items.Contains(filePath))
+                            {
+                                comboBox_SelectCyclogram.Items.Add(filePath);
+                            }
+
+                            continue;
+                        }
+                    }
+                }
+
+                if (comboBox_SelectCyclogram.Items.Contains(filePath))
+                {
+                    comboBox_SelectCyclogram.Items.Remove(filePath);
+                }
             }
 
-            //this.cyclogram1.OnComponentStatusChange += SetComponentStatus;
+            if (comboBox_SelectCyclogram.SelectedItem == null)
+            {
+                if (comboBox_SelectCyclogram.Items.Count != 0)
+                {
+                    comboBox_SelectCyclogram.SelectedIndex = 0;
+                }
+            }
+
+            this.cyclogram1.OnComponentStatusChange += (c, s) =>
+            {
+                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerType.Components].GetElements)
+                {
+                    if (element is CompressorComponent component)
+                    {
+                        if (component.Name.Equals((c as CyclogramComponentElement).Name))
+                        {
+                            if (Enum.TryParse((s as CyclogramStatusElement).Name, out CompressorComponent.ComponentStatus status))
+                            {
+                                component.Status = status;
+                            }
+                        }
+                    }
+                }
+
+                this.compressorDevice1.Refresh();
+            };
+
+            this.cyclogram1.Refresh();
             this.cyclogram1.OnSingleExecutionEnd += () => { this.controlPanel1.PlayButtonStatus = false; };
         }
 
-        private void InitializeCompressorDeviceScheme()
+        public void ReinitializeCompressorDeviceScheme()
         {
-            //compressorDevice1.InitializeRoadmap(new Size(9, 14));
+            compressorDevice1.Alignment = CompressorDevice.DeviceAlignment.Middle;
 
-            //compressorDevice1.InitializePipes(
-            //    "000010000\n" +
-            //    "001111110\n" +
-            //    "001010000\n" +
-            //    "001011100\n" +
-            //    "001000100\n" +
-            //    "111111111\n" +
-            //    "010010010\n" +
-            //    "010010010\n" +
-            //    "010000010\n" +
-            //    "010000010\n" +
-            //    "011111110\n" +
-            //    "010101010\n" +
-            //    "011111110\n" +
-            //    "000101000",
-            //    CompressorPipe.PipeType.Gas);
+            //this.cyclogram1.Components.Clear();
 
-            //compressorDevice1.InitializeDeviceComponents(
-            //    "XXXXrXXXX\n" +
-            //    "XXX1X2XXX\n" +
-            //    "XXXXXXXXX\n" +
-            //    "XXXXX3XXX\n" +
-            //    "XXXXXXXXX\n" +
-            //    "XX4XX5XXX\n" +
-            //    "XXXXXXXXX\n" +
-            //    "XqXXwXXeX\n" +
-            //    "XXXXXXXXX\n" +
-            //    "XaXXXXXsX\n" +
-            //    "XX6XXX7XX\n" +
-            //    "X9XpX8X0X\n" +
-            //    "XXdXXXfXX\n" +
-            //    "XXXXXXXXX",
+            string json = File.ReadAllText(DeviceConnectionForm.Instance.SelectedDeviceScheme);
+            JSON_Handler.InitializeCompressorDeviceWithJson(this.compressorDevice1, json);
 
-            //    new Dictionary<char, CompressorComponent>()
-            //    {
-            //        ['1'] = new CompressorComponent(
-            //            "s1",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal, CompressorComponent.ComponentStatus.Active),
-            //        ['2'] = new CompressorComponent(
-            //            "s2",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal),
-            //        ['3'] = new CompressorComponent(
-            //            "s3",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal),
-            //        ['4'] = new CompressorComponent(
-            //            "s4",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal),
-            //        ['5'] = new CompressorComponent(
-            //            "s5",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal),
-            //        ['6'] = new CompressorComponent(
-            //            "s6",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal),
-            //        ['7'] = new CompressorComponent(
-            //            "s7",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Horizontal),
-            //        ['8'] = new CompressorComponent(
-            //            "s8",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Vertical),
-            //        ['9'] = new CompressorComponent(
-            //            "s9",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Vertical),
-            //        ['0'] = new CompressorComponent(
-            //            "s10",
-            //            ComponentType.Valve,
-            //            ComponentOrientation.Vertical),
-            //        ['q'] = new CompressorComponent(
-            //            "v1",
-            //            ComponentType.Reservoir,
-            //            ComponentOrientation.Vertical,
-            //            CompressorComponent.ComponentStatus.Active, 0.3f),
-            //        ['w'] = new CompressorComponent(
-            //            "h1",
-            //            ComponentType.Reservoir,
-            //            ComponentOrientation.Vertical,
-            //            CompressorComponent.ComponentStatus.Active, 0.5f),
-            //        ['e'] = new CompressorComponent(
-            //            "v2",
-            //            ComponentType.Reservoir,
-            //            ComponentOrientation.Vertical,
-            //            CompressorComponent.ComponentStatus.Active, 0.8f),
-            //        ['r'] = new CompressorComponent(
-            //            "buffer",
-            //            ComponentType.Reservoir,
-            //            ComponentOrientation.Vertical,
-            //            CompressorComponent.ComponentStatus.Active, 1f),
-            //        ['p'] = new CompressorComponent(
-            //            "p1",
-            //            ComponentType.Pump,
-            //            ComponentOrientation.Vertical),
-            //        ['a'] = new CompressorComponent(
-            //            "d1",
-            //            ComponentType.CounterTrigger,
-            //            ComponentOrientation.Vertical),
-            //        ['s'] = new CompressorComponent(
-            //            "d2",
-            //            ComponentType.CounterTrigger,
-            //            ComponentOrientation.Vertical),
-            //        ['d'] = new CompressorComponent(
-            //            "d3",
-            //            ComponentType.OpticalSensor,
-            //            ComponentOrientation.Vertical),
-            //        ['f'] = new CompressorComponent(
-            //            "d4",
-            //            ComponentType.OpticalSensor,
-            //            ComponentOrientation.Vertical)
-            //    });
+            foreach (CompressorComponent component in this.compressorDevice1.GetComponentsArray())
+            {
+                List<CyclogramStatusElement> statuses = new List<CyclogramStatusElement>();
+
+                foreach (CompressorComponent.ComponentStatus statusEnum in Enum.GetValues(typeof(CompressorComponent.ComponentStatus)))
+                {
+                    statuses.Add(new CyclogramStatusElement() { Name = statusEnum.ToString() });
+                }
+
+                this.cyclogram1.Components.Add(new CyclogramComponentElement() { Name = component.Name, Statuses = statuses });
+            }
+
         }
 
-        private async void SendTestData()
+        public async void SendTestData()
         {
-            while(true && TempTestingFlag && comboBox_CyclogramList.SelectedItem != null)
+            TempTestingFlag = true;
+
+            while (true && TempTestingFlag && comboBox_SelectCyclogram.SelectedItem != null)
             {
                 if(TempTestingFlag)
                 {
@@ -242,37 +204,37 @@ namespace Bachelor_Project
                     name = "d1";
                     value = (float)new Random().NextDouble() * 3 + 10;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{comboBox_CyclogramList.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d2";
                     value = (float)new Random().NextDouble() * 15 + 25;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{comboBox_CyclogramList.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d3";
                     value = (float)new Random().NextDouble() * 5 + 15;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{comboBox_CyclogramList.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d4";
                     value = (float)new Random().NextDouble() * 10 + 45;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{comboBox_CyclogramList.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d5";
                     value = (float)new Random().NextDouble() * 200 + 100;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{comboBox_CyclogramList.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d6";
                     value = (float)new Random().NextDouble() * 500 + 1000;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{comboBox_CyclogramList.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
 
                 }
 
@@ -281,31 +243,13 @@ namespace Bachelor_Project
             }
         }
 
-        private void SetComponentStatus(string componentWord, string statusWord)
-        {
-            CompressorComponent.ComponentStatus status;
-
-            if (statusWord.Equals("active"))
-            {
-                status = CompressorComponent.ComponentStatus.Active;
-
-                compressorDevice1.SetComponentStatus(componentWord, status);
-            }
-            else if (statusWord.Equals("inactive"))
-            {
-                status = CompressorComponent.ComponentStatus.Inactive;
-
-                compressorDevice1.SetComponentStatus(componentWord, status);
-            }
-        }
-
         private void comboBox_CyclogramList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_previousFile.Equals((string)this.comboBox_CyclogramList.SelectedItem)) return;
+            //if (_previousFile.Equals((string)this.comboBox_SelectCyclogram.SelectedItem)) return;
 
-            SetCyclogramData((string)this.comboBox_CyclogramList.SelectedItem);
+            SetCyclogramData((string)this.comboBox_SelectCyclogram.SelectedItem);
 
-            _previousFile = (string)this.comboBox_CyclogramList.SelectedItem;
+            //_previousFile = (string)this.comboBox_SelectCyclogram.SelectedItem;
         }
 
         private void SetCyclogramData(string fileName)
@@ -313,16 +257,24 @@ namespace Bachelor_Project
             if (!File.Exists(fileName)) return;
 
             this.cyclogram1.Stop();
-            this.cyclogram1.Clear();
 
             string json = File.ReadAllText(fileName);
 
             JSON_Handler.InitializeCyclogramWithJson(cyclogram1, json);
+
+            this.cyclogram1.Refresh();
         }
 
         private void tableLayoutPanel1_Resize(object sender, EventArgs e)
         {
             tableLayoutPanel1.Size = new Size(tableLayoutPanel1.Width, panel1.Size.Height * tableLayoutPanel1.RowCount);
+        }
+
+        public void Clear()
+        {
+            TempTestingFlag = false;
+
+            this.cyclogram1.Stop();
         }
     }
 }

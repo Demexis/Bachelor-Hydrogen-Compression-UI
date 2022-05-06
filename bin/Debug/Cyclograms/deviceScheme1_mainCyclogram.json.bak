@@ -3,23 +3,41 @@
     "steps": [
       {
         "name": "Step_00",
-        "lengthMilliseconds": 150,
+        "lengthMilliseconds": 175,
         "sequences": [
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          },
           {
             "componentName": "Buffer",
             "statusName": "Disabled"
           },
           {
             "componentName": "S1",
-            "statusName": "Disabled"
-          },
+            "statusName": "Active"
+          }
+        ]
+      },
+      {
+        "name": "Step_01",
+        "lengthMilliseconds": 175,
+        "sequences": [
           {
             "componentName": "S2",
             "statusName": "Active"
           },
           {
-            "componentName": "S3",
-            "statusName": "Inactive"
+            "componentName": "S1",
+            "statusName": "Disabled"
           }
         ]
       }

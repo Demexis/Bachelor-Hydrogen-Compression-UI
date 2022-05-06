@@ -425,10 +425,17 @@ namespace Bachelor_Project
 
                         if(sequence.Active)
                         {
-                            CyclogramComponentElement component = Components.First(x => x.Name == sequence.ComponentName);
-                            CyclogramStatusElement status = component.Statuses.First(x => x.Name == sequence.StatusName);
+                            try
+                            {
+                                CyclogramComponentElement component = Components.First(x => x.Name == sequence.ComponentName);
+                                CyclogramStatusElement status = component.Statuses.First(x => x.Name == sequence.StatusName);
 
-                            OnComponentStatusChange?.Invoke(component, status);
+                                OnComponentStatusChange?.Invoke(component, status);
+                            }
+                            catch(Exception ex)
+                            {
+                                // Skip...
+                            }
                         }
 
                             /// TODO: HERE

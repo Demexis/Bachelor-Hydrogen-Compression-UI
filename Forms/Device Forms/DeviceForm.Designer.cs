@@ -32,7 +32,7 @@ namespace Bachelor_Project
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.comboBox_CyclogramList = new System.Windows.Forms.ComboBox();
+            this.comboBox_SelectCyclogram = new System.Windows.Forms.ComboBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
@@ -115,24 +115,24 @@ namespace Bachelor_Project
             // 
             // splitContainer5.Panel2
             // 
-            this.splitContainer5.Panel2.Controls.Add(this.comboBox_CyclogramList);
+            this.splitContainer5.Panel2.Controls.Add(this.comboBox_SelectCyclogram);
             this.splitContainer5.Size = new System.Drawing.Size(468, 48);
             this.splitContainer5.SplitterDistance = 232;
             this.splitContainer5.TabIndex = 1;
             // 
             // comboBox_CyclogramList
             // 
-            this.comboBox_CyclogramList.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.comboBox_CyclogramList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_CyclogramList.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox_CyclogramList.FormattingEnabled = true;
-            this.comboBox_CyclogramList.ItemHeight = 37;
-            this.comboBox_CyclogramList.Location = new System.Drawing.Point(0, 3);
-            this.comboBox_CyclogramList.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_CyclogramList.Name = "comboBox_CyclogramList";
-            this.comboBox_CyclogramList.Size = new System.Drawing.Size(232, 45);
-            this.comboBox_CyclogramList.TabIndex = 6;
-            this.comboBox_CyclogramList.SelectedIndexChanged += new System.EventHandler(this.comboBox_CyclogramList_SelectedIndexChanged);
+            this.comboBox_SelectCyclogram.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.comboBox_SelectCyclogram.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_SelectCyclogram.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_SelectCyclogram.FormattingEnabled = true;
+            this.comboBox_SelectCyclogram.ItemHeight = 37;
+            this.comboBox_SelectCyclogram.Location = new System.Drawing.Point(0, 3);
+            this.comboBox_SelectCyclogram.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_SelectCyclogram.Name = "comboBox_CyclogramList";
+            this.comboBox_SelectCyclogram.Size = new System.Drawing.Size(232, 45);
+            this.comboBox_SelectCyclogram.TabIndex = 6;
+            this.comboBox_SelectCyclogram.SelectedIndexChanged += new System.EventHandler(this.comboBox_CyclogramList_SelectedIndexChanged);
             // 
             // splitContainer2
             // 
@@ -292,7 +292,7 @@ namespace Bachelor_Project
         private UserControls.ControlPanel.ControlPanel controlPanel1;
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.SplitContainer splitContainer5;
-        private System.Windows.Forms.ComboBox comboBox_CyclogramList;
+        private System.Windows.Forms.ComboBox comboBox_SelectCyclogram;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;

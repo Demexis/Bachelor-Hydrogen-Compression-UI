@@ -141,7 +141,6 @@ namespace Bachelor_Project
             this.cyclogram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cyclogram1.FollowSleepTime = 2000;
             this.cyclogram1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cyclogram1.HorizontalPosScrollCoeff = 0.1F;
             this.cyclogram1.HorizontalVisionRange = 0;
             this.cyclogram1.Location = new System.Drawing.Point(0, 0);
             this.cyclogram1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -151,7 +150,6 @@ namespace Bachelor_Project
             this.cyclogram1.PlayMode = Bachelor_Project.Cyclogram.CyclogramPlayMode.Loop;
             this.cyclogram1.Size = new System.Drawing.Size(349, 253);
             this.cyclogram1.TabIndex = 1;
-            this.cyclogram1.TimeStampFollowPoint = 0.5F;
             this.cyclogram1.TitleWidthRatio = 0.2F;
             // 
             // splitContainer2

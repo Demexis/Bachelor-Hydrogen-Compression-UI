@@ -17,7 +17,7 @@ namespace Bachelor_Project
     {
         #region Cyclogram
 
-        public static void InitializeCyclogramWithJsonTEMP(Cyclogram cyclogram, string json)
+        public static void InitializeCyclogramWithJson(Cyclogram cyclogram, string json)
         {
             cyclogram.Steps.Clear();
             //cyclogram.Components.Clear();
@@ -41,124 +41,6 @@ namespace Bachelor_Project
             cyclogram.Refresh();
         }
 
-        private static CyclogramSequenceElement PrepareSequence(JsonElement childElement)
-        {
-            string componentName = string.Empty;
-            string statusName = string.Empty;
-
-            if (childElement.TryGetProperty("componentName", out JsonElement componentNameProperty))
-            {
-                componentName = componentNameProperty.GetString();
-            }
-
-            if (childElement.TryGetProperty("statusName", out JsonElement statusNameProperty))
-            {
-                statusName = statusNameProperty.GetString();
-            }
-
-            return new CyclogramSequenceElement(componentName, statusName);
-        }
-
-        public static void InitializeCyclogramWithJson(Cyclogram cyclogram, string json)
-        {
-            JsonDocument doc = JsonDocument.Parse(json);
-            JsonElement root = doc.RootElement;
-
-            //if (root.TryGetProperty("length", out JsonElement lengthProperty))
-            //{
-            //    cyclogram.Length = lengthProperty.GetInt32();
-            //}
-
-            //if (root.TryGetProperty("categories", out JsonElement categoryMainProperty))
-            //{
-            //    foreach (JsonElement categoryElement in categoryMainProperty.EnumerateArray())
-            //    {
-            //        cyclogram.Components.Add(PrepareCategory(categoryElement));
-            //    }
-            //}
-
-            //if (root.TryGetProperty("titles", out JsonElement titleMainProperty))
-            //{
-            //    foreach (JsonElement titleElement in titleMainProperty.EnumerateArray())
-            //    {
-            //        cyclogram.Statuses.Add(PrepareTitle(titleElement, cyclogram));
-            //    }
-            //}
-
-            //if (root.TryGetProperty("operations", out JsonElement operationMainProperty))
-            //{
-            //    foreach (JsonElement operationElement in operationMainProperty.EnumerateArray())
-            //    {
-            //        CyclogramStepElement step = PrepareStep(operationElement);
-
-            //        if (operationElement.TryGetProperty("sequences", out JsonElement sequenceMainProperty))
-            //        {
-            //            foreach (JsonElement sequenceElement in sequenceMainProperty.EnumerateArray())
-            //            {
-            //                step.Sequences.Add(PrepareSequence(sequenceElement, cyclogram));
-            //            }
-            //        }
-
-            //        cyclogram.Steps.Add(step);
-            //    }
-            //}
-
-            cyclogram.Refresh();
-        }
-
-        
-        //private static CyclogramComponentElement PrepareCategory(JsonElement childElement)
-        //{
-        //    string name = "";
-
-        //    if (childElement.TryGetProperty("name", out JsonElement nameProperty))
-        //    {
-        //        name = nameProperty.GetString();
-        //    }
-
-        //    CyclogramComponentElement category = new CyclogramComponentElement() { Name = name };
-
-        //    return category;
-        //}
-
-        //private static CyclogramStatusElement PrepareTitle(JsonElement childElement, Cyclogram cyclogram)
-        //{
-        //    string idValue = "";
-
-        //    if (childElement.TryGetProperty("titleId", out JsonElement idProperty))
-        //    {
-        //        idValue = idProperty.GetString();
-        //    }
-
-        //    string textValue = "";
-
-        //    if (childElement.TryGetProperty("text", out JsonElement textProperty))
-        //    {
-        //        textValue = textProperty.GetString();
-        //    }
-
-        //    string categoryValue = "";
-            
-        //    if (childElement.TryGetProperty("category", out JsonElement categoryProperty))
-        //    {
-        //        categoryValue = categoryProperty.GetString();
-        //    }
-
-        //    CyclogramComponentElement category = null;
-        //    foreach(CyclogramComponentElement categoryElement in cyclogram.Components)
-        //    {
-        //        if(categoryElement.Name.Equals(categoryValue))
-        //        {
-        //            category = categoryElement;
-        //            break;
-        //        }
-        //    }
-
-        //    CyclogramStatusElement title = new CyclogramStatusElement(idValue, textValue, category);
-        //    title.Category?.Statuses.Add(title);
-
-        //    return title;
-        //}
 
         private static CyclogramStepElement PrepareStep(JsonElement childElement)
         {
@@ -192,50 +74,25 @@ namespace Bachelor_Project
             return step;
         }
 
-        private static CyclogramSequenceElement PrepareSequence(JsonElement childElement, Cyclogram cyclogram)
+
+        private static CyclogramSequenceElement PrepareSequence(JsonElement childElement)
         {
-            string sequenceId = "";
+            string componentName = string.Empty;
+            string statusName = string.Empty;
 
-            if (childElement.TryGetProperty("sequence_id", out JsonElement element))
+            if (childElement.TryGetProperty("componentName", out JsonElement componentNameProperty))
             {
-                sequenceId = element.GetString();
+                componentName = componentNameProperty.GetString();
             }
 
-            string titleId = "";
-
-            if (childElement.TryGetProperty("title_id", out JsonElement element2))
+            if (childElement.TryGetProperty("statusName", out JsonElement statusNameProperty))
             {
-                titleId = element2.GetString();
+                statusName = statusNameProperty.GetString();
             }
 
-            //int length = 0;
-
-            //if (childElement.TryGetProperty("length", out JsonElement element3))
-            //{
-            //    length = element3.GetInt16();
-            //}
-
-            //string afterId = "";
-
-            //if (childElement.TryGetProperty("after_id", out JsonElement element4))
-            //{
-            //    afterId = element4.GetString();
-            //}
-
-            //int pos = 0;
-            //foreach (CyclogramSequenceElement sequence in cyclogram.Sequences)
-            //{
-            //    if (sequence.SequenceID.Equals(afterId))
-            //    {
-            //        pos = sequence.Pos + sequence.Length;
-            //        break;
-            //    }
-            //}
-
-            CyclogramSequenceElement sequenceObj = new CyclogramSequenceElement(sequenceId, titleId);
-
-            return sequenceObj;
+            return new CyclogramSequenceElement(componentName, statusName);
         }
+
 
         #endregion
 

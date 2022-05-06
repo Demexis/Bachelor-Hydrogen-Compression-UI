@@ -47,6 +47,8 @@ namespace Bachelor_Project
             SetCurrentSubmenuFromButton(null);
 
             COM_Handler.MainSerialPort = this.serialPort_Main;
+
+            ManageButtonsOnConnection(false);
         }
 
         private void InitializeNotifyIconContext()
@@ -157,6 +159,17 @@ namespace Bachelor_Project
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+        }
+
+        public void ManageButtonsOnConnection(bool connectionStatus)
+        {
+            button_ChildForm_Device.Enabled = connectionStatus;
+            //button_ChildForm_Diagnostic.Enabled = connectionStatus;
+            button_ChildForm_Govern.Enabled = connectionStatus;
+
+            button_ChildForm_Sensors.Enabled = !connectionStatus;
+            button_ChildForm_DeviceSchemes.Enabled = !connectionStatus;
+            button_ChildForm_Cyclograms.Enabled = !connectionStatus;
         }
     }
 }
