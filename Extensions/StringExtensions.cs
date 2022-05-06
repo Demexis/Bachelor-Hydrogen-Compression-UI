@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.Extensions
+namespace Bachelor_Project.Extensions
 {
     public static class StringExtensions
     {

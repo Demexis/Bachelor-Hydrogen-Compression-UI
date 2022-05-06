@@ -1,5 +1,5 @@
 ﻿
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls
+namespace Bachelor_Project.UserControls
 {
     partial class SensorChart
     {

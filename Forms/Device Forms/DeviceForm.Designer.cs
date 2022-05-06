@@ -1,5 +1,5 @@
 ﻿
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
     partial class DeviceForm
     {
@@ -38,9 +38,9 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.controlPanel1 = new Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPanel.ControlPanel();
-            this.cyclogram1 = new Bachelor_Project_Hydrogen_Compression_WinForms.Cyclogram();
-            this.compressorDevice1 = new Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorDevice();
+            this.controlPanel1 = new Bachelor_Project.UserControls.ControlPanel.ControlPanel();
+            this.cyclogram1 = new Bachelor_Project.Cyclogram();
+            this.compressorDevice1 = new Bachelor_Project.UserControls.Device.CompressorDevice();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -228,14 +228,14 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.cyclogram1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cyclogram1.MinimumSize = new System.Drawing.Size(200, 200);
             this.cyclogram1.Name = "cyclogram1";
-            this.cyclogram1.PlayMode = Bachelor_Project_Hydrogen_Compression_WinForms.Cyclogram.CyclogramPlayMode.Loop;
+            this.cyclogram1.PlayMode = Bachelor_Project.Cyclogram.CyclogramPlayMode.Loop;
             this.cyclogram1.Size = new System.Drawing.Size(468, 365);
             this.cyclogram1.TabIndex = 1;
             this.cyclogram1.TimeStampFollowPoint = 0.5F;
             // 
             // compressorDevice1
             // 
-            this.compressorDevice1.Alignment = Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorDevice.DeviceAlignment.Middle;
+            this.compressorDevice1.Alignment = Bachelor_Project.UserControls.Device.CompressorDevice.DeviceAlignment.Middle;
             this.compressorDevice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.compressorDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.compressorDevice1.Location = new System.Drawing.Point(0, 0);

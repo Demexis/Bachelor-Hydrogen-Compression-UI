@@ -1,0 +1,29 @@
+{
+  "cyclogram": {
+    "steps": [
+      {
+        "name": "Step_00",
+        "lengthMilliseconds": 175,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          }
+        ]
+      }
+    ],
+    "deviceScheme": "DeviceSchemes\\deviceScheme1.json"
+  }
+}

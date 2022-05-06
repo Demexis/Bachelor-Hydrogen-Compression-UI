@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.Miscellaneous
+namespace Bachelor_Project.Miscellaneous
 {
     public static class Mathf
     {
@@ -45,6 +45,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.Miscellaneous
         public static float NormalizedRelationBetween(int x, int p1, int p2)
         {
             if((x > p1 && x > p2) || (x < p1 && x < p2)) throw new System.Exception("Incorrect arguments (The x value is outside the range of points p1 and p2).");
+            if(p1 == p2) throw new System.Exception("Incorrect arguments (p1 should not be equal to p2).");
 
             if (p1 > p2)
             {

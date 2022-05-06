@@ -1,5 +1,5 @@
-﻿using Bachelor_Project_Hydrogen_Compression_WinForms.Miscellaneous;
-using Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device;
+﻿using Bachelor_Project.Miscellaneous;
+using Bachelor_Project.UserControls.Device;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
     public partial class Cyclogram : UserControl
     {
@@ -49,19 +49,36 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         private CyclogramPlayMode _playMode;
 
         [Category("Appearance"), Description("Specifies the part of the cyclogram in width, which will be assigned to the column with the names of the components and their statuses.")]
-        public float TitleWidthRatio = 0.2f;
+        public float TitleWidthRatio { get; set; } = 0.2f;
 
         [Category("Appearance"), Description("Determines the part of the cyclogram in height, which will be assigned to one row with the name of the cyclogram and with the names of the steps.")]
-        public float CyclogramRulerHeightRatio = 0.1f;
+        public float CyclogramRulerHeightRatio { get; set; } = 0.1f;
 
         [Category("Appearance"), Description("Specifies the number of displayed components and their statuses.")]
-        public int MaxSimultaneousRecords = 20;
+        public int MaxSimultaneousRecords { get; set; } = 20;
 
         [Category("Appearance"), Description("Specifies the time interval that will be visible horizontally on the cyclogram.")]
-        public int HorizontalVisionRange = 2000; // Milliseconds
+        public int HorizontalVisionRange // Milliseconds
+        { 
+            get 
+            { 
+                if (_horizontalVisionRange == 0) 
+                { 
+                    _horizontalVisionRange = _defaultHorizontalVisionRange; 
+                } 
+
+                return Mathf.Clamp(_horizontalVisionRange, 0, GetTotalLengthInMilliseconds); 
+            } 
+            set 
+            { 
+                _horizontalVisionRange = value; 
+            } 
+        } 
+        private int _horizontalVisionRange = _defaultHorizontalVisionRange;
+        private const int _defaultHorizontalVisionRange = 2000;
 
         [Category("Behavior"), Description("The time after which the cyclogram will focus on the current position of the timestamp.")]
-        public int FollowSleepTime = 2000;
+        public int FollowSleepTime { get; set; } = 2000;
 
 
         #endregion
@@ -79,12 +96,15 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         public int VerticalScrollerPos = 0;
 
         public int ScrollerSize = 20;
-        
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int HorizontalVisionPos { get; private set; } = 0;
         public int _followStopTime = 0;
 
 
         private float _verticalPosScroll = 0.1f; // [0 - 1]
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float HorizontalPosScrollCoeff
         {
             get { return _verticalPosScroll; }
@@ -92,6 +112,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         }
 
         private float _timeStampFollowPoint = 0.5f; // [0 - 1]
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float TimeStampFollowPoint { 
             get { return _timeStampFollowPoint; } 
             set { _timeStampFollowPoint = Mathf.Clamp(value, 0, 1); } 
@@ -104,7 +126,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         #region Actions
 
-        public Action<string, string> OnComponentStatusChange;
+        public Action<CyclogramComponentElement, CyclogramStatusElement> OnComponentStatusChange;
         public Action OnSingleExecutionEnd;
 
 
@@ -113,13 +135,24 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         #region Collections
 
-        public List<CyclogramComponentElement> Components = new List<CyclogramComponentElement>();
-        public List<CyclogramStatusElement> Statuses = new List<CyclogramStatusElement>();
-        public List<CyclogramStepElement> Steps = new List<CyclogramStepElement>();
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public List<CyclogramComponentElement> Components { get { return _components; } set { _components = value; } }
+        private List<CyclogramComponentElement> _components = new List<CyclogramComponentElement>();
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public List<CyclogramStatusElement> Statuses { get { return _statuses; } set { _statuses = value; } }
+        private List<CyclogramStatusElement> _statuses = new List<CyclogramStatusElement>();
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public List<CyclogramStepElement> Steps { get { return _steps; } set { _steps = value; } }
+        private List<CyclogramStepElement> _steps = new List<CyclogramStepElement>();
 
         #endregion
 
-        
+
         #region TimeStamp
 
         public int CurrentTimeStamp { get; set; }
@@ -138,9 +171,12 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             {
                 int length = 0;
 
-                foreach (CyclogramStepElement step in Steps)
+                if(Steps != null)
                 {
-                    length += step.LengthMilliseconds;
+                    foreach (CyclogramStepElement step in Steps)
+                    {
+                        length += step.LengthMilliseconds;
+                    }
                 }
 
                 return length;
@@ -152,6 +188,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
         #region Rectangles
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle GetCyclogramTitleRect => new Rectangle(
             0,
             0,
@@ -159,6 +196,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             (int)(this.Height * CyclogramRulerHeightRatio)
         );
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle GetStepsRect => new Rectangle(
             (int)(this.Width * TitleWidthRatio),
             0,
@@ -166,6 +204,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             (int)(this.Height * CyclogramRulerHeightRatio)
         );
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle GetTitlesRect => new Rectangle(
             0,
             (int)(this.Height * CyclogramRulerHeightRatio),
@@ -173,6 +212,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             (int)(this.Height - (int)(this.Height * CyclogramRulerHeightRatio)) - ScrollerSize
         );
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle GetSequencesRect => new Rectangle(
             (int)(this.Width * TitleWidthRatio),
             (int)(this.Height * CyclogramRulerHeightRatio),
@@ -180,6 +220,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             (int)(this.Height - (int)(this.Height * CyclogramRulerHeightRatio)) - ScrollerSize
         );
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle GetVerticalScrollerRect => new Rectangle(
             this.Width - ScrollerSize,
             0,
@@ -187,6 +228,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.Height            
         );
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle GetHorizontalScrollerRect => new Rectangle(
             0,
             this.Height - ScrollerSize,
@@ -210,7 +252,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         public Color DefaultTextColor = Color.FromArgb(180, 160, 220);
         public Color BrightTextColor = Color.FromArgb(250, 250, 250);
 
-        public Color ActiveOutlineColor = Color.FromArgb(200, 150, 50);
+        public Color ActiveOutlineColor = AppPreferences.TimeStampColor;
 
         #endregion
 
@@ -381,24 +423,31 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                         //Console.WriteLine($"Sequence [{sequence.SequenceID}] has been {(sequence.Active ? "activated" : "deactivated")}");
 
-                        foreach (CyclogramStatusElement title in this.Statuses)
+                        if(sequence.Active)
                         {
-                            if (title.TitleID.Equals(sequence.TitleID))
-                            {
-                                //Console.WriteLine($"Title [{title.Text}] has been {(sequence.Active ? "activated" : "deactivated")}");
+                            CyclogramComponentElement component = Components.First(x => x.Name == sequence.ComponentName);
+                            CyclogramStatusElement status = component.Statuses.First(x => x.Name == sequence.StatusName);
 
-                                if (sequence.Active)
-                                {
-                                    string[] words = title.TitleID.Split('_');
-                                    if (words.Length == 2)
-                                    {
-                                        OnComponentStatusChange?.Invoke(words[0], words[1]);
-                                    }
-                                }
-
-                                break;
-                            }
+                            OnComponentStatusChange?.Invoke(component, status);
                         }
+
+                            /// TODO: HERE
+
+                            //if (title.TitleID.Equals(sequence.TitleID))
+                            //{
+                            //    //Console.WriteLine($"Title [{title.Text}] has been {(sequence.Active ? "activated" : "deactivated")}");
+
+                            //    if (sequence.Active)
+                            //    {
+                            //        string[] words = title.TitleID.Split('_');
+                            //        if (words.Length == 2)
+                            //        {
+                            //            OnComponentStatusChange?.Invoke(words[0], words[1]);
+                            //        }
+                            //    }
+
+                            //    break;
+                            //}
                     }
                 }
 
@@ -416,11 +465,12 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             }
         }
 
-        
+
 
         #region Events
 
-        private void Cyclogram_Paint(object sender, PaintEventArgs e)
+
+        private void DrawCyclogram(PaintEventArgs e)
         {
             if (Steps.Count == 0) return;
 
@@ -561,7 +611,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                     
 
-                    foreach (CyclogramStatusElement title in component.Titles)
+                    foreach (CyclogramStatusElement title in component.Statuses)
                     {
                         if(countOfSkips > 0)
                         {
@@ -578,7 +628,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                         g.FillRectangle(new SolidBrush(TitleFillColor), new RectangleF(location.X, location.Y, width, cellHeight));
                         g.DrawRectangle(new Pen(OutlineColor, 2), new Rectangle(location.X, location.Y, width, cellHeight));
-                        g.DrawString("   " + title.Text, Font, new SolidBrush(DefaultTextColor), location + new Size(0, cellHeight / 4));
+                        g.DrawString("   " + title.Name, Font, new SolidBrush(DefaultTextColor), location + new Size(0, cellHeight / 4));
 
                         // Drawing sequences
 
@@ -591,7 +641,11 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
                                 for (int k3 = 0; k3 < Steps[k].Sequences.Count; k3++)
                                 {
-                                    if (!Steps[k].Sequences[k3].TitleID.Equals(title.TitleID)) continue;
+                                    CyclogramSequenceElement sequence = Steps[k].Sequences[k3];
+
+                                    if (!sequence.ComponentName.Equals(component.Name) || !sequence.StatusName.Equals(title.Name))
+                                        continue;
+                                    //if (!Steps[k].Sequences[k3].TitleID.Equals(title.TitleID)) continue;
 
                                     LinearGradientBrush linGrBrush = new LinearGradientBrush(
                                        location + new Size(currentCellPos, 0),
@@ -618,13 +672,16 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
             // Drawing Time Stamp line
 
-            Point timeStampLocation;
+            Point timeStampLocation = new Point(SequencesRect.Left, SequencesRect.Top);
 
             if (GetTotalLengthInMilliseconds != 0)
             {
                 if (Mathf.Between(CurrentTimeStamp, visionStartPos, visionEndPos))
                 {
-                    timeStampLocation = new Point(SequencesRect.Left + (int)(SequencesRect.Width * Mathf.NormalizedRelationBetween(CurrentTimeStamp, visionStartPos, visionEndPos)), SequencesRect.Top);
+                    if (visionStartPos != visionEndPos)
+                        timeStampLocation = new Point(SequencesRect.Left + (int)(SequencesRect.Width * Mathf.NormalizedRelationBetween(CurrentTimeStamp, visionStartPos, visionEndPos)), SequencesRect.Top);
+                    else
+                        Console.WriteLine($"{HorizontalVisionRange} : {visionStartPos} : {visionEndPos} : {GetTotalLengthInMilliseconds}");
 
                     g.DrawRectangle(new Pen(ActiveOutlineColor, 2), new Rectangle(timeStampLocation, new Size(1, SequencesRect.Height)));
                 }
@@ -708,6 +765,11 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 g.DrawRectangle(new Pen(OutlineColor), scrollerPartRect);
                 g.FillRectangle(new SolidBrush(CyclogramTitleColor), scrollerPartRect);
             }
+        }
+
+        private void Cyclogram_Paint(object sender, PaintEventArgs e)
+        {
+            DrawCyclogram(e);
         }
 
         public void UpdateVisionPos()
@@ -821,11 +883,6 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             }
         }
 
-
-
-
-        #endregion
-
         private void Cyclogram_MouseDown(object sender, MouseEventArgs e)
         {
             // Vertical Scroller
@@ -900,5 +957,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 this.Refresh();
             }
         }
+
+        #endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPanel
+namespace Bachelor_Project.UserControls.ControlPanel
 {
     partial class ControlPanel
     {
@@ -61,7 +61,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
             // 
             // button_LeftEnd
             // 
-            this.button_LeftEnd.BackgroundImage = global::Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Resources.end_left_button;
+            this.button_LeftEnd.BackgroundImage = global::Bachelor_Project.Properties.Resources.end_left_button;
             this.button_LeftEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_LeftEnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_LeftEnd.FlatAppearance.BorderSize = 0;
@@ -76,7 +76,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
             // 
             // button_RightEnd
             // 
-            this.button_RightEnd.BackgroundImage = global::Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Resources.end_right_button;
+            this.button_RightEnd.BackgroundImage = global::Bachelor_Project.Properties.Resources.end_right_button;
             this.button_RightEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_RightEnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_RightEnd.FlatAppearance.BorderSize = 0;
@@ -91,7 +91,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
             // 
             // button_StepBackward
             // 
-            this.button_StepBackward.BackgroundImage = global::Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Resources.step_backward_button;
+            this.button_StepBackward.BackgroundImage = global::Bachelor_Project.Properties.Resources.step_backward_button;
             this.button_StepBackward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_StepBackward.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_StepBackward.FlatAppearance.BorderSize = 0;
@@ -106,7 +106,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
             // 
             // button_PlayPause
             // 
-            this.button_PlayPause.BackgroundImage = global::Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Resources.play_button;
+            this.button_PlayPause.BackgroundImage = global::Bachelor_Project.Properties.Resources.play_button;
             this.button_PlayPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_PlayPause.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_PlayPause.FlatAppearance.BorderSize = 0;
@@ -121,7 +121,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPan
             // 
             // button_StepForward
             // 
-            this.button_StepForward.BackgroundImage = global::Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Resources.step_forward_button;
+            this.button_StepForward.BackgroundImage = global::Bachelor_Project.Properties.Resources.step_forward_button;
             this.button_StepForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_StepForward.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button_StepForward.FlatAppearance.BorderSize = 0;

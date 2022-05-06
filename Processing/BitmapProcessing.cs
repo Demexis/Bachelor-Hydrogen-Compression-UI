@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.Processing
+namespace Bachelor_Project.Processing
 {
     public static class BitmapProcessing
     {
@@ -27,6 +27,43 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.Processing
 
                 g.DrawImage(original, dest, source, GraphicsUnit.Pixel);
             }
+            return result;
+        }
+
+        public static Bitmap GetMergedBitmaps(params Bitmap[] bitmaps)
+        {
+            Point maxSize = Point.Empty;
+            foreach (Bitmap bitmap in bitmaps)
+            {
+                if (bitmap.Width > maxSize.X)
+                {
+                    maxSize.X = bitmap.Width;
+                }
+
+                if (bitmap.Height > maxSize.Y)
+                {
+                    maxSize.Y = bitmap.Height;
+                }
+            }
+
+            Bitmap result = new Bitmap(maxSize.X, maxSize.Y);
+
+            using (Graphics g = Graphics.FromImage(result))
+            {
+                foreach (Bitmap bitmap in bitmaps)
+                {
+                    Point[] dest =
+                    {
+                        new Point(0, 0),
+                        new Point(bitmap.Width, 0),
+                        new Point(0, bitmap.Height),
+                    };
+                    Rectangle source = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+
+                    g.DrawImage(bitmap, dest, source, GraphicsUnit.Pixel);
+                }
+            }
+
             return result;
         }
     }

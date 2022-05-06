@@ -1,17 +1,19 @@
-﻿using Bachelor_Project_Hydrogen_Compression_WinForms.UserControls;
+﻿using Bachelor_Project.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.Handlers
+namespace Bachelor_Project.Handlers
 {
     public class SensorReadingHelper
     {
         public List<Sensor> Sensors = new List<Sensor>();
 
-        private List<SensorChart> _sensorCharts = new List<SensorChart>(); 
+        private List<SensorChart> _sensorCharts = new List<SensorChart>();
+
+        public Action OnSensorsChanged;
 
         public void AddSensorChart(SensorChart sensorChart)
         {
@@ -21,7 +23,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms.Handlers
 
         public void AddReadingToTheSensor(string name, float value)
         {
-            Sensors.First((x) => x.Name.Equals(name))?.AddReading(value);
+            if(Sensors.Exists((x) => x.Name.Equals(name))) Sensors.First((x) => x.Name.Equals(name))?.AddReading(value);
 
 
             UpdateCharts();

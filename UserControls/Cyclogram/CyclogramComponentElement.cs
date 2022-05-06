@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
+    [Serializable]
     public class CyclogramComponentElement
     {
         public string Name { get; set; }
 
-        public List<CyclogramStatusElement> Titles = new List<CyclogramStatusElement>();
+        public List<CyclogramStatusElement> Statuses = new List<CyclogramStatusElement>();
     }
 }

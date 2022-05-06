@@ -1,5 +1,5 @@
 ﻿
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
     partial class DeviceDiagnosticForm
     {
@@ -32,9 +32,9 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cyclogram1 = new Bachelor_Project_Hydrogen_Compression_WinForms.Cyclogram();
+            this.cyclogram1 = new Bachelor_Project.Cyclogram();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.compressorDevice1 = new Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorDevice();
+            this.compressorDevice1 = new Bachelor_Project.UserControls.Device.CompressorDevice();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -137,17 +137,22 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.cyclogram1.Active = false;
             this.cyclogram1.CurrentTimeStamp = 0;
             this.cyclogram1.CyclogramName = "Cyclogram";
+            this.cyclogram1.CyclogramRulerHeightRatio = 0.1F;
             this.cyclogram1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cyclogram1.FollowSleepTime = 2000;
             this.cyclogram1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cyclogram1.HorizontalPosScrollCoeff = 0.1F;
+            this.cyclogram1.HorizontalVisionRange = 0;
             this.cyclogram1.Location = new System.Drawing.Point(0, 0);
             this.cyclogram1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cyclogram1.MaxSimultaneousRecords = 20;
             this.cyclogram1.MinimumSize = new System.Drawing.Size(200, 200);
             this.cyclogram1.Name = "cyclogram1";
-            this.cyclogram1.PlayMode = Bachelor_Project_Hydrogen_Compression_WinForms.Cyclogram.CyclogramPlayMode.Loop;
+            this.cyclogram1.PlayMode = Bachelor_Project.Cyclogram.CyclogramPlayMode.Loop;
             this.cyclogram1.Size = new System.Drawing.Size(349, 253);
             this.cyclogram1.TabIndex = 1;
             this.cyclogram1.TimeStampFollowPoint = 0.5F;
+            this.cyclogram1.TitleWidthRatio = 0.2F;
             // 
             // splitContainer2
             // 
@@ -161,13 +166,16 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // 
             // compressorDevice1
             // 
-            this.compressorDevice1.Alignment = Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorDevice.DeviceAlignment.Middle;
+            this.compressorDevice1.Alignment = Bachelor_Project.UserControls.Device.CompressorDevice.DeviceAlignment.Middle;
             this.compressorDevice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.compressorDevice1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.compressorDevice1.EditorMode = false;
             this.compressorDevice1.Location = new System.Drawing.Point(0, 0);
             this.compressorDevice1.Name = "compressorDevice1";
             this.compressorDevice1.Size = new System.Drawing.Size(288, 253);
+            this.compressorDevice1.StretchImageLayout = false;
             this.compressorDevice1.TabIndex = 8;
+            this.compressorDevice1.TilemapSize = new System.Drawing.Size(10, 10);
             // 
             // panel1
             // 

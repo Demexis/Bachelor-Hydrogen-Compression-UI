@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
     public partial class DeviceConnectionForm : Form
     {

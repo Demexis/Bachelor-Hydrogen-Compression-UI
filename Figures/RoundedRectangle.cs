@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.Figures
+namespace Bachelor_Project.Figures
 {
     public static class RoundedRectangle
     {

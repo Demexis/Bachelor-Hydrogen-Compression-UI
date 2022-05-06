@@ -8,11 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using Bachelor_Project.Handlers;
+using Bachelor_Project.Forms.Editor_Forms;
+using Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms;
+using Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
     public partial class MainForm : Form
     {
+        private SensorReadingHelper _sensorReadingHelper = new SensorReadingHelper(); // move to somewhere else
+        public SensorReadingHelper SensorReadingHelper => _sensorReadingHelper;
+
         public static MainForm Instance; // Singleton
 
         public bool TimerEnabled { 
@@ -35,10 +42,17 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
 
             InitializeSubmenus();
             InitializeChildForms();
+            InitializeNotifyIconContext();
 
             SetCurrentSubmenuFromButton(null);
 
             COM_Handler.MainSerialPort = this.serialPort_Main;
+        }
+
+        private void InitializeNotifyIconContext()
+        {
+            this.notifyIcon1.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.notifyIcon1.ContextMenuStrip.Items.Add("Exit", null, (x, y) => { this.Close(); });
         }
 
         private void InitializeChildForms()
@@ -48,7 +62,10 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
                 [this.button_ChildForm_Connect] = new DeviceConnectionForm(),
                 [this.button_ChildForm_Govern] = new DeviceGovernForm(),
                 [this.button_ChildForm_Diagnostic] = new DeviceDiagnosticForm(),
-                [this.button_ChildForm_Device] = new DeviceForm()
+                [this.button_ChildForm_Device] = new DeviceForm(),
+                [this.button_ChildForm_Sensors] = new SensorsEditorForm(),
+                [this.button_ChildForm_DeviceSchemes] = new DeviceSchemeEditorForm(),
+                [this.button_ChildForm_Cyclograms] = new CyclogramEditorForm()
             };
         }
 
@@ -57,6 +74,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             Submenus = new Dictionary<Button, Panel>()
             {
                 [this.button_SideMenu_Control] = this.panel_ControlSubmenu,
+                [this.button_SideMenu_Editors] = this.panel_EditorsSubmenu,
                 [this.button_SideMenu_Options] = this.panel_OptionsSubmenu
             };
         }
@@ -134,6 +152,11 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         {
             AppPreferences.ApplicationIsTerminating = true;
             DeviceForm.TempTestingFlag = false;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

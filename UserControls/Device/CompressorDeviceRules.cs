@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorComponent;
+using static Bachelor_Project.UserControls.Device.CompressorComponent;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device
+namespace Bachelor_Project.UserControls.Device
 {
     public static class CompressorDeviceRules
     {

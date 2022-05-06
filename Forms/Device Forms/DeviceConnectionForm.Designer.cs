@@ -1,5 +1,5 @@
 ﻿
-namespace Bachelor_Project_Hydrogen_Compression_WinForms
+namespace Bachelor_Project
 {
     partial class DeviceConnectionForm
     {
@@ -33,9 +33,26 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_RefreshPorts = new System.Windows.Forms.Button();
             this.button_ConnectToPort = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBox_SensorSets = new System.Windows.Forms.ComboBox();
+            this.comboBox_DeviceSchemes = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,7 +89,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_RefreshPorts.Location = new System.Drawing.Point(0, 0);
             this.button_RefreshPorts.Margin = new System.Windows.Forms.Padding(4);
             this.button_RefreshPorts.Name = "button_RefreshPorts";
-            this.button_RefreshPorts.Size = new System.Drawing.Size(100, 46);
+            this.button_RefreshPorts.Size = new System.Drawing.Size(100, 45);
             this.button_RefreshPorts.TabIndex = 4;
             this.button_RefreshPorts.Text = "Refresh Ports";
             this.button_RefreshPorts.UseVisualStyleBackColor = false;
@@ -90,7 +107,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.button_ConnectToPort.Location = new System.Drawing.Point(0, 0);
             this.button_ConnectToPort.Margin = new System.Windows.Forms.Padding(4);
             this.button_ConnectToPort.Name = "button_ConnectToPort";
-            this.button_ConnectToPort.Size = new System.Drawing.Size(312, 62);
+            this.button_ConnectToPort.Size = new System.Drawing.Size(312, 58);
             this.button_ConnectToPort.TabIndex = 3;
             this.button_ConnectToPort.Text = "Connect";
             this.button_ConnectToPort.UseVisualStyleBackColor = false;
@@ -100,17 +117,135 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.panel1.Controls.Add(this.splitContainer1);
-            this.panel1.Location = new System.Drawing.Point(195, 171);
+            this.panel1.Controls.Add(this.splitContainer3);
+            this.panel1.Location = new System.Drawing.Point(186, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(312, 112);
+            this.panel1.Size = new System.Drawing.Size(312, 250);
             this.panel1.TabIndex = 6;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.splitContainer4);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainer3.Size = new System.Drawing.Size(312, 250);
+            this.splitContainer3.SplitterDistance = 139;
+            this.splitContainer3.TabIndex = 7;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.tableLayoutPanel1);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.checkBox1);
+            this.splitContainer4.Size = new System.Drawing.Size(312, 139);
+            this.splitContainer4.SplitterDistance = 103;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox_SensorSets, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox_DeviceSchemes, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(312, 103);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(3, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(169, 52);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Device Scheme:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(169, 51);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Sensor Set:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBox_SensorSets
+            // 
+            this.comboBox_SensorSets.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox_SensorSets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_SensorSets.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_SensorSets.FormattingEnabled = true;
+            this.comboBox_SensorSets.ItemHeight = 37;
+            this.comboBox_SensorSets.Location = new System.Drawing.Point(179, 4);
+            this.comboBox_SensorSets.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_SensorSets.Name = "comboBox_SensorSets";
+            this.comboBox_SensorSets.Size = new System.Drawing.Size(129, 45);
+            this.comboBox_SensorSets.TabIndex = 6;
+            // 
+            // comboBox_DeviceSchemes
+            // 
+            this.comboBox_DeviceSchemes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox_DeviceSchemes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_DeviceSchemes.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_DeviceSchemes.FormattingEnabled = true;
+            this.comboBox_DeviceSchemes.ItemHeight = 37;
+            this.comboBox_DeviceSchemes.Location = new System.Drawing.Point(179, 55);
+            this.comboBox_DeviceSchemes.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_DeviceSchemes.Name = "comboBox_DeviceSchemes";
+            this.comboBox_DeviceSchemes.Size = new System.Drawing.Size(129, 45);
+            this.comboBox_DeviceSchemes.TabIndex = 7;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.checkBox1.Location = new System.Drawing.Point(0, 0);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(312, 32);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Generate Random Readings";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -123,8 +258,8 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.button_ConnectToPort);
-            this.splitContainer1.Size = new System.Drawing.Size(312, 112);
-            this.splitContainer1.SplitterDistance = 46;
+            this.splitContainer1.Size = new System.Drawing.Size(312, 107);
+            this.splitContainer1.SplitterDistance = 45;
             this.splitContainer1.TabIndex = 7;
             // 
             // splitContainer2
@@ -140,7 +275,7 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.button_RefreshPorts);
-            this.splitContainer2.Size = new System.Drawing.Size(312, 46);
+            this.splitContainer2.Size = new System.Drawing.Size(312, 45);
             this.splitContainer2.SplitterDistance = 208;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -157,6 +292,17 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
             this.Name = "DeviceConnectionForm";
             this.Text = "DeviceControlForm";
             this.panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -177,5 +323,13 @@ namespace Bachelor_Project_Hydrogen_Compression_WinForms
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBox_SensorSets;
+        private System.Windows.Forms.ComboBox comboBox_DeviceSchemes;
     }
 }

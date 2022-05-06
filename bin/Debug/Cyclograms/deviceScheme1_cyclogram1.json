@@ -1,0 +1,77 @@
+{
+  "cyclogram": {
+    "steps": [
+      {
+        "name": "step_0",
+        "lengthMilliseconds": 100,
+        "sequences": []
+      },
+      {
+        "name": "step_123",
+        "lengthMilliseconds": 100,
+        "sequences": [
+          {
+            "componentName": "S1",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_2",
+        "lengthMilliseconds": 200,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Disabled"
+          }
+        ]
+      },
+      {
+        "name": "step_03",
+        "lengthMilliseconds": 100,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_04",
+        "lengthMilliseconds": 100,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_05",
+        "lengthMilliseconds": 100,
+        "sequences": []
+      }
+    ],
+    "deviceScheme": "DeviceSchemes\\deviceScheme1.json"
+  }
+}

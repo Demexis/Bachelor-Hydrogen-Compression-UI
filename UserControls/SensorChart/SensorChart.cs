@@ -1,4 +1,4 @@
-﻿using Bachelor_Project_Hydrogen_Compression_WinForms.Handlers;
+﻿using Bachelor_Project.Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace Bachelor_Project_Hydrogen_Compression_WinForms.UserControls
+namespace Bachelor_Project.UserControls
 {
     public partial class SensorChart : UserControl
     {

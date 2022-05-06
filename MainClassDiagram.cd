@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Cyclogram">
-    <Position X="9" Y="0.5" Width="2" />
+    <Position X="5.75" Y="0.5" Width="2" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Nested Types" Collapsed="false" />
@@ -14,121 +14,120 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ApIBjUEuACNAINgMACSAAAhaDoGSQERkoABSkEREBQQ=</HashCode>
+      <HashCode>ApIBjUEuACNAINgMAKSAAAhaDoGSQERkoABSkEREBQQ=</HashCode>
       <FileName>UserControls\Cyclogram\Cyclogram.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Figures.RoundedRectangle">
-    <Position X="13.75" Y="14.25" Width="1.5" />
+    <Position X="5.75" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgA=</HashCode>
       <FileName>Figures\RoundedRectangle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DeviceConnectionForm" Collapsed="true">
-    <Position X="9" Y="10" Width="2" />
+    <Position X="0.5" Y="8.25" Width="2" />
     <TypeIdentifier>
       <HashCode>BAAAkAAAACADAAAAAACAAEACAAAAAQAAAAAAAQAAIAA=</HashCode>
       <FileName>Forms\Device Forms\DeviceConnectionForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DeviceDiagnosticForm" Collapsed="true">
-    <Position X="12.75" Y="12.5" Width="2" />
+    <Position X="0.5" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAIAACECACAAAIIAGAgAACAAAAQQAAUBAACwAAACA=</HashCode>
       <FileName>Forms\Device Forms\DeviceDiagnosticForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DeviceForm" Collapsed="true">
-    <Position X="13" Y="4" Width="1.5" />
+    <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAMAACACACAABsIACAAABCAAAAQQAAEAAACQAADCA=</HashCode>
+      <HashCode>AAAAMAACACACAABsAACAABBCAAAAQQAAEAAACQAADCA=</HashCode>
       <FileName>Forms\Device Forms\DeviceForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DeviceGovernForm" Collapsed="true">
-    <Position X="17" Y="10" Width="2" />
+    <Position X="0.5" Y="7.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAACAAAAAAQACAAAACAAAAIAAAQAAAAAAAAAA=</HashCode>
       <FileName>Forms\Device Forms\DeviceGovernForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.MainForm" Collapsed="true">
-    <Position X="13" Y="10" Width="1.5" />
+    <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAAAACIEDCAFAAgAECACCECgAyDKAAATEQAIQAYAME=</HashCode>
+      <HashCode>ACAABACIETCAFAAoRECACCGCgByDKAAATEQAKQAYAME=</HashCode>
       <FileName>Forms\MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.JSON_Handler">
-    <Position X="8.5" Y="14.25" Width="1.5" />
+    <Position X="0.5" Y="11" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAQAAAAgAAIAAAAAAAAAAAAABAAACAAEAAA=</HashCode>
+      <HashCode>QEAAAAAAAAQEAAAgAAIAAAAAAAAAAAAABAAACAAEAAA=</HashCode>
       <FileName>Handlers\JSON\JSON_Handler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Program" Collapsed="true">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.CyclogramComponentElement">
-    <Position X="6.25" Y="2.5" Width="2.25" />
+    <Position X="3.25" Y="2.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UserControls\Cyclogram\CyclogramComponentElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.CyclogramSequenceElement">
-    <Position X="6.25" Y="4.25" Width="2.25" />
+    <Position X="3.25" Y="4.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAQAAAABAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>UserControls\Cyclogram\CyclogramSequenceElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.CyclogramStatusElement">
-    <Position X="6.25" Y="6.5" Width="2.25" />
+    <Position X="3.25" Y="6.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAACAA=</HashCode>
       <FileName>UserControls\Cyclogram\CyclogramStatusElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.CyclogramStepElement">
-    <Position X="6.25" Y="0.5" Width="2.25" />
+    <Position X="3.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>UserControls\Cyclogram\CyclogramStepElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorComponent" BaseTypeListCollapsed="true">
-    <Position X="19.25" Y="0.5" Width="1.5" />
+    <Position X="10.75" Y="0.5" Width="1.5" />
     <NestedTypes>
       <Enum Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorComponent.ComponentType" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>UserControls\Device\CompressorComponent.cs</NewMemberFileName>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
       <Enum Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorComponent.ComponentOrientation" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>UserControls\Device\CompressorComponent.cs</NewMemberFileName>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
       <Enum Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorComponent.ComponentStatus" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>UserControls\Device\CompressorComponent.cs</NewMemberFileName>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAQIAAAAAAAAQAAQAEAAAABAAAQAAAAAAAAA=</HashCode>
-      <FileName>UserControls\Device\CompressorComponent.cs</FileName>
+      <HashCode>AAAAAAAEAQIAAAAEAAAAAAQQEAAAABAAAQAQAAAAABA=</HashCode>
+      <FileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.213" Collapsed="true" />
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorDevice">
-    <Position X="17" Y="0.5" Width="2" />
+    <Position X="8.5" Y="1.75" Width="2" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -140,111 +139,124 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AgAAAAAQACBSIgIAACCAQAAygAAAQQIAAIAAAAAIAAg=</HashCode>
+      <HashCode>AAAAAEAQAGJSAgIAADCAAAACBBAAQQAEAIAAIAAAAAA=</HashCode>
       <FileName>UserControls\Device\CompressorDevice.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorDeviceRules" Collapsed="true">
-    <Position X="17" Y="7.75" Width="2" />
+    <Position X="8.5" Y="9.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAAAQAQAAAAAAIAQAAAAAEAAAEAE=</HashCode>
       <FileName>UserControls\Device\CompressorDeviceRules.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorPipe" BaseTypeListCollapsed="true">
-    <Position X="19.25" Y="4.25" Width="1.5" />
+    <Position X="10.75" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
       <Enum Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorPipe.PipeType" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>UserControls\Device\CompressorPipe.cs</NewMemberFileName>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
       <Enum Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorPipe.PipeOrientation" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>UserControls\Device\CompressorPipe.cs</NewMemberFileName>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
       <Enum Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.CompressorPipe.PipeStatus" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>UserControls\Device\CompressorPipe.cs</NewMemberFileName>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAQAAEAAAAAAAAAAQAAAAAAAAAQAAAAAAAAA=</HashCode>
-      <FileName>UserControls\Device\CompressorPipe.cs</FileName>
+      <HashCode>AAAAAAAEAQAAEAAAAAAAAAAQAAAAAAAAAQAAAAAAABA=</HashCode>
+      <FileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Miscellaneous.Mathf">
-    <Position X="10.25" Y="14.25" Width="1.5" />
+    <Position X="2.25" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAABAAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Miscellaneous\Mathf.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Processing.BitmapProcessing">
-    <Position X="12" Y="14.25" Width="1.5" />
+    <Position X="4" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Processing\BitmapProcessing.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Resources" Collapsed="true">
-    <Position X="2.75" Y="1.25" Width="1.5" />
+    <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgMCCEJBAgAAQACYAiBEACAYeCBEYFQAATEACAQcoU=</HashCode>
+      <HashCode>AAgMCCEJBAgAAQACYAiBEACAYeCBEYFQAATEACQQcoU=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Properties.Settings" Collapsed="true">
-    <Position X="2.75" Y="2" Width="1.5" />
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.ControlPanel.ControlPanel" Collapsed="true">
-    <Position X="15" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAELAAICEAAAAAAICAQQCCAAAAIAAAIACQIAAgACA=</HashCode>
       <FileName>UserControls\ControlPanel\ControlPanel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.COM_Handler" Collapsed="true">
-    <Position X="17.25" Y="14.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Handlers\COM\COM_Handler.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.DataLogger" Collapsed="true">
-    <Position X="15.5" Y="14.25" Width="1.5" />
+    <Position X="7.5" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Handlers\DataLogger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Handlers.SensorReadingHelper" Collapsed="true">
-    <Position X="11.5" Y="0.5" Width="1.5" />
+    <Position X="13" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAQABAAA=</HashCode>
+      <HashCode>AAAAAAIAAIAAgAAAAAAAAQAAAAAAAAAAAAAAAQABAAA=</HashCode>
       <FileName>Handlers\SensorReadingHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.SensorChart" Collapsed="true">
-    <Position X="13.25" Y="0.5" Width="1.5" />
+    <Position X="13" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AoAAEACAASAABAAAAACAQAACAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>UserControls\SensorChart\SensorChart.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.IContainImage">
-    <Position X="21.5" Y="3.5" Width="1.5" />
+  <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.AppPreferences" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAA=</HashCode>
+      <FileName>AppPreferences.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.Extensions.StringExtensions" Collapsed="true">
+    <Position X="9.25" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IContainImage.cs</FileName>
+      <FileName>Extensions\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Sensor" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAEAAAAEAAAAAAQAAAAAAEAAAQBAAAAAAAA=</HashCode>
+      <FileName>UserControls\SensorChart\Sensor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Bachelor_Project_Hydrogen_Compression_WinForms.UserControls.Device.IContainImage">
+    <Position X="8.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\Device\Interfaces\IContainImage.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

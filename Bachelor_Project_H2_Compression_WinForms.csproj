@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E2800B7-020F-4254-9008-83C099223BC0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Bachelor_Project</RootNamespace>
+    <AssemblyName>Bachelor_Project_Hydrogen_Compression_WinForms</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.6.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppPreferences.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Forms\Editor Forms\Cyclogram Editor Forms\CyclogramEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editor Forms\Cyclogram Editor Forms\CyclogramEditorForm.Designer.cs">
+      <DependentUpon>CyclogramEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Editor Forms\Device Scheme Editor Forms\DeviceSchemeEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editor Forms\Device Scheme Editor Forms\DeviceSchemeEditorForm.Designer.cs">
+      <DependentUpon>DeviceSchemeEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Editor Forms\Sensor Editor Forms\SensorsEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editor Forms\Sensor Editor Forms\SensorsEditorForm.Designer.cs">
+      <DependentUpon>SensorsEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\DataLogger.cs" />
+    <Compile Include="Handlers\COM\COM_Handler.cs" />
+    <Compile Include="Figures\RoundedRectangle.cs" />
+    <Compile Include="Handlers\FileManager.cs" />
+    <Compile Include="Handlers\JSON\JSON_Handler.cs" />
+    <Compile Include="Handlers\SensorReadingHelper.cs" />
+    <Compile Include="Miscellaneous\Mathf.cs" />
+    <Compile Include="Processing\BitmapProcessing.cs" />
+    <Compile Include="UserControls\ControlPanel\ControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ControlPanel\ControlPanel.Designer.cs">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CyclogramComponentStatusList\CyclogramComponentStatusList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CyclogramComponentStatusList\CyclogramComponentStatusList.Designer.cs">
+      <DependentUpon>CyclogramComponentStatusList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Cyclogram\Cyclogram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Cyclogram\Cyclogram.Designer.cs">
+      <DependentUpon>Cyclogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Cyclogram\CyclogramComponentElement.cs" />
+    <Compile Include="UserControls\Cyclogram\CyclogramStepElement.cs" />
+    <Compile Include="UserControls\Cyclogram\CyclogramSequenceElement.cs" />
+    <Compile Include="UserControls\Cyclogram\CyclogramStatusElement.cs" />
+    <Compile Include="Forms\Device Forms\DeviceConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceConnectionForm.Designer.cs">
+      <DependentUpon>DeviceConnectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceDiagnosticForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceDiagnosticForm.Designer.cs">
+      <DependentUpon>DeviceDiagnosticForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceForm.Designer.cs">
+      <DependentUpon>DeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceGovernForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Device Forms\DeviceGovernForm.Designer.cs">
+      <DependentUpon>DeviceGovernForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Device\CompressorElementTypes\CompressorComponent.cs" />
+    <Compile Include="UserControls\Device\CompressorDevice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Device\CompressorDevice.Designer.cs">
+      <DependentUpon>CompressorDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Device\CompressorDeviceRules.cs" />
+    <Compile Include="UserControls\Device\CompressorElementTypes\CompressorEditorElement.cs" />
+    <Compile Include="UserControls\Device\CompressorElementTypes\CompressorElement.cs" />
+    <Compile Include="UserControls\Device\Interfaces\IContainImage.cs" />
+    <Compile Include="UserControls\Device\CompressorLayer.cs" />
+    <Compile Include="UserControls\Device\CompressorElementTypes\CompressorPipe.cs" />
+    <Compile Include="UserControls\SensorChart\Sensor.cs" />
+    <Compile Include="UserControls\SensorChart\SensorChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SensorChart\SensorChart.Designer.cs">
+      <DependentUpon>SensorChart.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Editor Forms\Cyclogram Editor Forms\CyclogramEditorForm.resx">
+      <DependentUpon>CyclogramEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Editor Forms\Device Scheme Editor Forms\DeviceSchemeEditorForm.resx">
+      <DependentUpon>DeviceSchemeEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Editor Forms\Sensor Editor Forms\SensorsEditorForm.resx">
+      <DependentUpon>SensorsEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ControlPanel\ControlPanel.resx">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CyclogramComponentStatusList\CyclogramComponentStatusList.resx">
+      <DependentUpon>CyclogramComponentStatusList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Cyclogram\Cyclogram.resx">
+      <DependentUpon>Cyclogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Device Forms\DeviceConnectionForm.resx">
+      <DependentUpon>DeviceConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Device Forms\DeviceDiagnosticForm.resx">
+      <DependentUpon>DeviceDiagnosticForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Device Forms\DeviceForm.resx">
+      <DependentUpon>DeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Device Forms\DeviceGovernForm.resx">
+      <DependentUpon>DeviceGovernForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\Device\CompressorDevice.resx">
+      <DependentUpon>CompressorDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SensorChart\SensorChart.resx">
+      <DependentUpon>SensorChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="MainClassDiagram.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\testCyclogram.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roundedRect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\water_tap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tube_v.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tube_h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tube_corner_rd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tube_corner_ld.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tube_corner_lu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tube_corner_ru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vertical_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LD_corner_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\horizontal_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LU_corner_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RU_corner_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RD_corner_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TR_tpose_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TD_tpose_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TL_tpose_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TU_tpose_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C_pluspose_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valve_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valve_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valve_vertical_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valve_horizontal_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valve_vertical_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valve_horizontal_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservoir_horizontal_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservoir_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservoir_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservoir_horizontal_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservoir_vertical_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservoir_vertical_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump_horizontal_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump_horizontal_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump_vertical_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pump_vertical_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter_vertical_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter_horizontal_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter_vertical_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter_horizontal_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opticalSensor_vertical_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opticalSensor_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opticalSensor_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opticalSensor_vertical_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opticalSensor_horizontal_active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opticalSensor_horizontal_inactive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\step_backward_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\step_forward_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end_right_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\end_left_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edited_icon_transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editor_tile.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets'))" />
+  </Target>
+</Project>
