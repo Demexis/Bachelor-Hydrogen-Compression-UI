@@ -9,25 +9,18 @@ namespace Bachelor_Project.Handlers
 {
     public static class FileManager
     {
-        public static string[] GetSensorFiles()
+        public enum JsonFileStructure { Sensors, DeviceSchemes, Cyclograms }
+
+        public static string[] GetFiles(JsonFileStructure jsonFileStructure)
         {
-            if (!Directory.Exists("Sensors"))
+            string folderName = jsonFileStructure.ToString();
+
+            if (!Directory.Exists(folderName))
             {
-                Directory.CreateDirectory("Sensors");
+                Directory.CreateDirectory(folderName);
             }
 
-            return Directory.GetFiles("Sensors", "*.*", SearchOption.AllDirectories)
-            .Where(s => s.EndsWith(".json")).ToArray();
-        }
-
-        public static string[] GetDeviceSchemeFiles()
-        {
-            if (!Directory.Exists("DeviceSchemes"))
-            {
-                Directory.CreateDirectory("DeviceSchemes");
-            }
-
-            return Directory.GetFiles("DeviceSchemes", "*.*", SearchOption.AllDirectories)
+            return Directory.GetFiles(folderName, "*.*", SearchOption.AllDirectories)
             .Where(s => s.EndsWith(".json")).ToArray();
         }
 

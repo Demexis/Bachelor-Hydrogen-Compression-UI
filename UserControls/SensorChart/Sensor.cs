@@ -18,6 +18,9 @@ namespace Bachelor_Project.UserControls
 
         public List<float> Readings = new List<float>();
 
+        public float MinimumValue { get; set; }
+        public float MaximumValue { get; set; }
+
 
         public Sensor(string name, SensorType type)
         {

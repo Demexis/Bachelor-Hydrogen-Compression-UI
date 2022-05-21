@@ -1,4 +1,5 @@
-﻿using Bachelor_Project.Miscellaneous;
+﻿using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Miscellaneous;
 using Bachelor_Project.Processing;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace Bachelor_Project.UserControls.Device
         public bool EditorMode { get; set; } = false;
 
 
-        public Dictionary<CompressorLayer.LayerType, CompressorLayer> Layers; 
+        public Dictionary<CompressorLayer.LayerTypeEnum, CompressorLayer> Layers; 
 
 
         public void SetComponentStatus(string name, CompressorComponent.ComponentStatus status)
@@ -69,12 +70,12 @@ namespace Bachelor_Project.UserControls.Device
 
             this.DoubleBuffered = true;
 
-            Layers = new Dictionary<CompressorLayer.LayerType, CompressorLayer>()
+            Layers = new Dictionary<CompressorLayer.LayerTypeEnum, CompressorLayer>()
             {
-                [CompressorLayer.LayerType.Editor] = new CompressorLayer(TilemapSize, CompressorLayer.LayerType.Editor),
-                [CompressorLayer.LayerType.GasPipes] = new CompressorLayer(TilemapSize, CompressorLayer.LayerType.GasPipes),
-                [CompressorLayer.LayerType.OilPipes] = new CompressorLayer(TilemapSize, CompressorLayer.LayerType.OilPipes),
-                [CompressorLayer.LayerType.Components] = new CompressorLayer(TilemapSize, CompressorLayer.LayerType.Components)
+                [CompressorLayer.LayerTypeEnum.Editor] = new CompressorLayer(TilemapSize, CompressorLayer.LayerTypeEnum.Editor),
+                [CompressorLayer.LayerTypeEnum.GasPipes] = new CompressorLayer(TilemapSize, CompressorLayer.LayerTypeEnum.GasPipes),
+                [CompressorLayer.LayerTypeEnum.OilPipes] = new CompressorLayer(TilemapSize, CompressorLayer.LayerTypeEnum.OilPipes),
+                [CompressorLayer.LayerTypeEnum.Components] = new CompressorLayer(TilemapSize, CompressorLayer.LayerTypeEnum.Components)
             };
 
             foreach(CompressorLayer layer in Layers.Values)
@@ -90,14 +91,14 @@ namespace Bachelor_Project.UserControls.Device
         {
             List<CompressorComponent> components = new List<CompressorComponent>();
 
-            int rows = Layers[CompressorLayer.LayerType.Components].GetElements.GetLength(0);
-            int cols = Layers[CompressorLayer.LayerType.Components].GetElements.GetLength(1);
+            int rows = Layers[CompressorLayer.LayerTypeEnum.Components].GetElements.GetLength(0);
+            int cols = Layers[CompressorLayer.LayerTypeEnum.Components].GetElements.GetLength(1);
 
             for (int y = 0; y < cols; y++)
             {
                 for (int x = 0; x < rows; x++)
                 {
-                    CompressorComponent component = (CompressorComponent)Layers[CompressorLayer.LayerType.Components].GetElements[x, y];
+                    CompressorComponent component = (CompressorComponent)Layers[CompressorLayer.LayerTypeEnum.Components].GetElements[x, y];
 
                     if (component != null) components.Add(component);
                 }
@@ -149,24 +150,28 @@ namespace Bachelor_Project.UserControls.Device
                         Image unscaledComponentImg = (layer.GetElement(i, j) as IContainImage).GetImage();
                         Image interpolatedComponentImg = BitmapProcessing.GetInterpolatedBitmap((Bitmap)unscaledComponentImg, new Size(tileWidth + 1, tileHeight + 1));
 
-                        if(layer.Layer == CompressorLayer.LayerType.Editor)
+                        if(layer.LayerType == CompressorLayer.LayerTypeEnum.Editor)
                         {
-                            // Set the image attribute's color mappings
-                            ColorMap[] colorMap = new ColorMap[2];
-                            colorMap[0] = new ColorMap();
-                            colorMap[0].OldColor = Color.White;
-                            colorMap[0].NewColor = Color.FromArgb(93, 91, 122);
+                            if(AppearanceOptionsForm.SelectedColorPalette != null)
+                            {
+                                // Set the image attribute's color mappings
+                                ColorMap[] colorMap = new ColorMap[2];
+                                colorMap[0] = new ColorMap();
+                                colorMap[0].OldColor = Color.White;
+                                colorMap[0].NewColor = AppearanceOptionsForm.SelectedColorPalette[FormColorVariant.BrightSecond];
 
-                            colorMap[1] = new ColorMap();
-                            colorMap[1].OldColor = Color.Black;
-                            colorMap[1].NewColor = Color.FromArgb(42, 40, 65);
+                                colorMap[1] = new ColorMap();
+                                colorMap[1].OldColor = Color.Black;
+                                colorMap[1].NewColor = AppearanceOptionsForm.SelectedColorPalette[FormColorVariant.NormalFirst];
 
-                            ImageAttributes attr = new ImageAttributes();
-                            attr.SetRemapTable(colorMap);
+                                ImageAttributes attr = new ImageAttributes();
+                                attr.SetRemapTable(colorMap);
 
-                            // Draw using the color map
-                            Rectangle rect = new Rectangle(x, y, tileWidth + 1, tileHeight + 1);
-                            g.DrawImage(interpolatedComponentImg, rect, 0, 0, rect.Width, rect.Height, GraphicsUnit.Pixel, attr);
+                                // Draw using the color map
+                                Rectangle rect = new Rectangle(x, y, tileWidth + 1, tileHeight + 1);
+                                g.DrawImage(interpolatedComponentImg, rect, 0, 0, rect.Width, rect.Height, GraphicsUnit.Pixel, attr);
+                            }
+
                         }
                         else
                             g.DrawImage(interpolatedComponentImg,
@@ -207,10 +212,10 @@ namespace Bachelor_Project.UserControls.Device
         {
             DrawClear(e.Graphics); 
             /*DrawRoadmap(); DrawComponents();*/ 
-            if(EditorMode) Draw(Layers[CompressorLayer.LayerType.Editor], e.Graphics);
-            Draw(Layers[CompressorLayer.LayerType.GasPipes], e.Graphics);
-            Draw(Layers[CompressorLayer.LayerType.OilPipes], e.Graphics);
-            Draw(Layers[CompressorLayer.LayerType.Components], e.Graphics);
+            if(EditorMode) Draw(Layers[CompressorLayer.LayerTypeEnum.Editor], e.Graphics);
+            Draw(Layers[CompressorLayer.LayerTypeEnum.GasPipes], e.Graphics);
+            Draw(Layers[CompressorLayer.LayerTypeEnum.OilPipes], e.Graphics);
+            Draw(Layers[CompressorLayer.LayerTypeEnum.Components], e.Graphics);
         }
 
 

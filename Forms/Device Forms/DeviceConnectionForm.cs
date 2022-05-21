@@ -1,9 +1,12 @@
-﻿using Bachelor_Project.Handlers;
+﻿using Bachelor_Project.Extensions;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -19,6 +22,8 @@ namespace Bachelor_Project
         public string SelectedSensorSet = string.Empty;
         public string SelectedDeviceScheme = string.Empty;
 
+        public bool GeneratingReadingsStatus => checkBox_GenerateReadings.Checked;
+
         private bool _connected = false;
 
         public DeviceConnectionForm()
@@ -29,16 +34,34 @@ namespace Bachelor_Project
             else this.Close();
 
             button_ConnectToPort.Enabled = false;
+            checkBox_GenerateReadings.Enabled = checkBox_SimulationMode.Checked;
 
             RefreshPorts();
 
             this.VisibleChanged += (s, e) =>
             {
-                comboBox_SensorSets.Items.Clear();
-                comboBox_DeviceSchemes.Items.Clear();
+                //comboBox_SensorSets.Items.Clear();
+                //comboBox_DeviceSchemes.Items.Clear();
 
-                FileManager.GetSensorFiles().ToList().ForEach(x => comboBox_SensorSets.Items.Add(x));
-                FileManager.GetDeviceSchemeFiles().ToList().ForEach(x => comboBox_DeviceSchemes.Items.Add(x));
+                List<string> sensorFiles = FileManager.GetFiles(FileManager.JsonFileStructure.Sensors).ToList();
+                List<string> deviceSchemeFiles = FileManager.GetFiles(FileManager.JsonFileStructure.DeviceSchemes).ToList();
+
+                List<string> sensorsToDelete = new List<string>();
+                foreach(string sensor in comboBox_SensorSets.Items)
+                {
+                    if (!sensorFiles.Contains(sensor)) sensorsToDelete.Add(sensor);
+                }
+                sensorsToDelete.ForEach(x => comboBox_SensorSets.Items.Remove(x));
+
+                List<string> deviceSchemesToDelete = new List<string>();
+                foreach (string deviceScheme in comboBox_DeviceSchemes.Items)
+                {
+                    if (!deviceSchemeFiles.Contains(deviceScheme)) deviceSchemesToDelete.Add(deviceScheme);
+                }
+                deviceSchemesToDelete.ForEach(x => comboBox_DeviceSchemes.Items.Remove(x));
+
+                sensorFiles.ForEach(x => { if (!comboBox_SensorSets.Items.Contains(x)) comboBox_SensorSets.Items.Add(x); });
+                deviceSchemeFiles.ForEach(x => { if (!comboBox_DeviceSchemes.Items.Contains(x)) comboBox_DeviceSchemes.Items.Add(x); });
 
                 if(comboBox_SensorSets.SelectedItem == null && comboBox_SensorSets.Items.Count != 0)
                 {
@@ -50,6 +73,8 @@ namespace Bachelor_Project
                     comboBox_DeviceSchemes.SelectedIndex = 0;
                 }
             };
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
         }
 
         private void button_ConnectToPort_Click(object sender, EventArgs e)
@@ -172,6 +197,8 @@ namespace Bachelor_Project
             comboBox_PortsList.Enabled = !((CheckBox)sender).Checked;
             button_RefreshPorts.Enabled = !((CheckBox)sender).Checked;
 
+            checkBox_GenerateReadings.Enabled = ((CheckBox)sender).Checked;
+
             button_ConnectToPort.Enabled = CheckButtonConnectAvailability();
         }
 
@@ -180,6 +207,10 @@ namespace Bachelor_Project
             if(sender is ComboBox comboBox)
             {
                 SelectedSensorSet = comboBox.SelectedItem != null ? (string)comboBox.SelectedItem : string.Empty;
+
+                string json = File.ReadAllText(FileManager.GetFiles(FileManager.JsonFileStructure.Sensors).First(x => x.Equals(SelectedSensorSet)));
+                MainForm.Instance.SensorReadingHelper.Sensors.Clear();
+                JSON_Handler.InitializeSensorReaderWithJson(MainForm.Instance.SensorReadingHelper, json);
 
                 button_ConnectToPort.Enabled = CheckButtonConnectAvailability();
             }
@@ -203,6 +234,23 @@ namespace Bachelor_Project
                 comboBox_SensorSets.SelectedItem != null &&
                 comboBox_DeviceSchemes.SelectedItem != null
             );
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
+            this.panel1.BackColor = colorPalette[FormColorVariant.DarkSecond];
+            
+            foreach(Button button in this.GetAllControlsRecusrvive<Button>())
+            {
+                button.BackColor = colorPalette[FormColorVariant.BrightSecond];
+                button.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+                button.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.ButtonMouseDown];
+                button.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.ButtonMouseOver];
+
+            }
+
         }
     }
 }

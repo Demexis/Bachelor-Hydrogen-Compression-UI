@@ -33,11 +33,7 @@ namespace Bachelor_Project
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panel_SideMenu = new System.Windows.Forms.Panel();
             this.panel_OptionsSubmenu = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.button_ChildForm_AppearanceOptionsForm = new System.Windows.Forms.Button();
             this.button_SideMenu_Options = new System.Windows.Forms.Button();
             this.panel_EditorsSubmenu = new System.Windows.Forms.Panel();
             this.button_ChildForm_DeviceSchemes = new System.Windows.Forms.Button();
@@ -52,6 +48,9 @@ namespace Bachelor_Project
             this.button_SideMenu_Control = new System.Windows.Forms.Button();
             this.panel_Logo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.customConsole1 = new Bachelor_Project.UserControls.CustomConsole.CustomConsole();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button_Console_HideShow = new System.Windows.Forms.Button();
             this.serialPort_Main = new System.IO.Ports.SerialPort(this.components);
             this.timer_ToSendSerialData = new System.Windows.Forms.Timer(this.components);
             this.panel_ChildForm = new System.Windows.Forms.Panel();
@@ -60,12 +59,14 @@ namespace Bachelor_Project
             this.panel_OptionsSubmenu.SuspendLayout();
             this.panel_EditorsSubmenu.SuspendLayout();
             this.panel_ControlSubmenu.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_SideMenu
             // 
             this.panel_SideMenu.AutoScroll = true;
-            this.panel_SideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(13)))), ((int)(((byte)(24)))));
+            this.panel_SideMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.panel_SideMenu.Controls.Add(this.panel_OptionsSubmenu);
             this.panel_SideMenu.Controls.Add(this.button_SideMenu_Options);
             this.panel_SideMenu.Controls.Add(this.panel_EditorsSubmenu);
@@ -76,110 +77,40 @@ namespace Bachelor_Project
             this.panel_SideMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_SideMenu.Location = new System.Drawing.Point(0, 0);
             this.panel_SideMenu.Name = "panel_SideMenu";
-            this.panel_SideMenu.Size = new System.Drawing.Size(250, 561);
+            this.panel_SideMenu.Size = new System.Drawing.Size(250, 601);
             this.panel_SideMenu.TabIndex = 0;
             // 
             // panel_OptionsSubmenu
             // 
             this.panel_OptionsSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.panel_OptionsSubmenu.Controls.Add(this.button6);
-            this.panel_OptionsSubmenu.Controls.Add(this.button7);
-            this.panel_OptionsSubmenu.Controls.Add(this.button8);
-            this.panel_OptionsSubmenu.Controls.Add(this.button9);
-            this.panel_OptionsSubmenu.Controls.Add(this.button10);
+            this.panel_OptionsSubmenu.Controls.Add(this.button_ChildForm_AppearanceOptionsForm);
             this.panel_OptionsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_OptionsSubmenu.Location = new System.Drawing.Point(0, 536);
             this.panel_OptionsSubmenu.Name = "panel_OptionsSubmenu";
-            this.panel_OptionsSubmenu.Size = new System.Drawing.Size(233, 241);
+            this.panel_OptionsSubmenu.Size = new System.Drawing.Size(250, 50);
             this.panel_OptionsSubmenu.TabIndex = 5;
             // 
-            // button6
+            // button_ChildForm_AppearanceOptionsForm
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.Color.LightGray;
-            this.button6.Location = new System.Drawing.Point(0, 160);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(233, 40);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "button6";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.ForeColor = System.Drawing.Color.LightGray;
-            this.button7.Location = new System.Drawing.Point(0, 120);
-            this.button7.Name = "button7";
-            this.button7.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button7.Size = new System.Drawing.Size(233, 40);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "button7";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
-            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.ForeColor = System.Drawing.Color.LightGray;
-            this.button8.Location = new System.Drawing.Point(0, 80);
-            this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button8.Size = new System.Drawing.Size(233, 40);
-            this.button8.TabIndex = 2;
-            this.button8.Text = "button8";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
-            this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.ForeColor = System.Drawing.Color.LightGray;
-            this.button9.Location = new System.Drawing.Point(0, 40);
-            this.button9.Name = "button9";
-            this.button9.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button9.Size = new System.Drawing.Size(233, 40);
-            this.button9.TabIndex = 1;
-            this.button9.Text = "button9";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
-            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.ForeColor = System.Drawing.Color.LightGray;
-            this.button10.Location = new System.Drawing.Point(0, 0);
-            this.button10.Name = "button10";
-            this.button10.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button10.Size = new System.Drawing.Size(233, 40);
-            this.button10.TabIndex = 0;
-            this.button10.Text = "button10";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.UseVisualStyleBackColor = true;
+            this.button_ChildForm_AppearanceOptionsForm.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_ChildForm_AppearanceOptionsForm.FlatAppearance.BorderSize = 0;
+            this.button_ChildForm_AppearanceOptionsForm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
+            this.button_ChildForm_AppearanceOptionsForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
+            this.button_ChildForm_AppearanceOptionsForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_ChildForm_AppearanceOptionsForm.ForeColor = System.Drawing.Color.LightGray;
+            this.button_ChildForm_AppearanceOptionsForm.Location = new System.Drawing.Point(0, 0);
+            this.button_ChildForm_AppearanceOptionsForm.Name = "button_ChildForm_AppearanceOptionsForm";
+            this.button_ChildForm_AppearanceOptionsForm.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.button_ChildForm_AppearanceOptionsForm.Size = new System.Drawing.Size(250, 40);
+            this.button_ChildForm_AppearanceOptionsForm.TabIndex = 0;
+            this.button_ChildForm_AppearanceOptionsForm.Text = "Appearance";
+            this.button_ChildForm_AppearanceOptionsForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_ChildForm_AppearanceOptionsForm.UseVisualStyleBackColor = true;
+            this.button_ChildForm_AppearanceOptionsForm.Click += new System.EventHandler(this.ChildFormButton_Click);
             // 
             // button_SideMenu_Options
             // 
+            this.button_SideMenu_Options.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(13)))), ((int)(((byte)(24)))));
             this.button_SideMenu_Options.Dock = System.Windows.Forms.DockStyle.Top;
             this.button_SideMenu_Options.FlatAppearance.BorderSize = 0;
             this.button_SideMenu_Options.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -187,11 +118,11 @@ namespace Bachelor_Project
             this.button_SideMenu_Options.Location = new System.Drawing.Point(0, 491);
             this.button_SideMenu_Options.Name = "button_SideMenu_Options";
             this.button_SideMenu_Options.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button_SideMenu_Options.Size = new System.Drawing.Size(233, 45);
+            this.button_SideMenu_Options.Size = new System.Drawing.Size(250, 45);
             this.button_SideMenu_Options.TabIndex = 3;
             this.button_SideMenu_Options.Text = "Options";
             this.button_SideMenu_Options.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_SideMenu_Options.UseVisualStyleBackColor = true;
+            this.button_SideMenu_Options.UseVisualStyleBackColor = false;
             this.button_SideMenu_Options.Click += new System.EventHandler(this.SideMenuButton_Click);
             // 
             // panel_EditorsSubmenu
@@ -203,7 +134,7 @@ namespace Bachelor_Project
             this.panel_EditorsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_EditorsSubmenu.Location = new System.Drawing.Point(0, 361);
             this.panel_EditorsSubmenu.Name = "panel_EditorsSubmenu";
-            this.panel_EditorsSubmenu.Size = new System.Drawing.Size(233, 130);
+            this.panel_EditorsSubmenu.Size = new System.Drawing.Size(250, 130);
             this.panel_EditorsSubmenu.TabIndex = 7;
             // 
             // button_ChildForm_DeviceSchemes
@@ -217,7 +148,7 @@ namespace Bachelor_Project
             this.button_ChildForm_DeviceSchemes.Location = new System.Drawing.Point(0, 80);
             this.button_ChildForm_DeviceSchemes.Name = "button_ChildForm_DeviceSchemes";
             this.button_ChildForm_DeviceSchemes.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_DeviceSchemes.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_DeviceSchemes.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_DeviceSchemes.TabIndex = 0;
             this.button_ChildForm_DeviceSchemes.Text = "Device Schemes";
             this.button_ChildForm_DeviceSchemes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -235,7 +166,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Cyclograms.Location = new System.Drawing.Point(0, 40);
             this.button_ChildForm_Cyclograms.Name = "button_ChildForm_Cyclograms";
             this.button_ChildForm_Cyclograms.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Cyclograms.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Cyclograms.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_Cyclograms.TabIndex = 1;
             this.button_ChildForm_Cyclograms.Text = "Cyclograms";
             this.button_ChildForm_Cyclograms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -253,7 +184,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Sensors.Location = new System.Drawing.Point(0, 0);
             this.button_ChildForm_Sensors.Name = "button_ChildForm_Sensors";
             this.button_ChildForm_Sensors.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Sensors.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Sensors.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_Sensors.TabIndex = 2;
             this.button_ChildForm_Sensors.Text = "Sensors";
             this.button_ChildForm_Sensors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,6 +193,7 @@ namespace Bachelor_Project
             // 
             // button_SideMenu_Editors
             // 
+            this.button_SideMenu_Editors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(13)))), ((int)(((byte)(24)))));
             this.button_SideMenu_Editors.Dock = System.Windows.Forms.DockStyle.Top;
             this.button_SideMenu_Editors.FlatAppearance.BorderSize = 0;
             this.button_SideMenu_Editors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -269,11 +201,11 @@ namespace Bachelor_Project
             this.button_SideMenu_Editors.Location = new System.Drawing.Point(0, 316);
             this.button_SideMenu_Editors.Name = "button_SideMenu_Editors";
             this.button_SideMenu_Editors.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button_SideMenu_Editors.Size = new System.Drawing.Size(233, 45);
+            this.button_SideMenu_Editors.Size = new System.Drawing.Size(250, 45);
             this.button_SideMenu_Editors.TabIndex = 6;
             this.button_SideMenu_Editors.Text = "Editors";
             this.button_SideMenu_Editors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_SideMenu_Editors.UseVisualStyleBackColor = true;
+            this.button_SideMenu_Editors.UseVisualStyleBackColor = false;
             this.button_SideMenu_Editors.Click += new System.EventHandler(this.SideMenuButton_Click);
             // 
             // panel_ControlSubmenu
@@ -286,7 +218,7 @@ namespace Bachelor_Project
             this.panel_ControlSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_ControlSubmenu.Location = new System.Drawing.Point(0, 145);
             this.panel_ControlSubmenu.Name = "panel_ControlSubmenu";
-            this.panel_ControlSubmenu.Size = new System.Drawing.Size(233, 171);
+            this.panel_ControlSubmenu.Size = new System.Drawing.Size(250, 171);
             this.panel_ControlSubmenu.TabIndex = 2;
             // 
             // button_ChildForm_Diagnostic
@@ -300,7 +232,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Diagnostic.Location = new System.Drawing.Point(0, 120);
             this.button_ChildForm_Diagnostic.Name = "button_ChildForm_Diagnostic";
             this.button_ChildForm_Diagnostic.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Diagnostic.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Diagnostic.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_Diagnostic.TabIndex = 2;
             this.button_ChildForm_Diagnostic.Text = "Diagnostic";
             this.button_ChildForm_Diagnostic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -318,7 +250,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Govern.Location = new System.Drawing.Point(0, 80);
             this.button_ChildForm_Govern.Name = "button_ChildForm_Govern";
             this.button_ChildForm_Govern.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Govern.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Govern.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_Govern.TabIndex = 1;
             this.button_ChildForm_Govern.Text = "Govern";
             this.button_ChildForm_Govern.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -336,7 +268,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Device.Location = new System.Drawing.Point(0, 40);
             this.button_ChildForm_Device.Name = "button_ChildForm_Device";
             this.button_ChildForm_Device.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Device.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Device.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_Device.TabIndex = 3;
             this.button_ChildForm_Device.Text = "Device";
             this.button_ChildForm_Device.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -354,7 +286,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Connect.Location = new System.Drawing.Point(0, 0);
             this.button_ChildForm_Connect.Name = "button_ChildForm_Connect";
             this.button_ChildForm_Connect.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Connect.Size = new System.Drawing.Size(233, 40);
+            this.button_ChildForm_Connect.Size = new System.Drawing.Size(250, 40);
             this.button_ChildForm_Connect.TabIndex = 0;
             this.button_ChildForm_Connect.Text = "Connect";
             this.button_ChildForm_Connect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -363,6 +295,7 @@ namespace Bachelor_Project
             // 
             // button_SideMenu_Control
             // 
+            this.button_SideMenu_Control.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(13)))), ((int)(((byte)(24)))));
             this.button_SideMenu_Control.Dock = System.Windows.Forms.DockStyle.Top;
             this.button_SideMenu_Control.FlatAppearance.BorderSize = 0;
             this.button_SideMenu_Control.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -370,11 +303,11 @@ namespace Bachelor_Project
             this.button_SideMenu_Control.Location = new System.Drawing.Point(0, 100);
             this.button_SideMenu_Control.Name = "button_SideMenu_Control";
             this.button_SideMenu_Control.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button_SideMenu_Control.Size = new System.Drawing.Size(233, 45);
+            this.button_SideMenu_Control.Size = new System.Drawing.Size(250, 45);
             this.button_SideMenu_Control.TabIndex = 1;
             this.button_SideMenu_Control.Text = "Control";
             this.button_SideMenu_Control.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_SideMenu_Control.UseVisualStyleBackColor = true;
+            this.button_SideMenu_Control.UseVisualStyleBackColor = false;
             this.button_SideMenu_Control.Click += new System.EventHandler(this.SideMenuButton_Click);
             // 
             // panel_Logo
@@ -385,17 +318,57 @@ namespace Bachelor_Project
             this.panel_Logo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_Logo.Location = new System.Drawing.Point(0, 0);
             this.panel_Logo.Name = "panel_Logo";
-            this.panel_Logo.Size = new System.Drawing.Size(233, 100);
+            this.panel_Logo.Size = new System.Drawing.Size(250, 100);
             this.panel_Logo.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.panel1.Controls.Add(this.customConsole1);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(250, 461);
+            this.panel1.Location = new System.Drawing.Point(250, 416);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 100);
+            this.panel1.Size = new System.Drawing.Size(714, 185);
             this.panel1.TabIndex = 1;
+            // 
+            // customConsole1
+            // 
+            this.customConsole1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.customConsole1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customConsole1.Location = new System.Drawing.Point(0, 50);
+            this.customConsole1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.customConsole1.MaxMessagesCount = ((uint)(50u));
+            this.customConsole1.Name = "customConsole1";
+            this.customConsole1.Size = new System.Drawing.Size(714, 135);
+            this.customConsole1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button_Console_HideShow);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(714, 50);
+            this.panel2.TabIndex = 0;
+            // 
+            // button_Console_HideShow
+            // 
+            this.button_Console_HideShow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(91)))), ((int)(((byte)(122)))));
+            this.button_Console_HideShow.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button_Console_HideShow.FlatAppearance.BorderSize = 0;
+            this.button_Console_HideShow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(61)))), ((int)(((byte)(82)))));
+            this.button_Console_HideShow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(111)))), ((int)(((byte)(162)))));
+            this.button_Console_HideShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Console_HideShow.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button_Console_HideShow.Location = new System.Drawing.Point(0, 25);
+            this.button_Console_HideShow.Margin = new System.Windows.Forms.Padding(4);
+            this.button_Console_HideShow.Name = "button_Console_HideShow";
+            this.button_Console_HideShow.Size = new System.Drawing.Size(714, 25);
+            this.button_Console_HideShow.TabIndex = 6;
+            this.button_Console_HideShow.Text = "\\/ <Hide Console> \\/";
+            this.button_Console_HideShow.UseVisualStyleBackColor = false;
+            this.button_Console_HideShow.Click += new System.EventHandler(this.button_Send_Click);
             // 
             // serialPort_Main
             // 
@@ -414,7 +387,7 @@ namespace Bachelor_Project
             this.panel_ChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_ChildForm.Location = new System.Drawing.Point(250, 0);
             this.panel_ChildForm.Name = "panel_ChildForm";
-            this.panel_ChildForm.Size = new System.Drawing.Size(684, 461);
+            this.panel_ChildForm.Size = new System.Drawing.Size(714, 416);
             this.panel_ChildForm.TabIndex = 2;
             // 
             // notifyIcon1
@@ -431,7 +404,7 @@ namespace Bachelor_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(934, 561);
+            this.ClientSize = new System.Drawing.Size(964, 601);
             this.Controls.Add(this.panel_ChildForm);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel_SideMenu);
@@ -446,6 +419,8 @@ namespace Bachelor_Project
             this.panel_OptionsSubmenu.ResumeLayout(false);
             this.panel_EditorsSubmenu.ResumeLayout(false);
             this.panel_ControlSubmenu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -460,11 +435,7 @@ namespace Bachelor_Project
         private System.Windows.Forms.Button button_ChildForm_Connect;
         private System.Windows.Forms.Button button_SideMenu_Options;
         private System.Windows.Forms.Panel panel_OptionsSubmenu;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button_ChildForm_AppearanceOptionsForm;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel_ChildForm;
         private System.IO.Ports.SerialPort serialPort_Main;
@@ -476,6 +447,9 @@ namespace Bachelor_Project
         private System.Windows.Forms.Button button_ChildForm_Sensors;
         private System.Windows.Forms.Button button_SideMenu_Editors;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private UserControls.CustomConsole.CustomConsole customConsole1;
+        private System.Windows.Forms.Button button_Console_HideShow;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

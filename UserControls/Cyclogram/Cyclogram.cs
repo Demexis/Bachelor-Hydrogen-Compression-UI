@@ -1,4 +1,5 @@
-﻿using Bachelor_Project.Miscellaneous;
+﻿using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Miscellaneous;
 using Bachelor_Project.UserControls.Device;
 using System;
 using System.Collections.Generic;
@@ -98,7 +99,7 @@ namespace Bachelor_Project
         public int ScrollerSize = 20;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int HorizontalVisionPos { get; private set; } = 0;
+        public int HorizontalVisionPos { get; set; } = 0;
         public int _followStopTime = 0;
 
 
@@ -254,6 +255,18 @@ namespace Bachelor_Project
 
         public Color ActiveOutlineColor = AppPreferences.TimeStampColor;
 
+        private void SetColorPalette(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            OutlineColor = colorPalette[FormColorVariant.Outline];
+            CategoryFillColor = colorPalette[FormColorVariant.NormalFirst];
+            TitleFillColor = colorPalette[FormColorVariant.NormalSecond];
+            CyclogramTitleColor = colorPalette[FormColorVariant.BrightSecond];
+            BackgroundColor = colorPalette[FormColorVariant.DarkFirst];
+            SecondBackgroundColor = colorPalette[FormColorVariant.DarkSecond];
+            DefaultTextColor = colorPalette[FormColorVariant.TextColorSecond];
+            BrightTextColor = colorPalette[FormColorVariant.BrightFirst];
+        }
+
         #endregion
 
         public Cyclogram()
@@ -263,6 +276,8 @@ namespace Bachelor_Project
             this.DoubleBuffered = true;
 
             this.MouseWheel += MouseWheelScroll;
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPalette;
         }
 
         #region Governance

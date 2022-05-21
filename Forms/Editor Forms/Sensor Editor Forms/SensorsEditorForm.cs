@@ -1,4 +1,6 @@
-﻿using Bachelor_Project.Handlers;
+﻿using Bachelor_Project.Extensions;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Handlers;
 using Bachelor_Project.UserControls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -38,13 +40,15 @@ namespace Bachelor_Project.Forms.Editor_Forms
             if (comboBox_AddSensor_Type.Items.Count > 0) comboBox_AddSensor_Type.SelectedIndex = 0;
 
             InitializeButtonEvents();
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
         }
 
         private void RefreshSensorSetFilesComboBox()
         {
             this.comboBox_SelectSensor.Items.Clear();
 
-            foreach (string file in FileManager.GetSensorFiles())
+            foreach (string file in FileManager.GetFiles(FileManager.JsonFileStructure.Sensors))
             {
                 this.comboBox_SelectSensor.Items.Add(file);
             }
@@ -108,6 +112,17 @@ namespace Bachelor_Project.Forms.Editor_Forms
                 {
                     throw new Exception("There is already a sensor with the same name.");
                 }
+
+                float minValue = float.Parse(textBox_AddSensor_MinValue.Text);
+                float maxValue = float.Parse(textBox_AddSensor_MaxValue.Text);
+
+                if(minValue > maxValue)
+                {
+                    throw new Exception("The minimum value cannot be greater than the maximum.");
+                }
+
+                sensor.MinimumValue = minValue;
+                sensor.MaximumValue = maxValue;
 
                 MainForm.Instance.SensorReadingHelper.Sensors?.Add(sensor);
 
@@ -253,9 +268,22 @@ namespace Bachelor_Project.Forms.Editor_Forms
                         textBox_EditSensor_MaxRecords.Text = maxRecords.ToString();
                     }
 
+                    if (float.TryParse(row.Cells[3].Value.ToString(), out float minValue))
+                    {
+                        textBox_EditSensor_MinValue.Text = minValue.ToString();
+                    }
+
+                    if (float.TryParse(row.Cells[4].Value.ToString(), out float maxValue))
+                    {
+                        textBox_EditSensor_MaxValue.Text = maxValue.ToString();
+                    }
+
                     textBox_EditSensor_Name.Enabled = true;
                     comboBox_EditSensor_Type.Enabled = true;
                     textBox_EditSensor_MaxRecords.Enabled = true;
+
+                    textBox_EditSensor_MinValue.Enabled = true;
+                    textBox_EditSensor_MaxValue.Enabled = true;
                 }
                 else
                 {
@@ -268,6 +296,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
                     textBox_EditSensor_Name.Enabled = false;
                     comboBox_EditSensor_Type.Enabled = false;
                     textBox_EditSensor_MaxRecords.Enabled = false;
+
+                    textBox_EditSensor_MinValue.Enabled = false;
+                    textBox_EditSensor_MaxValue.Enabled = false;
                 }
             }
             catch { }
@@ -293,6 +324,17 @@ namespace Bachelor_Project.Forms.Editor_Forms
                 _lastEditedSensor.Name = name;
                 _lastEditedSensor.Type = type;
                 _lastEditedSensor.MaxReadingsCount = maxRecords;
+
+                float minValue = float.Parse(textBox_EditSensor_MinValue.Text);
+                float maxValue = float.Parse(textBox_EditSensor_MaxValue.Text);
+
+                if (minValue > maxValue)
+                {
+                    throw new Exception("The minimum value cannot be greater than the maximum.");
+                }
+
+                _lastEditedSensor.MinimumValue = minValue;
+                _lastEditedSensor.MaximumValue = maxValue;
 
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = GetSensors;
@@ -344,6 +386,14 @@ namespace Bachelor_Project.Forms.Editor_Forms
                     string maxReadingsCountStr = nameof(sensor.MaxReadingsCount)[0].ToString().ToLower() + nameof(sensor.MaxReadingsCount).Substring(1);
 
                     keyValuePairs.Add(new JProperty(maxReadingsCountStr, sensor.MaxReadingsCount));
+
+                    string minValueStr = nameof(sensor.MinimumValue)[0].ToString().ToLower() + nameof(sensor.MinimumValue).Substring(1);
+
+                    keyValuePairs.Add(new JProperty(minValueStr, sensor.MinimumValue));
+
+                    string maxValueStr = nameof(sensor.MaximumValue)[0].ToString().ToLower() + nameof(sensor.MaximumValue).Substring(1);
+
+                    keyValuePairs.Add(new JProperty(maxValueStr, sensor.MaximumValue));
 
                     jArray.Add(keyValuePairs);
                 }
@@ -440,6 +490,45 @@ namespace Bachelor_Project.Forms.Editor_Forms
             }
 
             return false;
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
+
+            foreach (Button button in this.GetAllControlsRecusrvive<Button>())
+            {
+                button.BackColor = colorPalette[FormColorVariant.BrightSecond];
+                button.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+                button.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.ButtonMouseDown];
+                button.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.ButtonMouseOver];
+
+            }
+
+            this.dataGridView1.BackgroundColor = colorPalette[FormColorVariant.DarkSecond];
+            this.dataGridView1.GridColor = colorPalette[FormColorVariant.Outline];
+
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = colorPalette[FormColorVariant.DarkSecond];
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.ForeColor = colorPalette[FormColorVariant.TextColorSecond];
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.SelectionBackColor = colorPalette[FormColorVariant.BrightSecond];
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.SelectionForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = colorPalette[FormColorVariant.NormalFirst];
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = colorPalette[FormColorVariant.TextColorSecond];
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = colorPalette[FormColorVariant.NormalSecond];
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+            this.dataGridView1.RowHeadersDefaultCellStyle.BackColor = colorPalette[FormColorVariant.NormalSecond];
+            this.dataGridView1.RowHeadersDefaultCellStyle.ForeColor = colorPalette[FormColorVariant.TextColorSecond];
+            this.dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor = colorPalette[FormColorVariant.NormalSecond];
+            this.dataGridView1.RowHeadersDefaultCellStyle.SelectionForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+            this.dataGridView1.RowsDefaultCellStyle.BackColor = colorPalette[FormColorVariant.Outline];
+            this.dataGridView1.RowsDefaultCellStyle.ForeColor = colorPalette[FormColorVariant.TextColorSecond];
+            this.dataGridView1.RowsDefaultCellStyle.SelectionBackColor = colorPalette[FormColorVariant.BrightSecond];
+            this.dataGridView1.RowsDefaultCellStyle.SelectionForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
         }
 
     }

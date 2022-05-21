@@ -19,6 +19,9 @@ using Bachelor_Project.UserControls;
 using Bachelor_Project.Miscellaneous;
 using Bachelor_Project.Handlers;
 using System.Text.Json;
+using Bachelor_Project.UserControls.CustomConsole;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Extensions;
 
 namespace Bachelor_Project
 {
@@ -49,6 +52,40 @@ namespace Bachelor_Project
             this.VisibleChanged += (s, e) =>
             {
                 ReinitializeSensorCharts();
+            };
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
+
+            COM_Handler.SerialPortDataSender += (string x) => 
+            {
+                try
+                {
+                    string[] split = x.Split('_');
+
+                    if (split.Length == 2)
+                    {
+                        string sensorName = split[0];
+                        float readingValue = float.Parse(split[1]);
+
+                        if(!_sensorReadingHelper.AddReadingToTheSensor(sensorName, readingValue))
+                        {
+                            throw new Exception("The program was unable to add a new value to the sensor because it does not exist in the current set of sensors.");
+                        }
+
+                        ClaimReading(sensorName, readingValue);
+                        
+                    }
+                    else
+                    {
+                        throw new Exception("Incoming serial data has invalid format. " +
+                            "The line should consist of the name of the sensor and the sensor value, separated by an underline. Example: \"sensor1_12.34\".");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CustomConsole.Instance.LogError($"Couldn't parse incoming serial data. Error message: {ex.Message}");
+                }
+                
             };
         }
 
@@ -92,8 +129,7 @@ namespace Bachelor_Project
 
         public void ReinitializeCyclogram()
         {
-            List<string> filePaths = Directory.GetFiles(@"Cyclograms", "*.*", SearchOption.AllDirectories)
-            .Where(s => s.EndsWith(".json")).ToList();
+            List<string> filePaths = FileManager.GetFiles(FileManager.JsonFileStructure.Cyclograms).ToList();
 
             {
                 List<string> toDelete = new List<string>();
@@ -146,7 +182,7 @@ namespace Bachelor_Project
 
             this.cyclogram1.OnComponentStatusChange += (c, s) =>
             {
-                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerType.Components].GetElements)
+                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerTypeEnum.Components].GetElements)
                 {
                     if (element is CompressorComponent component)
                     {
@@ -161,6 +197,28 @@ namespace Bachelor_Project
                 }
 
                 this.compressorDevice1.Refresh();
+
+                if(COM_Handler.MainSerialPort.IsOpen)
+                {
+                    try
+                    {
+                        string msg = $"{(c as CyclogramComponentElement).Name}_{(s as CyclogramStatusElement).Name}";
+
+                        CustomConsole.Instance.Log("Sent message to the SerialPort: " + msg);
+
+                        COM_Handler.MainSerialPort.WriteLine(msg);
+                    }
+                    catch(Exception ex)
+                    {
+                        if(CustomConsole.Instance.DebugMode)
+                        {
+                            CustomConsole.Instance.LogError(
+                                "A critical error occurred while trying to send data through the SerialPort. Message:"
+                                + ex.Message
+                                );
+                        }
+                    }
+                }
             };
 
             this.cyclogram1.Refresh();
@@ -194,7 +252,8 @@ namespace Bachelor_Project
         {
             TempTestingFlag = true;
 
-            while (true && TempTestingFlag && comboBox_SelectCyclogram.SelectedItem != null)
+            while (true && TempTestingFlag && comboBox_SelectCyclogram.SelectedItem != null
+                && DeviceConnectionForm.Instance.GeneratingReadingsStatus)
             {
                 if(TempTestingFlag)
                 {
@@ -204,42 +263,100 @@ namespace Bachelor_Project
                     name = "d1";
                     value = (float)new Random().NextDouble() * 3 + 10;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    ClaimReading(name, value);
+                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d2";
                     value = (float)new Random().NextDouble() * 15 + 25;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    ClaimReading(name, value);
+                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d3";
                     value = (float)new Random().NextDouble() * 5 + 15;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    ClaimReading(name, value);
+                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d4";
                     value = (float)new Random().NextDouble() * 10 + 45;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    ClaimReading(name, value);
+                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d5";
                     value = (float)new Random().NextDouble() * 200 + 100;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    ClaimReading(name, value);
+                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                     await Task.Delay(1);
 
                     name = "d6";
                     value = (float)new Random().NextDouble() * 500 + 1000;
                     _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    DataLogger.SaveAndAppendLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                    ClaimReading(name, value);
+                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
 
                 }
 
 
                 await Task.Delay(100);
+            }
+        }
+
+        private void ClaimReading(string sensorName, float readingValue)
+        {
+            Sensor sensor = null;
+
+            foreach (Sensor s in _sensorReadingHelper.Sensors)
+            {
+                if (s.Name.Equals(sensorName))
+                {
+                    sensor = s;
+                    break;
+                }
+            }
+
+
+            if (sensor != null)
+            {
+
+                foreach (CompressorComponent component in compressorDevice1.GetComponentsArray())
+                {
+                    if (component != null && component.SensorName != null)
+                    {
+                        if(component.SensorName.Equals(sensorName))
+                        {
+                            float fillAmount = component.FillAmount;
+
+                            if(readingValue < sensor.MinimumValue)
+                            {
+                                fillAmount = 0;
+                            }
+                            else if(readingValue > sensor.MaximumValue)
+                            {
+                                fillAmount = 1;
+                            }
+                            else
+                            {
+                                float dR = readingValue - sensor.MinimumValue;
+                                float valueLength = sensor.MaximumValue - sensor.MinimumValue;
+
+                                fillAmount = dR / valueLength;
+
+                                component.FillAmount = fillAmount;
+                            }
+
+                            compressorDevice1.Refresh();
+                            break;
+                        }
+                    }
+
+                }
             }
         }
 
@@ -275,6 +392,14 @@ namespace Bachelor_Project
             TempTestingFlag = false;
 
             this.cyclogram1.Stop();
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
+            this.panel1.BackColor = colorPalette[FormColorVariant.DarkSecond];
+
+            this.compressorDevice1.BackColor = colorPalette[FormColorVariant.DarkSecond];
         }
     }
 }

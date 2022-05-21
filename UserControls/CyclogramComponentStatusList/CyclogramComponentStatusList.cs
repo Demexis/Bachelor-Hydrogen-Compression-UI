@@ -61,7 +61,7 @@ namespace Bachelor_Project.UserControls.CyclogramComponentStatusList
             tableLayoutPanel_ComponentsAndStatuses.RowCount = Cyclogram.Components.Count;
             tableLayoutPanel_ComponentsAndStatuses.Size = new Size(tableLayoutPanel_ComponentsAndStatuses.Width, GroupBoxHeight * tableLayoutPanel_ComponentsAndStatuses.RowCount);
 
-            for (int i = 0; i < tableLayoutPanel_ComponentsAndStatuses.RowCount - 1; i++)
+            for (int i = 0; i < tableLayoutPanel_ComponentsAndStatuses.RowCount; i++)
             {
                 tableLayoutPanel_ComponentsAndStatuses.RowStyles.Add(new RowStyle(SizeType.Percent));
             }
@@ -79,6 +79,8 @@ namespace Bachelor_Project.UserControls.CyclogramComponentStatusList
             _radioButtonComponentStatuses = new Dictionary<RadioButton, (CyclogramComponentElement, CyclogramStatusElement)>();
 
             if (Cyclogram == null) return;
+
+            Console.WriteLine("Components count " + Cyclogram.Components.Count.ToString());
 
             for (int i = 0; i < Cyclogram.Components.Count; i++)
             {

@@ -50,7 +50,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
             this.comboBox_SelectLayer = new System.Windows.Forms.ComboBox();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel_Components = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.compressorDevice1 = new Bachelor_Project.UserControls.Device.CompressorDevice();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
@@ -466,7 +466,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
             // 
             this.splitContainer7.Panel2.AutoScroll = true;
             this.splitContainer7.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.splitContainer7.Panel2.Controls.Add(this.tableLayoutPanel1);
+            this.splitContainer7.Panel2.Controls.Add(this.tableLayoutPanel_Components);
             this.splitContainer7.Size = new System.Drawing.Size(190, 274);
             this.splitContainer7.SplitterDistance = 29;
             this.splitContainer7.TabIndex = 0;
@@ -482,19 +482,19 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
             this.label1.TabIndex = 3;
             this.label1.Text = "Components";
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel_Components
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(190, 63);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel_Components.ColumnCount = 3;
+            this.tableLayoutPanel_Components.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel_Components.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel_Components.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel_Components.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel_Components.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel_Components.Name = "tableLayoutPanel_Components";
+            this.tableLayoutPanel_Components.RowCount = 1;
+            this.tableLayoutPanel_Components.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel_Components.Size = new System.Drawing.Size(190, 63);
+            this.tableLayoutPanel_Components.TabIndex = 0;
             // 
             // splitContainer10
             // 
@@ -584,6 +584,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
             this.listBox_Components.Location = new System.Drawing.Point(0, 0);
             this.listBox_Components.Name = "listBox_Components";
             this.listBox_Components.Size = new System.Drawing.Size(201, 150);
+            this.listBox_Components.Sorted = true;
             this.listBox_Components.TabIndex = 0;
             this.listBox_Components.SelectedIndexChanged += new System.EventHandler(this.control_Event);
             // 
@@ -882,7 +883,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
         private System.Windows.Forms.Button button_DeleteSensorSet;
         private System.Windows.Forms.SplitContainer splitContainer6;
         private System.Windows.Forms.SplitContainer splitContainer7;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Components;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

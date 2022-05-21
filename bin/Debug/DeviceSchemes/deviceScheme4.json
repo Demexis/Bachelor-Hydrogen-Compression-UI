@@ -1,0 +1,235 @@
+{
+  "deviceScheme": {
+    "layers": [
+      {
+        "layerType": "GasPipes",
+        "elements": [
+          {
+            "position": [
+              7,
+              3
+            ],
+            "pipeOrientation": "LU_Corner"
+          },
+          {
+            "position": [
+              8,
+              3
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              9,
+              3
+            ],
+            "pipeOrientation": "LD_Corner"
+          },
+          {
+            "position": [
+              5,
+              4
+            ],
+            "pipeOrientation": "LU_Corner"
+          },
+          {
+            "position": [
+              6,
+              4
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              7,
+              4
+            ],
+            "pipeOrientation": "T_Up"
+          },
+          {
+            "position": [
+              9,
+              4
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              11,
+              4
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              2,
+              5
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              3,
+              5
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              4,
+              5
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              5,
+              5
+            ],
+            "pipeOrientation": "T_Up"
+          },
+          {
+            "position": [
+              7,
+              5
+            ],
+            "pipeOrientation": "T_Down"
+          },
+          {
+            "position": [
+              8,
+              5
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              9,
+              5
+            ],
+            "pipeOrientation": "Cross"
+          },
+          {
+            "position": [
+              10,
+              5
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              11,
+              5
+            ],
+            "pipeOrientation": "T_Up"
+          },
+          {
+            "position": [
+              5,
+              6
+            ],
+            "pipeOrientation": "RU_Corner"
+          },
+          {
+            "position": [
+              6,
+              6
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              7,
+              6
+            ],
+            "pipeOrientation": "T_Up"
+          },
+          {
+            "position": [
+              9,
+              6
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              11,
+              6
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              7,
+              7
+            ],
+            "pipeOrientation": "RU_Corner"
+          },
+          {
+            "position": [
+              8,
+              7
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              9,
+              7
+            ],
+            "pipeOrientation": "RD_Corner"
+          }
+        ]
+      },
+      {
+        "layerType": "OilPipes",
+        "elements": []
+      },
+      {
+        "layerType": "Components",
+        "elements": [
+          {
+            "name": "v2",
+            "position": [
+              6,
+              4
+            ],
+            "componentType": "Reservoir",
+            "componentOrientation": "Vertical"
+          },
+          {
+            "name": "s1",
+            "position": [
+              9,
+              4
+            ],
+            "componentType": "Valve",
+            "componentOrientation": "Horizontal"
+          },
+          {
+            "name": "v1",
+            "position": [
+              6,
+              6
+            ],
+            "componentType": "Reservoir",
+            "componentOrientation": "Vertical"
+          },
+          {
+            "name": "s2",
+            "position": [
+              9,
+              6
+            ],
+            "componentType": "Valve",
+            "componentOrientation": "Horizontal"
+          }
+        ]
+      }
+    ],
+    "tilemapSize": [
+      11,
+      12
+    ]
+  }
+}

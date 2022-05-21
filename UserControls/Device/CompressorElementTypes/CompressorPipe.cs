@@ -17,14 +17,14 @@ namespace Bachelor_Project.UserControls.Device
         public PipeOrientation Orientation;
         public PipeStatus Status;
 
-        public Dictionary<string, Image> PipeImages;
+        public Dictionary<string, Image> PipeImages => CompressorDeviceRules.GetPipeImages(Type);
 
         public CompressorPipe(PipeType type, PipeOrientation orientation, PipeStatus status = PipeStatus.Empty)
         {
             this.Type = type;
             this.Orientation = orientation;
             this.Status = status;
-            this.PipeImages = CompressorDeviceRules.GetPipeImages(type);
+            //this.PipeImages = CompressorDeviceRules.GetPipeImages(type);
         }
 
         public override Image GetImage()

@@ -38,6 +38,9 @@ namespace Bachelor_Project
 
             }
 
+            cyclogram.HorizontalVisionPos = 0;
+            cyclogram.VerticalScrollerPos = 0;
+
             cyclogram.Refresh();
         }
 
@@ -155,6 +158,27 @@ namespace Bachelor_Project
                 maxReadingsCount = maxReadingsCountProperty.GetInt32();
             }
 
+            float minValue = 0;
+            float maxValue = 0;
+
+            if (childElement.TryGetProperty("minimumValue", out JsonElement minValueProperty))
+            {
+                minValue = minValueProperty.GetSingle();
+            }
+
+            if (childElement.TryGetProperty("maximumValue", out JsonElement maxValueProperty))
+            {
+                maxValue = maxValueProperty.GetSingle();
+            }
+
+            if(minValue > maxValue)
+            {
+                float temp = minValue;
+
+                minValue = maxValue;
+                maxValue = temp;
+            }
+
             Sensor sensor;
 
             if (maxReadingsCount <= 0)
@@ -165,6 +189,9 @@ namespace Bachelor_Project
             {
                 sensor = new Sensor(name, sensorType, maxReadingsCount);
             }
+
+            sensor.MinimumValue = minValue;
+            sensor.MaximumValue = maxValue;
 
             return sensor;
         }
@@ -215,12 +242,12 @@ namespace Bachelor_Project
 
                 Console.WriteLine($"TilemapSize in JSON: {compressorDevice.TilemapSize}");
 
-                Dictionary<CompressorLayer.LayerType, CompressorLayer> layers = new Dictionary<CompressorLayer.LayerType, CompressorLayer>()
+                Dictionary<CompressorLayer.LayerTypeEnum, CompressorLayer> layers = new Dictionary<CompressorLayer.LayerTypeEnum, CompressorLayer>()
                 {
-                    [CompressorLayer.LayerType.Editor] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerType.Editor),
-                    [CompressorLayer.LayerType.GasPipes] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerType.GasPipes),
-                    [CompressorLayer.LayerType.OilPipes] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerType.OilPipes),
-                    [CompressorLayer.LayerType.Components] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerType.Components)
+                    [CompressorLayer.LayerTypeEnum.Editor] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerTypeEnum.Editor),
+                    [CompressorLayer.LayerTypeEnum.GasPipes] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerTypeEnum.GasPipes),
+                    [CompressorLayer.LayerTypeEnum.OilPipes] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerTypeEnum.OilPipes),
+                    [CompressorLayer.LayerTypeEnum.Components] = new CompressorLayer(compressorDevice.TilemapSize, CompressorLayer.LayerTypeEnum.Components)
                 };
 
                 if (deviceSchemeProperty.TryGetProperty("layers", out JsonElement layersProperty))
@@ -229,7 +256,7 @@ namespace Bachelor_Project
                     {
                         if(layerElement.TryGetProperty("layerType", out JsonElement layerTypeProperty))
                         {
-                            if(Enum.TryParse(layerTypeProperty.GetString(), out CompressorLayer.LayerType layerType))
+                            if(Enum.TryParse(layerTypeProperty.GetString(), out CompressorLayer.LayerTypeEnum layerType))
                             {
                                 if(layerElement.TryGetProperty("elements", out JsonElement elementsProperty))
                                 {
@@ -254,9 +281,9 @@ namespace Bachelor_Project
                     }
                 }
 
-                compressorDevice.Layers[CompressorLayer.LayerType.GasPipes].SetElements(layers[CompressorLayer.LayerType.GasPipes].GetElements);
-                compressorDevice.Layers[CompressorLayer.LayerType.OilPipes].SetElements(layers[CompressorLayer.LayerType.OilPipes].GetElements);
-                compressorDevice.Layers[CompressorLayer.LayerType.Components].SetElements(layers[CompressorLayer.LayerType.Components].GetElements);
+                compressorDevice.Layers[CompressorLayer.LayerTypeEnum.GasPipes].SetElements(layers[CompressorLayer.LayerTypeEnum.GasPipes].GetElements);
+                compressorDevice.Layers[CompressorLayer.LayerTypeEnum.OilPipes].SetElements(layers[CompressorLayer.LayerTypeEnum.OilPipes].GetElements);
+                compressorDevice.Layers[CompressorLayer.LayerTypeEnum.Components].SetElements(layers[CompressorLayer.LayerTypeEnum.Components].GetElements);
 
                 foreach(CompressorLayer layer in compressorDevice.Layers.Values)
                 {
@@ -267,7 +294,7 @@ namespace Bachelor_Project
 
         }
 
-        private static (Point, CompressorElement) PrepareSchemeElement(JsonElement childElement, CompressorLayer.LayerType layerType)
+        private static (Point, CompressorElement) PrepareSchemeElement(JsonElement childElement, CompressorLayer.LayerTypeEnum layerType)
         {
             Point elementPos = default(Point);
             CompressorElement element;
@@ -302,7 +329,7 @@ namespace Bachelor_Project
 
             switch (layerType)
             {
-                case CompressorLayer.LayerType.Components:
+                case CompressorLayer.LayerTypeEnum.Components:
 
                     string name;
                     if (childElement.TryGetProperty("name", out JsonElement nameProperty))
@@ -326,12 +353,18 @@ namespace Bachelor_Project
                         componentOrientation = (CompressorComponent.ComponentOrientation)Enum.Parse(typeof(CompressorComponent.ComponentOrientation), componentOrientationProperty.GetString());
                     }
 
-                    element = new CompressorComponent(name, componentType, componentOrientation);
+                    string sensorName = null;
+                    if (childElement.TryGetProperty("sensorName", out JsonElement sensorNameProperty))
+                    {
+                        sensorName = sensorNameProperty.GetString();
+                    }
+
+                    element = new CompressorComponent(name, componentType, componentOrientation) { SensorName = sensorName };
 
                     break;
 
-                case CompressorLayer.LayerType.GasPipes:
-                case CompressorLayer.LayerType.OilPipes:
+                case CompressorLayer.LayerTypeEnum.GasPipes:
+                case CompressorLayer.LayerTypeEnum.OilPipes:
 
                     CompressorPipe.PipeOrientation pipeOrientation = CompressorPipe.PipeOrientation.Cross;
                     if (childElement.TryGetProperty("pipeOrientation", out JsonElement pipeOrientationProperty))

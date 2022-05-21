@@ -13,7 +13,7 @@ namespace Bachelor_Project.Handlers
 
         private List<SensorChart> _sensorCharts = new List<SensorChart>();
 
-        public Action OnSensorsChanged;
+        public Action OnSensorsChanged { get; set; }
 
         public void AddSensorChart(SensorChart sensorChart)
         {
@@ -21,53 +21,27 @@ namespace Bachelor_Project.Handlers
         }
 
 
-        public void AddReadingToTheSensor(string name, float value)
+        public bool AddReadingToTheSensor(string name, float value)
         {
-            if(Sensors.Exists((x) => x.Name.Equals(name))) Sensors.First((x) => x.Name.Equals(name))?.AddReading(value);
+            bool result = false;
 
+            if (Sensors.Exists((x) => x.Name.Equals(name)))
+            {
+                Sensors.First((x) => x.Name.Equals(name))?.AddReading(value);
+                result = true;
+            }
 
             UpdateCharts();
+
+            return result;
         }
 
         public void UpdateCharts()
         {
-
             foreach(SensorChart sensorChart in _sensorCharts)
             {
                 sensorChart.RefreshChart();
             }
-
-            //List<Sensor> displayedSensors = new List<Sensor>();
-
-            ////Console.WriteLine(this.tableLayoutPanel1.Controls.OfType<SensorChart>().Count());
-
-            //foreach (SensorChart sensorChart in _sensorCharts)
-            //{
-            //    sensorChart.SensorChartUpdate();
-
-            //    if (sensorChart.SelectedSensor != null)
-            //    {
-            //        displayedSensors.Add(sensorChart.SelectedSensor);
-            //    }
-            //}
-
-            //foreach (SensorChart sensorChart in _sensorCharts)
-            //{
-            //    if (sensorChart.SelectedSensor == null)
-            //    {
-            //        foreach (Sensor sensor in Sensors)
-            //        {
-            //            if (!displayedSensors.Contains(sensor))
-            //            {
-            //                displayedSensors.Add(sensor);
-
-            //                sensorChart.SelectedSensor = sensor.Name;
-            //            }
-            //        }
-
-            //        displayedSensors.Add(sensorChart.SelectedSensor);
-            //    }
-            //}
         }
 
     }

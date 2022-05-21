@@ -4,7 +4,32 @@
       {
         "name": "step_0",
         "lengthMilliseconds": 100,
-        "sequences": []
+        "sequences": [
+          {
+            "componentName": "S1",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "H1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V2",
+            "statusName": "Active"
+          }
+        ]
       },
       {
         "name": "step_123",
@@ -13,6 +38,22 @@
           {
             "componentName": "S1",
             "statusName": "Inactive"
+          },
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "H1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V2",
+            "statusName": "Active"
           }
         ]
       },
@@ -21,12 +62,24 @@
         "lengthMilliseconds": 200,
         "sequences": [
           {
-            "componentName": "Buffer",
-            "statusName": "Inactive"
-          },
-          {
             "componentName": "S2",
             "statusName": "Disabled"
+          },
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "H1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V2",
+            "statusName": "Active"
           }
         ]
       },
@@ -35,21 +88,38 @@
         "lengthMilliseconds": 100,
         "sequences": [
           {
-            "componentName": "Buffer",
-            "statusName": "Disabled"
-          },
-          {
             "componentName": "S1",
             "statusName": "Active"
           },
           {
             "componentName": "S2",
             "statusName": "Inactive"
+          },
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "H1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V2",
+            "statusName": "Active"
           }
         ]
       },
       {
         "name": "step_04",
+        "lengthMilliseconds": 100,
+        "sequences": []
+      },
+      {
+        "name": "step_05",
         "lengthMilliseconds": 100,
         "sequences": [
           {
@@ -57,19 +127,18 @@
             "statusName": "Active"
           },
           {
-            "componentName": "S1",
+            "componentName": "V1",
             "statusName": "Active"
           },
           {
-            "componentName": "S2",
-            "statusName": "Inactive"
+            "componentName": "H1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "V2",
+            "statusName": "Active"
           }
         ]
-      },
-      {
-        "name": "step_05",
-        "lengthMilliseconds": 100,
-        "sequences": []
       }
     ],
     "deviceScheme": "DeviceSchemes\\deviceScheme1.json"

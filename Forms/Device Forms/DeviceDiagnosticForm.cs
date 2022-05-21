@@ -18,6 +18,8 @@ using CompressorComponent = Bachelor_Project.UserControls.Device.CompressorCompo
 using ComponentType = Bachelor_Project.UserControls.Device.CompressorComponent.ComponentType;
 using ComponentOrientation = Bachelor_Project.UserControls.Device.CompressorComponent.ComponentOrientation;
 using Bachelor_Project.UserControls.Device;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Extensions;
 
 namespace Bachelor_Project
 {
@@ -51,7 +53,7 @@ namespace Bachelor_Project
             this.cyclogram1.CyclogramName = "Cyclogram";
             this.cyclogram1.OnComponentStatusChange += (c, s) =>
             {
-                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerType.Components].GetElements)
+                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerTypeEnum.Components].GetElements)
                 {
                     if (element is CompressorComponent component)
                     {
@@ -67,6 +69,8 @@ namespace Bachelor_Project
 
                 this.compressorDevice1.Refresh();
             };
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
         }
 
         private void RecreateSensorCharts()
@@ -136,6 +140,7 @@ namespace Bachelor_Project
 
                     string jsonCyclogram = File.ReadAllText(cyclogramFileName);
 
+                    this.cyclogram1.Components.Clear();
                     JSON_Handler.InitializeCyclogramWithJson(cyclogram1, jsonCyclogram);
                     this.cyclogram1.Refresh();
 
@@ -242,7 +247,7 @@ namespace Bachelor_Project
             {
                 if(sensors.ContainsKey(p2.sensorName))
                 {
-                    if(sensors[p2.sensorName].Count >= _sensorReadingHelper.Sensors.First((x) => x.Name.Equals(p2.sensorName)).MaxReadingsCount)
+                    if (sensors[p2.sensorName].Count >= _sensorReadingHelper.Sensors.First((x) => x.Name.Equals(p2.sensorName)).MaxReadingsCount)
                     {
                         sensors[p2.sensorName].RemoveAt(0);
                     }
@@ -263,6 +268,23 @@ namespace Bachelor_Project
             }
 
             _sensorReadingHelper.UpdateCharts();
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
+            this.compressorDevice1.BackColor = colorPalette[FormColorVariant.DarkSecond];
+
+            foreach (Button button in this.GetAllControlsRecusrvive<Button>())
+            {
+                button.BackColor = colorPalette[FormColorVariant.BrightSecond];
+                button.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+                button.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.ButtonMouseDown];
+                button.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.ButtonMouseOver];
+
+            }
+
         }
     }
 }

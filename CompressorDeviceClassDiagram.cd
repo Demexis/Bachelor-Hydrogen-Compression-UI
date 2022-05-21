@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorDevice">
+    <Position X="0.75" Y="4.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorDevice.DeviceAlignment" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorDevice.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAEIQAGJSAgIAADCAAAACBBAAQQAEAIAAICAAAAA=</HashCode>
+      <FileName>UserControls\Device\CompressorDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorDeviceRules" Collapsed="true">
+    <Position X="0.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAQAQAAAAAAIAQAAAAAEAAAEAE=</HashCode>
+      <FileName>UserControls\Device\CompressorDeviceRules.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorComponent">
+    <Position X="7.5" Y="5.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorComponent.ComponentType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorComponent.ComponentOrientation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorComponent.ComponentStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQIAAAAEAAAAAAQQEAAAABAAAQAQAAAAABI=</HashCode>
+      <FileName>UserControls\Device\CompressorElementTypes\CompressorComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorEditorElement" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>UserControls\Device\CompressorElementTypes\CompressorEditorElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorElement" Collapsed="true">
+    <Position X="5.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>UserControls\Device\CompressorElementTypes\CompressorElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorPipe">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorPipe.PipeType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorPipe.PipeOrientation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorPipe.PipeStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQAAEAAAAAAAAAAQAAAAAAAAAQAAAAAAABA=</HashCode>
+      <FileName>UserControls\Device\CompressorElementTypes\CompressorPipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.Device.CompressorLayer">
+    <Position X="3.25" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Bachelor_Project.UserControls.Device.CompressorLayer.LayerTypeEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UserControls\Device\CompressorLayer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFIAAAIBAAABAAAQgAAABAAgAAAAAAAAIAAA=</HashCode>
+      <FileName>UserControls\Device\CompressorLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Bachelor_Project.UserControls.Device.IContainImage">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\Device\Interfaces\IContainImage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

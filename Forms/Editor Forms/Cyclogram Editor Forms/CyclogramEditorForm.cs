@@ -1,4 +1,6 @@
-﻿using Bachelor_Project.Handlers;
+﻿using Bachelor_Project.Extensions;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Handlers;
 using Bachelor_Project.UserControls.Device;
 using Newtonsoft.Json.Linq;
 using System;
@@ -37,6 +39,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
                 SerializeAll();
                 this.cyclogram1.Refresh();
             };
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
         }
 
         #region Initialization
@@ -128,7 +132,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.cyclogram1.CyclogramName = "Preview Cyclogram";
             this.cyclogram1.OnComponentStatusChange += (c, s) =>
             {
-                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerType.Components].GetElements)
+                foreach (CompressorElement element in this.compressorDevice1.Layers[CompressorLayer.LayerTypeEnum.Components].GetElements)
                 {
                     if (element is CompressorComponent component)
                     {
@@ -182,7 +186,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
         {
             comboBox_SelectDeviceScheme.DataSource = null;
 
-            comboBox_SelectDeviceScheme.DataSource = FileManager.GetDeviceSchemeFiles();
+            comboBox_SelectDeviceScheme.DataSource = FileManager.GetFiles(FileManager.JsonFileStructure.DeviceSchemes);
 
             if (comboBox_SelectDeviceScheme.Items.Count != 0)
             {
@@ -287,6 +291,11 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
                 if (comboBox_SelectCyclogram.Items.Count != 0)
                 {
                     comboBox_SelectCyclogram.SelectedIndex = 0;
+                }
+                else
+                {
+                    cyclogram1.Steps.Clear();
+                    UpdateStepsListBox();
                 }
             }
 
@@ -610,6 +619,39 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
+
+            this.compressorDevice1.BackColor = colorPalette[FormColorVariant.DarkSecond];
+            this.cyclogram1.BackColor = colorPalette[FormColorVariant.DarkFirst];
+            this.cyclogramComponentStatusList1.BackColor = colorPalette[FormColorVariant.DarkFirst];
+
+            List<Button> buttons = new List<Button>()
+            {
+                button_AddStep,
+                button_DeleteCyclogram,
+                button_MoveDown,
+                button_MoveDownEnd,
+                button_MoveUp,
+                button_MoveUpEnd,
+                button_NewCyclogram,
+                button_RemoveStep,
+                button_SaveStep
+            };
+
+            foreach (Button button in buttons)
+            {
+                button.BackColor = colorPalette[FormColorVariant.BrightSecond];
+                button.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+                button.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.ButtonMouseDown];
+                button.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.ButtonMouseOver];
+
+            }
+
         }
     }
 }

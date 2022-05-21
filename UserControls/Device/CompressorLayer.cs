@@ -9,15 +9,15 @@ namespace Bachelor_Project.UserControls.Device
 {
     public class CompressorLayer
     {
-        public enum LayerType { Editor, GasPipes, OilPipes, Components }
+        public enum LayerTypeEnum { Editor, GasPipes, OilPipes, Components }
 
-        public LayerType Layer;
+        public LayerTypeEnum LayerType;
         private CompressorElement[,] _elements;
         public CompressorElement GetElement(int x, int y) => _elements[x, y];
 
         public CompressorElement[,] GetElements => _elements;
 
-        public Action ElementChanged;
+        public Action ElementChanged { get; set; }
 
         public void SetElement(CompressorElement element, int x, int y)
         {
@@ -31,12 +31,12 @@ namespace Bachelor_Project.UserControls.Device
             ElementChanged?.Invoke();
         }
 
-        public CompressorLayer(Size size, LayerType layerType)
+        public CompressorLayer(Size size, LayerTypeEnum layerType)
         {
             _elements = new CompressorElement[size.Width, size.Height];
-            Layer = layerType;
+            LayerType = layerType;
 
-            if (Layer == LayerType.Editor)
+            if (LayerType == LayerTypeEnum.Editor)
                 RearrangeEditorTiles();
         }
 
@@ -54,7 +54,7 @@ namespace Bachelor_Project.UserControls.Device
                 }
             }
 
-            if(Layer == LayerType.Editor)
+            if(LayerType == LayerTypeEnum.Editor)
                 RearrangeEditorTiles();
 
             Console.WriteLine($"Rearranged: {_elements.GetLength(0)}, {_elements.GetLength(1)}");
@@ -75,9 +75,9 @@ namespace Bachelor_Project.UserControls.Device
         {
             List<(string, Image)> namesAndImgs = new List<(string, Image)>();
 
-            switch (Layer)
+            switch (LayerType)
             {
-                case LayerType.Components:
+                case LayerTypeEnum.Components:
 
                     foreach (string componentType in Enum.GetNames(typeof(CompressorComponent.ComponentType)))
                     {
@@ -86,7 +86,7 @@ namespace Bachelor_Project.UserControls.Device
                     }
                     break;
 
-                case LayerType.GasPipes:
+                case LayerTypeEnum.GasPipes:
 
                     namesAndImgs.Add(("", CompressorDeviceRules.GasPipeImages["CrossEmpty"]));
                     break;
@@ -102,11 +102,11 @@ namespace Bachelor_Project.UserControls.Device
         {
             Size tilemapSize = new Size(_elements.GetLength(1), _elements.GetLength(0));
 
-            switch (Layer)
+            switch (LayerType)
             {
-                case LayerType.Components:
+                case LayerTypeEnum.Components:
                     break;
-                case LayerType.GasPipes:
+                case LayerTypeEnum.GasPipes:
 
                     CompressorPipe.PipeType pipeType = CompressorPipe.PipeType.Gas;
 

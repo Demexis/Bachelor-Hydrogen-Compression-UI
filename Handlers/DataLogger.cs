@@ -11,7 +11,7 @@ namespace Bachelor_Project
     {
         // TODO
 
-        public static void SaveAndAppendLogData(string fileName, string data)
+        public static void SaveLogData(string fileName, string data)
         {
             fileName += $"_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.txt";
 

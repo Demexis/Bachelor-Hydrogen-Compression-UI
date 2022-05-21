@@ -1,4 +1,6 @@
-﻿using Bachelor_Project.Handlers;
+﻿using Bachelor_Project.Extensions;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Handlers;
 using Bachelor_Project.Processing;
 using Bachelor_Project.UserControls;
 using Bachelor_Project.UserControls.Device;
@@ -39,6 +41,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
             this.compressorDevice1.EditorMode = true;
 
             InitializeButtonEvents();
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
         }
 
         private void DeviceSchemeEditorForm_Load(object sender, EventArgs e)
@@ -49,9 +53,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                 else if (e2.Button == MouseButtons.Right) RemoveElementFromScheme(e2.Location);
             };
 
-            foreach (CompressorLayer.LayerType layer in Enum.GetValues(typeof(CompressorLayer.LayerType)))
+            foreach (CompressorLayer.LayerTypeEnum layer in Enum.GetValues(typeof(CompressorLayer.LayerTypeEnum)))
             {
-                if (layer == CompressorLayer.LayerType.Editor) continue;
+                if (layer == CompressorLayer.LayerTypeEnum.Editor) continue;
 
                 comboBox_SelectLayer.Items.Add(layer);
             }
@@ -76,7 +80,10 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                 { 
                     SaveSelectedComponent(); 
                     UpdateComponentsList();
-                    this.compressorDevice1.Layers[CompressorLayer.LayerType.Components].ApplyRulesToTheLayer();
+                    foreach (CompressorLayer layer in compressorDevice1.Layers.Values)
+                    {
+                        layer.ApplyRulesToTheLayer();
+                    }
                     SerializeAll();
                 },
                 [this.button_NewScheme] = () => { CreateNewScheme(); RefreshDeviceSchemesFilesComboBox(); },
@@ -126,7 +133,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
             this.compressorDevice1.Layers.ToList().ForEach(x => x.Value.SetElements(new CompressorElement[compressorDevice1.TilemapSize.Width, compressorDevice1.TilemapSize.Height]));
 
-            foreach (string file in FileManager.GetDeviceSchemeFiles())
+            foreach (string file in FileManager.GetFiles(FileManager.JsonFileStructure.DeviceSchemes))
             {
                 this.comboBox_SelectDeviceScheme.Items.Add(file);
             }
@@ -165,7 +172,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
         private void RemoveElementFromScheme(Point mousePos)
         {
-            if (Enum.TryParse(comboBox_SelectLayer.SelectedItem.ToString(), out CompressorLayer.LayerType layerType))
+            if (Enum.TryParse(comboBox_SelectLayer.SelectedItem.ToString(), out CompressorLayer.LayerTypeEnum layerType))
             {
                 if (this.compressorDevice1.MousePosInsideTheGrid(mousePos))
                 {
@@ -188,7 +195,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
         {
             if (_selectedElement != null)
             {
-                if (Enum.TryParse(comboBox_SelectLayer.SelectedItem.ToString(), out CompressorLayer.LayerType layerType))
+                if (Enum.TryParse(comboBox_SelectLayer.SelectedItem.ToString(), out CompressorLayer.LayerTypeEnum layerType))
                 {
                     if(this.compressorDevice1.MousePosInsideTheGrid(mousePos))
                     {
@@ -212,7 +219,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
         {
             this.listBox_Components.Items.Clear();
 
-            foreach(CompressorComponent component in compressorDevice1.Layers[CompressorLayer.LayerType.Components].GetElements)
+            foreach(CompressorComponent component in compressorDevice1.Layers[CompressorLayer.LayerTypeEnum.Components].GetElements)
             {
                 if(component != null)
                 {
@@ -225,19 +232,22 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
         {
             _selectedElement = null;
 
-            if (Enum.TryParse(comboBox_SelectLayer.SelectedItem.ToString(), out CompressorLayer.LayerType layerType))
+            if (Enum.TryParse(comboBox_SelectLayer.SelectedItem.ToString(), out CompressorLayer.LayerTypeEnum layerType))
             {
                 (string, Image)[] namesNimgs = this.compressorDevice1.Layers[layerType].GetImagesOgLayerElements();
 
                 _pictureBoxes.Clear();
 
-                tableLayoutPanel1.Controls.Clear();
+                tableLayoutPanel_Components.Controls.Clear();
 
-                tableLayoutPanel1.RowCount = namesNimgs.Length / tableLayoutPanel1.ColumnCount + (namesNimgs.Length % tableLayoutPanel1.ColumnCount == 0 ? 0 : 1);
-                tableLayoutPanel1.Size = new Size(tableLayoutPanel1.Width, tableLayoutPanel1.Size.Width / 3 * tableLayoutPanel1.RowCount);
+                tableLayoutPanel_Components.RowCount = namesNimgs.Length / tableLayoutPanel_Components.ColumnCount + (namesNimgs.Length % tableLayoutPanel_Components.ColumnCount == 0 ? 0 : 1);
+                tableLayoutPanel_Components.Size = new Size(tableLayoutPanel_Components.Width, tableLayoutPanel_Components.Size.Width / 3 * tableLayoutPanel_Components.RowCount);
                 for (int i = 0; i < namesNimgs.Length; i++)
                 {
-                    Size stretchedSize = new Size(tableLayoutPanel1.Size.Width / 3, tableLayoutPanel1.Size.Width / 3);
+                    int size = tableLayoutPanel_Components.Size.Width / 3 - 2;
+
+                    //Size stretchedSize = new Size(tableLayoutPanel_Components.Size.Width / 3, tableLayoutPanel_Components.Size.Width / 3);
+                    Size stretchedSize = new Size(size, size);
                     Image stretchedImg = BitmapProcessing.GetInterpolatedBitmap((Bitmap)namesNimgs[i].Item2, stretchedSize);
 
                     PictureBox pictureBox = new PictureBox() { Dock = DockStyle.Fill, AutoSize = true, Image = stretchedImg };
@@ -249,7 +259,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
                     switch (layerType)
                     {
-                        case CompressorLayer.LayerType.Components:
+                        case CompressorLayer.LayerTypeEnum.Components:
                             string orientationStr = namesNimgs[i].Item1.Split(' ')[0];
                             string typeStr = namesNimgs[i].Item1.Split(' ')[1];
 
@@ -261,7 +271,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                                 }
                             }
                             break;
-                        case CompressorLayer.LayerType.GasPipes:
+                        case CompressorLayer.LayerTypeEnum.GasPipes:
 
                             _pictureBoxes.Add(pictureBox, new CompressorPipe(CompressorPipe.PipeType.Gas, CompressorPipe.PipeOrientation.Cross, CompressorPipe.PipeStatus.Empty));
 
@@ -276,20 +286,26 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                     {
                         Console.WriteLine("Clicked Picture Box");
                         _selectedElement = _pictureBoxes[s2 as PictureBox];
+
+                        foreach(PictureBox picture in _pictureBoxes.Keys)
+                        {
+                            picture.BackColor = 
+                                (picture == s2 as PictureBox ? Color.Yellow : tableLayoutPanel_Components.BackColor);
+                        }
                     };
 
-                    tableLayoutPanel1.Controls.Add(pictureBox, i % 3, i / 3);
+                    tableLayoutPanel_Components.Controls.Add(pictureBox, i % 3, i / 3);
                 }
 
-                for (int i = 0; i < tableLayoutPanel1.RowCount - 1; i++)
+                for (int i = 0; i < tableLayoutPanel_Components.RowCount - 1; i++)
                 {
-                    tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent));
+                    tableLayoutPanel_Components.RowStyles.Add(new RowStyle(SizeType.Percent));
                 }
 
-                foreach (RowStyle rowStyle in tableLayoutPanel1.RowStyles)
+                foreach (RowStyle rowStyle in tableLayoutPanel_Components.RowStyles)
                 {
                     rowStyle.SizeType = SizeType.Percent;
-                    rowStyle.Height = 1f / tableLayoutPanel1.RowStyles.Count;
+                    rowStyle.Height = 1f / tableLayoutPanel_Components.RowStyles.Count;
                 }
 
             }
@@ -298,7 +314,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
         private void ComponentsListBoxChanged()
         {
-            foreach(CompressorElement c in this.compressorDevice1.Layers[CompressorLayer.LayerType.Components].GetElements)
+            foreach(CompressorElement c in this.compressorDevice1.Layers[CompressorLayer.LayerTypeEnum.Components].GetElements)
             {
                 if(c != null && c is CompressorComponent comp)
                 {
@@ -318,7 +334,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                 this.comboBox_SelectedComponent_Orientation.Enabled = true;
                 this.comboBox_SelectedComponent_Type.Enabled = true;
 
-                this.textBox_SelectedComponent_SensorName.Enabled = (component.Type == CompressorComponent.ComponentType.OpticalSensor);
+                this.textBox_SelectedComponent_SensorName.Enabled = 
+                    (component.Type == CompressorComponent.ComponentType.OpticalSensor) ||
+                    (component.Type == CompressorComponent.ComponentType.Reservoir);
 
                 this.textBox_SelectedComponent_SensorName.Text = component.SensorName;
 
@@ -381,11 +399,11 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
             foreach (CompressorLayer layer in compressorDevice1.Layers.Values)
             {
-                if (layer.Layer != CompressorLayer.LayerType.Editor)
+                if (layer.LayerType != CompressorLayer.LayerTypeEnum.Editor)
                 {
                     JObject layerObj = new JObject();
 
-                    JProperty layerTypeProperty = new JProperty("layerType", layer.Layer.ToString());
+                    JProperty layerTypeProperty = new JProperty("layerType", layer.LayerType.ToString());
 
                     layerObj.Add(layerTypeProperty);
 
@@ -533,11 +551,11 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
                 foreach(CompressorLayer layer in compressorDevice1.Layers.Values)
                 {
-                    if(layer.Layer != CompressorLayer.LayerType.Editor)
+                    if(layer.LayerType != CompressorLayer.LayerTypeEnum.Editor)
                     {
                         JObject layerObj = new JObject();
 
-                        JProperty layerTypeProperty = new JProperty("layerType", layer.Layer.ToString());
+                        JProperty layerTypeProperty = new JProperty("layerType", layer.LayerType.ToString());
 
                         layerObj.Add(layerTypeProperty);
 
@@ -549,9 +567,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                             {
                                 CompressorElement element = layer.GetElements[i, j];
 
-                                switch (layer.Layer)
+                                switch (layer.LayerType)
                                 {
-                                    case CompressorLayer.LayerType.Components:
+                                    case CompressorLayer.LayerTypeEnum.Components:
 
                                         if (element is CompressorComponent component)
                                         {
@@ -578,8 +596,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
                                         break;
 
-                                    case CompressorLayer.LayerType.GasPipes:
-                                    case CompressorLayer.LayerType.OilPipes:
+                                    case CompressorLayer.LayerTypeEnum.GasPipes:
+                                    case CompressorLayer.LayerTypeEnum.OilPipes:
 
                                         if (element is CompressorPipe pipe)
                                         {
@@ -633,7 +651,24 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
 
         }
 
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
 
+            this.splitContainer7.Panel2.BackColor = colorPalette[FormColorVariant.DarkSecond];
+            this.compressorDevice1.BackColor = colorPalette[FormColorVariant.DarkSecond];
+
+            foreach (Button button in this.GetAllControlsRecusrvive<Button>())
+            {
+                button.BackColor = colorPalette[FormColorVariant.BrightSecond];
+                button.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+                button.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.ButtonMouseDown];
+                button.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.ButtonMouseOver];
+
+            }
+
+        }
 
     }
 }

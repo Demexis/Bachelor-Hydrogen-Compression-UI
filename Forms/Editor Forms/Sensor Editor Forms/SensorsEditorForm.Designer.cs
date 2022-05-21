@@ -59,6 +59,10 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox_AddSensor_MinValue = new System.Windows.Forms.TextBox();
+            this.textBox_AddSensor_MaxValue = new System.Windows.Forms.TextBox();
             this.button_AddSensor_Add = new System.Windows.Forms.Button();
             this.splitContainer12 = new System.Windows.Forms.SplitContainer();
             this.splitContainer13 = new System.Windows.Forms.SplitContainer();
@@ -71,6 +75,10 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox_EditSensor_MinValue = new System.Windows.Forms.TextBox();
+            this.textBox_EditSensor_MaxValue = new System.Windows.Forms.TextBox();
             this.button_EditSensor_Save = new System.Windows.Forms.Button();
             this.splitContainer15 = new System.Windows.Forms.SplitContainer();
             this.splitContainer16 = new System.Windows.Forms.SplitContainer();
@@ -167,9 +175,10 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer1.Size = new System.Drawing.Size(666, 412);
-            this.splitContainer1.SplitterDistance = 386;
+            this.splitContainer1.Size = new System.Drawing.Size(777, 562);
+            this.splitContainer1.SplitterDistance = 450;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -187,7 +196,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(386, 412);
+            this.splitContainer2.Size = new System.Drawing.Size(450, 562);
             this.splitContainer2.SplitterDistance = 25;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -217,8 +226,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(386, 383);
-            this.splitContainer3.SplitterDistance = 324;
+            this.splitContainer3.Size = new System.Drawing.Size(450, 533);
+            this.splitContainer3.SplitterDistance = 474;
             this.splitContainer3.TabIndex = 0;
             // 
             // splitContainer4
@@ -235,8 +244,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer4.Size = new System.Drawing.Size(386, 324);
-            this.splitContainer4.SplitterDistance = 315;
+            this.splitContainer4.Size = new System.Drawing.Size(450, 474);
+            this.splitContainer4.SplitterDistance = 379;
             this.splitContainer4.TabIndex = 0;
             // 
             // dataGridView1
@@ -284,7 +293,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(315, 324);
+            this.dataGridView1.Size = new System.Drawing.Size(379, 474);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -303,8 +312,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.splitContainer11);
-            this.splitContainer6.Size = new System.Drawing.Size(67, 324);
-            this.splitContainer6.SplitterDistance = 158;
+            this.splitContainer6.Size = new System.Drawing.Size(67, 474);
+            this.splitContainer6.SplitterDistance = 231;
             this.splitContainer6.TabIndex = 0;
             // 
             // splitContainer10
@@ -321,8 +330,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.button_MoveUp);
-            this.splitContainer10.Size = new System.Drawing.Size(67, 158);
-            this.splitContainer10.SplitterDistance = 74;
+            this.splitContainer10.Size = new System.Drawing.Size(67, 231);
+            this.splitContainer10.SplitterDistance = 108;
             this.splitContainer10.TabIndex = 7;
             // 
             // button_MoveUpEnd
@@ -338,7 +347,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveUpEnd.Location = new System.Drawing.Point(0, 0);
             this.button_MoveUpEnd.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveUpEnd.Name = "button_MoveUpEnd";
-            this.button_MoveUpEnd.Size = new System.Drawing.Size(67, 74);
+            this.button_MoveUpEnd.Size = new System.Drawing.Size(67, 108);
             this.button_MoveUpEnd.TabIndex = 7;
             this.button_MoveUpEnd.Text = "/\\/\\";
             this.button_MoveUpEnd.UseVisualStyleBackColor = false;
@@ -357,7 +366,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveUp.Location = new System.Drawing.Point(0, 0);
             this.button_MoveUp.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveUp.Name = "button_MoveUp";
-            this.button_MoveUp.Size = new System.Drawing.Size(67, 80);
+            this.button_MoveUp.Size = new System.Drawing.Size(67, 119);
             this.button_MoveUp.TabIndex = 6;
             this.button_MoveUp.Text = "/\\";
             this.button_MoveUp.UseVisualStyleBackColor = false;
@@ -377,8 +386,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer11.Panel2
             // 
             this.splitContainer11.Panel2.Controls.Add(this.button_MoveDownEnd);
-            this.splitContainer11.Size = new System.Drawing.Size(67, 162);
-            this.splitContainer11.SplitterDistance = 77;
+            this.splitContainer11.Size = new System.Drawing.Size(67, 239);
+            this.splitContainer11.SplitterDistance = 113;
             this.splitContainer11.TabIndex = 7;
             // 
             // button_MoveDown
@@ -394,7 +403,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveDown.Location = new System.Drawing.Point(0, 0);
             this.button_MoveDown.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveDown.Name = "button_MoveDown";
-            this.button_MoveDown.Size = new System.Drawing.Size(67, 77);
+            this.button_MoveDown.Size = new System.Drawing.Size(67, 113);
             this.button_MoveDown.TabIndex = 6;
             this.button_MoveDown.Text = "\\/";
             this.button_MoveDown.UseVisualStyleBackColor = false;
@@ -413,7 +422,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveDownEnd.Location = new System.Drawing.Point(0, 0);
             this.button_MoveDownEnd.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveDownEnd.Name = "button_MoveDownEnd";
-            this.button_MoveDownEnd.Size = new System.Drawing.Size(67, 81);
+            this.button_MoveDownEnd.Size = new System.Drawing.Size(67, 122);
             this.button_MoveDownEnd.TabIndex = 8;
             this.button_MoveDownEnd.Text = "\\/\\/";
             this.button_MoveDownEnd.UseVisualStyleBackColor = false;
@@ -428,8 +437,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.button_Remove);
-            this.splitContainer5.Size = new System.Drawing.Size(386, 55);
-            this.splitContainer5.SplitterDistance = 179;
+            this.splitContainer5.Size = new System.Drawing.Size(450, 55);
+            this.splitContainer5.SplitterDistance = 208;
             this.splitContainer5.TabIndex = 6;
             // 
             // button_Remove
@@ -445,7 +454,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_Remove.Location = new System.Drawing.Point(0, 0);
             this.button_Remove.Margin = new System.Windows.Forms.Padding(4);
             this.button_Remove.Name = "button_Remove";
-            this.button_Remove.Size = new System.Drawing.Size(203, 55);
+            this.button_Remove.Size = new System.Drawing.Size(238, 55);
             this.button_Remove.TabIndex = 5;
             this.button_Remove.Text = "Remove";
             this.button_Remove.UseVisualStyleBackColor = false;
@@ -466,8 +475,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.splitContainer12);
-            this.splitContainer7.Size = new System.Drawing.Size(276, 412);
-            this.splitContainer7.SplitterDistance = 203;
+            this.splitContainer7.Size = new System.Drawing.Size(323, 562);
+            this.splitContainer7.SplitterDistance = 268;
             this.splitContainer7.TabIndex = 0;
             // 
             // splitContainer8
@@ -484,8 +493,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer8.Size = new System.Drawing.Size(276, 203);
-            this.splitContainer8.SplitterDistance = 32;
+            this.splitContainer8.Size = new System.Drawing.Size(323, 268);
+            this.splitContainer8.SplitterDistance = 42;
             this.splitContainer8.TabIndex = 0;
             // 
             // label2
@@ -504,6 +513,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer9
             // 
             this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer9.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer9.Location = new System.Drawing.Point(0, 0);
             this.splitContainer9.Name = "splitContainer9";
             this.splitContainer9.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -515,8 +525,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.button_AddSensor_Add);
-            this.splitContainer9.Size = new System.Drawing.Size(276, 167);
-            this.splitContainer9.SplitterDistance = 121;
+            this.splitContainer9.Size = new System.Drawing.Size(323, 222);
+            this.splitContainer9.SplitterDistance = 181;
             this.splitContainer9.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -530,23 +540,30 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_AddSensor_MinValue, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_AddSensor_MaxValue, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(276, 121);
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(323, 181);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textBox_AddSensor_MaxRecords
             // 
             this.textBox_AddSensor_MaxRecords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_AddSensor_MaxRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_AddSensor_MaxRecords.Location = new System.Drawing.Point(134, 83);
+            this.textBox_AddSensor_MaxRecords.Location = new System.Drawing.Point(134, 75);
             this.textBox_AddSensor_MaxRecords.Name = "textBox_AddSensor_MaxRecords";
-            this.textBox_AddSensor_MaxRecords.Size = new System.Drawing.Size(139, 32);
+            this.textBox_AddSensor_MaxRecords.Size = new System.Drawing.Size(186, 32);
             this.textBox_AddSensor_MaxRecords.TabIndex = 9;
             // 
             // comboBox_AddSensor_Type
@@ -556,10 +573,10 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.comboBox_AddSensor_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_AddSensor_Type.FormattingEnabled = true;
             this.comboBox_AddSensor_Type.ItemHeight = 25;
-            this.comboBox_AddSensor_Type.Location = new System.Drawing.Point(135, 44);
+            this.comboBox_AddSensor_Type.Location = new System.Drawing.Point(135, 40);
             this.comboBox_AddSensor_Type.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_AddSensor_Type.Name = "comboBox_AddSensor_Type";
-            this.comboBox_AddSensor_Type.Size = new System.Drawing.Size(137, 33);
+            this.comboBox_AddSensor_Type.Size = new System.Drawing.Size(184, 33);
             this.comboBox_AddSensor_Type.TabIndex = 7;
             // 
             // textBox_AddSensor_Name
@@ -568,7 +585,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.textBox_AddSensor_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_AddSensor_Name.Location = new System.Drawing.Point(134, 3);
             this.textBox_AddSensor_Name.Name = "textBox_AddSensor_Name";
-            this.textBox_AddSensor_Name.Size = new System.Drawing.Size(139, 32);
+            this.textBox_AddSensor_Name.Size = new System.Drawing.Size(186, 32);
             this.textBox_AddSensor_Name.TabIndex = 8;
             // 
             // label5
@@ -577,9 +594,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(3, 80);
+            this.label5.Location = new System.Drawing.Point(3, 72);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 41);
+            this.label5.Size = new System.Drawing.Size(125, 36);
             this.label5.TabIndex = 4;
             this.label5.Text = "Max Records: ";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -590,9 +607,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(3, 40);
+            this.label4.Location = new System.Drawing.Point(3, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 40);
+            this.label4.Size = new System.Drawing.Size(125, 36);
             this.label4.TabIndex = 3;
             this.label4.Text = "Type: ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -605,10 +622,54 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 40);
+            this.label3.Size = new System.Drawing.Size(125, 36);
             this.label3.TabIndex = 2;
             this.label3.Text = "Name: ";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label11.Location = new System.Drawing.Point(3, 108);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(125, 36);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Min Value:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label12.Location = new System.Drawing.Point(3, 144);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(125, 37);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Max Value:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox_AddSensor_MinValue
+            // 
+            this.textBox_AddSensor_MinValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_AddSensor_MinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_AddSensor_MinValue.Location = new System.Drawing.Point(134, 111);
+            this.textBox_AddSensor_MinValue.Name = "textBox_AddSensor_MinValue";
+            this.textBox_AddSensor_MinValue.Size = new System.Drawing.Size(186, 32);
+            this.textBox_AddSensor_MinValue.TabIndex = 12;
+            // 
+            // textBox_AddSensor_MaxValue
+            // 
+            this.textBox_AddSensor_MaxValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_AddSensor_MaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_AddSensor_MaxValue.Location = new System.Drawing.Point(134, 147);
+            this.textBox_AddSensor_MaxValue.Name = "textBox_AddSensor_MaxValue";
+            this.textBox_AddSensor_MaxValue.Size = new System.Drawing.Size(186, 32);
+            this.textBox_AddSensor_MaxValue.TabIndex = 13;
             // 
             // button_AddSensor_Add
             // 
@@ -623,7 +684,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_AddSensor_Add.Location = new System.Drawing.Point(0, 0);
             this.button_AddSensor_Add.Margin = new System.Windows.Forms.Padding(4);
             this.button_AddSensor_Add.Name = "button_AddSensor_Add";
-            this.button_AddSensor_Add.Size = new System.Drawing.Size(276, 42);
+            this.button_AddSensor_Add.Size = new System.Drawing.Size(323, 37);
             this.button_AddSensor_Add.TabIndex = 7;
             this.button_AddSensor_Add.Text = "Add";
             this.button_AddSensor_Add.UseVisualStyleBackColor = false;
@@ -640,8 +701,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer12.Panel1
             // 
             this.splitContainer12.Panel1.Controls.Add(this.splitContainer13);
-            this.splitContainer12.Size = new System.Drawing.Size(276, 205);
-            this.splitContainer12.SplitterDistance = 176;
+            this.splitContainer12.Size = new System.Drawing.Size(323, 290);
+            this.splitContainer12.SplitterDistance = 261;
             this.splitContainer12.TabIndex = 0;
             // 
             // splitContainer13
@@ -658,8 +719,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer13.Panel2
             // 
             this.splitContainer13.Panel2.Controls.Add(this.splitContainer14);
-            this.splitContainer13.Size = new System.Drawing.Size(276, 176);
-            this.splitContainer13.SplitterDistance = 30;
+            this.splitContainer13.Size = new System.Drawing.Size(323, 261);
+            this.splitContainer13.SplitterDistance = 44;
             this.splitContainer13.TabIndex = 0;
             // 
             // label6
@@ -678,6 +739,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer14
             // 
             this.splitContainer14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer14.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer14.Location = new System.Drawing.Point(0, 0);
             this.splitContainer14.Name = "splitContainer14";
             this.splitContainer14.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -689,8 +751,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer14.Panel2
             // 
             this.splitContainer14.Panel2.Controls.Add(this.button_EditSensor_Save);
-            this.splitContainer14.Size = new System.Drawing.Size(276, 142);
-            this.splitContainer14.SplitterDistance = 100;
+            this.splitContainer14.Size = new System.Drawing.Size(323, 213);
+            this.splitContainer14.SplitterDistance = 171;
             this.splitContainer14.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -704,23 +766,29 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.textBox_EditSensor_MinValue, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.textBox_EditSensor_MaxValue, 1, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(276, 100);
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(323, 171);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // textBox_EditSensor_MaxRecords
             // 
             this.textBox_EditSensor_MaxRecords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_EditSensor_MaxRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_EditSensor_MaxRecords.Location = new System.Drawing.Point(134, 69);
+            this.textBox_EditSensor_MaxRecords.Location = new System.Drawing.Point(134, 71);
             this.textBox_EditSensor_MaxRecords.Name = "textBox_EditSensor_MaxRecords";
-            this.textBox_EditSensor_MaxRecords.Size = new System.Drawing.Size(139, 32);
+            this.textBox_EditSensor_MaxRecords.Size = new System.Drawing.Size(186, 32);
             this.textBox_EditSensor_MaxRecords.TabIndex = 9;
             // 
             // comboBox_EditSensor_Type
@@ -730,10 +798,10 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.comboBox_EditSensor_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_EditSensor_Type.FormattingEnabled = true;
             this.comboBox_EditSensor_Type.ItemHeight = 25;
-            this.comboBox_EditSensor_Type.Location = new System.Drawing.Point(135, 37);
+            this.comboBox_EditSensor_Type.Location = new System.Drawing.Point(135, 38);
             this.comboBox_EditSensor_Type.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_EditSensor_Type.Name = "comboBox_EditSensor_Type";
-            this.comboBox_EditSensor_Type.Size = new System.Drawing.Size(137, 33);
+            this.comboBox_EditSensor_Type.Size = new System.Drawing.Size(184, 33);
             this.comboBox_EditSensor_Type.TabIndex = 7;
             // 
             // textBox_EditSensor_Name
@@ -742,7 +810,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.textBox_EditSensor_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox_EditSensor_Name.Location = new System.Drawing.Point(134, 3);
             this.textBox_EditSensor_Name.Name = "textBox_EditSensor_Name";
-            this.textBox_EditSensor_Name.Size = new System.Drawing.Size(139, 32);
+            this.textBox_EditSensor_Name.Size = new System.Drawing.Size(186, 32);
             this.textBox_EditSensor_Name.TabIndex = 8;
             // 
             // label7
@@ -751,7 +819,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(3, 66);
+            this.label7.Location = new System.Drawing.Point(3, 68);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(125, 34);
             this.label7.TabIndex = 4;
@@ -764,9 +832,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(3, 33);
+            this.label8.Location = new System.Drawing.Point(3, 34);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 33);
+            this.label8.Size = new System.Drawing.Size(125, 34);
             this.label8.TabIndex = 3;
             this.label8.Text = "Type: ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -779,10 +847,54 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Location = new System.Drawing.Point(3, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(125, 33);
+            this.label9.Size = new System.Drawing.Size(125, 34);
             this.label9.TabIndex = 2;
             this.label9.Text = "Name: ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label13.Location = new System.Drawing.Point(3, 102);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(125, 34);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Min Value:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label14.Location = new System.Drawing.Point(3, 136);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(125, 35);
+            this.label14.TabIndex = 11;
+            this.label14.Text = "Max Value:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox_EditSensor_MinValue
+            // 
+            this.textBox_EditSensor_MinValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_EditSensor_MinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_EditSensor_MinValue.Location = new System.Drawing.Point(134, 105);
+            this.textBox_EditSensor_MinValue.Name = "textBox_EditSensor_MinValue";
+            this.textBox_EditSensor_MinValue.Size = new System.Drawing.Size(186, 32);
+            this.textBox_EditSensor_MinValue.TabIndex = 12;
+            // 
+            // textBox_EditSensor_MaxValue
+            // 
+            this.textBox_EditSensor_MaxValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_EditSensor_MaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox_EditSensor_MaxValue.Location = new System.Drawing.Point(134, 139);
+            this.textBox_EditSensor_MaxValue.Name = "textBox_EditSensor_MaxValue";
+            this.textBox_EditSensor_MaxValue.Size = new System.Drawing.Size(186, 32);
+            this.textBox_EditSensor_MaxValue.TabIndex = 13;
             // 
             // button_EditSensor_Save
             // 
@@ -797,7 +909,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_EditSensor_Save.Location = new System.Drawing.Point(0, 0);
             this.button_EditSensor_Save.Margin = new System.Windows.Forms.Padding(4);
             this.button_EditSensor_Save.Name = "button_EditSensor_Save";
-            this.button_EditSensor_Save.Size = new System.Drawing.Size(276, 38);
+            this.button_EditSensor_Save.Size = new System.Drawing.Size(323, 38);
             this.button_EditSensor_Save.TabIndex = 8;
             this.button_EditSensor_Save.Text = "Save";
             this.button_EditSensor_Save.UseVisualStyleBackColor = false;
@@ -819,7 +931,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer15.Size = new System.Drawing.Size(668, 450);
+            this.splitContainer15.Size = new System.Drawing.Size(779, 600);
             this.splitContainer15.SplitterDistance = 32;
             this.splitContainer15.TabIndex = 1;
             // 
@@ -837,7 +949,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer16.Panel2
             // 
             this.splitContainer16.Panel2.Controls.Add(this.splitContainer17);
-            this.splitContainer16.Size = new System.Drawing.Size(666, 30);
+            this.splitContainer16.Size = new System.Drawing.Size(777, 30);
             this.splitContainer16.SplitterDistance = 107;
             this.splitContainer16.TabIndex = 0;
             // 
@@ -865,8 +977,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer17.Panel2
             // 
             this.splitContainer17.Panel2.Controls.Add(this.splitContainer18);
-            this.splitContainer17.Size = new System.Drawing.Size(555, 30);
-            this.splitContainer17.SplitterDistance = 278;
+            this.splitContainer17.Size = new System.Drawing.Size(666, 30);
+            this.splitContainer17.SplitterDistance = 333;
             this.splitContainer17.TabIndex = 1;
             // 
             // comboBox_SelectSensor
@@ -877,7 +989,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.comboBox_SelectSensor.FormattingEnabled = true;
             this.comboBox_SelectSensor.Location = new System.Drawing.Point(0, 0);
             this.comboBox_SelectSensor.Name = "comboBox_SelectSensor";
-            this.comboBox_SelectSensor.Size = new System.Drawing.Size(278, 28);
+            this.comboBox_SelectSensor.Size = new System.Drawing.Size(333, 28);
             this.comboBox_SelectSensor.TabIndex = 0;
             this.comboBox_SelectSensor.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectSensor_SelectedIndexChanged);
             // 
@@ -894,8 +1006,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer18.Panel2
             // 
             this.splitContainer18.Panel2.Controls.Add(this.button_DeleteSensorSet);
-            this.splitContainer18.Size = new System.Drawing.Size(273, 30);
-            this.splitContainer18.SplitterDistance = 129;
+            this.splitContainer18.Size = new System.Drawing.Size(329, 30);
+            this.splitContainer18.SplitterDistance = 155;
             this.splitContainer18.TabIndex = 0;
             // 
             // button_NewSensorSet
@@ -911,7 +1023,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_NewSensorSet.Location = new System.Drawing.Point(0, 0);
             this.button_NewSensorSet.Margin = new System.Windows.Forms.Padding(4);
             this.button_NewSensorSet.Name = "button_NewSensorSet";
-            this.button_NewSensorSet.Size = new System.Drawing.Size(129, 30);
+            this.button_NewSensorSet.Size = new System.Drawing.Size(155, 30);
             this.button_NewSensorSet.TabIndex = 8;
             this.button_NewSensorSet.Text = "New";
             this.button_NewSensorSet.UseVisualStyleBackColor = false;
@@ -930,7 +1042,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_DeleteSensorSet.Location = new System.Drawing.Point(0, 0);
             this.button_DeleteSensorSet.Margin = new System.Windows.Forms.Padding(4);
             this.button_DeleteSensorSet.Name = "button_DeleteSensorSet";
-            this.button_DeleteSensorSet.Size = new System.Drawing.Size(140, 30);
+            this.button_DeleteSensorSet.Size = new System.Drawing.Size(170, 30);
             this.button_DeleteSensorSet.TabIndex = 9;
             this.button_DeleteSensorSet.Text = "Delete";
             this.button_DeleteSensorSet.UseVisualStyleBackColor = false;
@@ -941,7 +1053,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(668, 450);
+            this.ClientSize = new System.Drawing.Size(779, 600);
             this.Controls.Add(this.splitContainer15);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SensorsEditorForm";
@@ -1078,5 +1190,13 @@ namespace Bachelor_Project.Forms.Editor_Forms
         private System.Windows.Forms.SplitContainer splitContainer18;
         private System.Windows.Forms.Button button_NewSensorSet;
         private System.Windows.Forms.Button button_DeleteSensorSet;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox_AddSensor_MinValue;
+        private System.Windows.Forms.TextBox textBox_AddSensor_MaxValue;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox_EditSensor_MinValue;
+        private System.Windows.Forms.TextBox textBox_EditSensor_MaxValue;
     }
 }

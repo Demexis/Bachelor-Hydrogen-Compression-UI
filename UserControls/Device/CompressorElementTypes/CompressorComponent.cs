@@ -24,7 +24,7 @@ namespace Bachelor_Project.UserControls.Device
 
         public string SensorName;
 
-        public Dictionary<string, Image> ComponentImages;
+        public Dictionary<string, Image> ComponentImages => CompressorDeviceRules.GetComponentImages(Type);
 
         private float _fillAmount;
         public float FillAmount
@@ -46,7 +46,7 @@ namespace Bachelor_Project.UserControls.Device
             this.Orientation = orientation;
             this.Type = type;
             this.Status = status;
-            this.ComponentImages = CompressorDeviceRules.GetComponentImages(type);
+            //this.ComponentImages = CompressorDeviceRules.GetComponentImages(type);
             this._fillAmount = fillAmount;
 
         }
@@ -71,6 +71,8 @@ namespace Bachelor_Project.UserControls.Device
 
                 srcActiveRect = new Rectangle(x, y, (int)(fillOverlay.Width * FillAmount), fillOverlay.Height);
 
+                if (srcActiveRect.Width == 0) srcActiveRect.Width = 1;
+
                 fillOverlay = ((Bitmap)(fillOverlay)).Clone(srcActiveRect, fillOverlay.PixelFormat);
 
                 destRect = new Rectangle(x, y, (int)(img.Width * FillAmount), img.Height);
@@ -82,6 +84,8 @@ namespace Bachelor_Project.UserControls.Device
                 y = (int)(img.Height * (1f - FillAmount));
 
                 srcActiveRect = new Rectangle(x, y, fillOverlay.Width, (int)(fillOverlay.Height * FillAmount));
+
+                if (srcActiveRect.Height == 0) srcActiveRect.Height = 1;
 
                 fillOverlay = ((Bitmap)(fillOverlay)).Clone(srcActiveRect, fillOverlay.PixelFormat);
 

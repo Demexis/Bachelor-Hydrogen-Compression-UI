@@ -60,24 +60,24 @@ namespace Bachelor_Project.Miscellaneous
             return (float)x / dp;
         }
 
-        public static bool LineSegmentsIntersect(int x1, int y1, int x2, int y2)
+        public static bool LineSegmentsIntersect(int p1x, int p1y, int p2x, int p2y)
         {
-            if (x1 > y1) throw new Exception("Incorrect arguments (The y1 should be greater than x1).");
-            if (x2 > y2) throw new Exception("Incorrect arguments (The y2 should be greater than x2).");
+            if (p1x > p1y) throw new Exception("Incorrect arguments (The y1 should be greater than x1).");
+            if (p2x > p2y) throw new Exception("Incorrect arguments (The y2 should be greater than x2).");
 
             return (
-                Mathf.Between(x1, x2, y2) ||
-                Mathf.Between(x1 + y1, x2, y2) ||
-                Mathf.Between(x2, x1, y1) ||
-                Mathf.Between(x2 + y2, x1, y1)
+                Mathf.Between(p1x, p2x, p2y) ||
+                Mathf.Between(p1x + p1y, p2x, p2y) ||
+                Mathf.Between(p2x, p1x, p1y) ||
+                Mathf.Between(p2x + p2y, p1x, p1y)
             );
         }
 
-        public static (int x, int y) LineSegmentsConjunction(int x1, int y1, int x2, int y2)
+        public static (int x, int y) LineSegmentsConjunction(int p1x, int p1y, int p2x, int p2y)
         {
-            if (LineSegmentsIntersect(x1, y1, x2, y2) == false) throw new Exception("Incorrect arguments (Lines don't intersect).");
+            if (LineSegmentsIntersect(p1x, p1y, p2x, p2y) == false) throw new Exception("Incorrect arguments (Lines don't intersect).");
 
-            return (Math.Max(x1, x2), Math.Min(y1, y2));
+            return (Math.Max(p1x, p2x), Math.Min(p1y, p2y));
         }
     }
 }

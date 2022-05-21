@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bachelor_Project.UserControls.CustomConsole.CustomConsole">
+    <Position X="2.75" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="button_Send" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="richTextBox1" Hidden="true" />
+      <Field Name="splitContainer1" Hidden="true" />
+      <Field Name="splitContainer2" Hidden="true" />
+      <Field Name="textBox" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgAABAAECCAAAgACAASIAEACIAgAAUAAQAARAAAAAAA=</HashCode>
+      <FileName>UserControls\CustomConsole\CustomConsole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.CustomConsole.CustomConsoleCommand">
+    <Position X="3" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="CustomConsoleCommand" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAQAAAEAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\CustomConsole\CustomConsoleCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.CustomConsole.CustomConsoleMessage">
+    <Position X="5.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAA=</HashCode>
+      <FileName>UserControls\CustomConsole\CustomConsoleMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.CustomConsole.ConsoleCommands.CustomConsoleDebugCommand" Collapsed="true">
+    <Position X="5.75" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAQAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\CustomConsole\ConsoleCommands\CustomConsoleDebugCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.CustomConsole.ConsoleCommands.CustomConsoleHelpCommand" Collapsed="true">
+    <Position X="5.75" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAQAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\CustomConsole\ConsoleCommands\CustomConsoleHelpCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bachelor_Project.UserControls.CustomConsole.ConsoleCommands.CustomConsoleSendDataToSerialPortCommand" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAQAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\CustomConsole\ConsoleCommands\CustomConsoleSendDataToSerialPortCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -82,6 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppPreferences.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Extensions\RichTextboxExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Forms\Editor Forms\Cyclogram Editor Forms\CyclogramEditorForm.cs">
       <SubType>Form</SubType>
@@ -101,6 +103,12 @@
     <Compile Include="Forms\Editor Forms\Sensor Editor Forms\SensorsEditorForm.Designer.cs">
       <DependentUpon>SensorsEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Options Forms\AppearanceOptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Options Forms\AppearanceOptionsForm.Designer.cs">
+      <DependentUpon>AppearanceOptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\DataLogger.cs" />
     <Compile Include="Handlers\COM\COM_Handler.cs" />
     <Compile Include="Figures\RoundedRectangle.cs" />
@@ -115,6 +123,17 @@
     <Compile Include="UserControls\ControlPanel\ControlPanel.Designer.cs">
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CustomConsole\ConsoleCommands\CustomConsoleDebugCommand.cs" />
+    <Compile Include="UserControls\CustomConsole\ConsoleCommands\CustomConsoleHelpCommand.cs" />
+    <Compile Include="UserControls\CustomConsole\ConsoleCommands\CustomConsoleSendDataToSerialPortCommand.cs" />
+    <Compile Include="UserControls\CustomConsole\CustomConsole.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\CustomConsole\CustomConsole.Designer.cs">
+      <DependentUpon>CustomConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomConsole\CustomConsoleCommand.cs" />
+    <Compile Include="UserControls\CustomConsole\CustomConsoleMessage.cs" />
     <Compile Include="UserControls\CyclogramComponentStatusList\CyclogramComponentStatusList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -192,8 +211,14 @@
     <EmbeddedResource Include="Forms\Editor Forms\Sensor Editor Forms\SensorsEditorForm.resx">
       <DependentUpon>SensorsEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Options Forms\AppearanceOptionsForm.resx">
+      <DependentUpon>AppearanceOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ControlPanel\ControlPanel.resx">
       <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\CustomConsole\CustomConsole.resx">
+      <DependentUpon>CustomConsole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CyclogramComponentStatusList\CyclogramComponentStatusList.resx">
       <DependentUpon>CyclogramComponentStatusList.cs</DependentUpon>
@@ -232,6 +257,10 @@
     <EmbeddedResource Include="UserControls\SensorChart\SensorChart.resx">
       <DependentUpon>SensorChart.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="CompressorDeviceClassDiagram.cd" />
+    <None Include="CustomConsoleClassDiagram.cd" />
+    <None Include="CyclogramClassDiagram.cd" />
+    <None Include="Forms.cd" />
     <None Include="MainClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -422,6 +451,7 @@
   <ItemGroup>
     <None Include="Resources\editor_tile.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

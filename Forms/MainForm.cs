@@ -12,6 +12,7 @@ using Bachelor_Project.Handlers;
 using Bachelor_Project.Forms.Editor_Forms;
 using Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms;
 using Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form;
+using Bachelor_Project.Forms.Options_Forms;
 
 namespace Bachelor_Project
 {
@@ -30,6 +31,8 @@ namespace Bachelor_Project
         public Dictionary<Button, Panel> Submenus = new Dictionary<Button, Panel>();
         public Dictionary<Button, Form> ChildForms = new Dictionary<Button, Form>();
 
+        private int _consolePanelHeight;
+        private bool _consolHideStatus = false;
 
         public MainForm()
         {
@@ -49,6 +52,14 @@ namespace Bachelor_Project
             COM_Handler.MainSerialPort = this.serialPort_Main;
 
             ManageButtonsOnConnection(false);
+
+            customConsole1.Log("H2 Compressor Operator v1.0");
+            customConsole1.Log("For brief information on using console commands write /help.");
+            customConsole1.BackColor = panel1.BackColor;
+
+            _consolePanelHeight = panel1.Height;
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
         }
 
         private void InitializeNotifyIconContext()
@@ -67,7 +78,8 @@ namespace Bachelor_Project
                 [this.button_ChildForm_Device] = new DeviceForm(),
                 [this.button_ChildForm_Sensors] = new SensorsEditorForm(),
                 [this.button_ChildForm_DeviceSchemes] = new DeviceSchemeEditorForm(),
-                [this.button_ChildForm_Cyclograms] = new CyclogramEditorForm()
+                [this.button_ChildForm_Cyclograms] = new CyclogramEditorForm(),
+                [this.button_ChildForm_AppearanceOptionsForm] = new AppearanceOptionsForm()
             };
         }
 
@@ -170,6 +182,69 @@ namespace Bachelor_Project
             button_ChildForm_Sensors.Enabled = !connectionStatus;
             button_ChildForm_DeviceSchemes.Enabled = !connectionStatus;
             button_ChildForm_Cyclograms.Enabled = !connectionStatus;
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            panel_ChildForm.BackColor = colorPalette[FormColorVariant.DarkFirst];
+            panel1.BackColor = colorPalette[FormColorVariant.DarkSecond];
+
+            panel_SideMenu.BackColor = colorPalette[FormColorVariant.SidePanelNormal];
+            panel_Logo.BackColor = colorPalette[FormColorVariant.SidePanelNormal];
+
+            button_SideMenu_Control.BackColor = colorPalette[FormColorVariant.SidePanelDark];
+            button_SideMenu_Editors.BackColor = colorPalette[FormColorVariant.SidePanelDark];
+            button_SideMenu_Options.BackColor = colorPalette[FormColorVariant.SidePanelDark];
+
+            panel_ControlSubmenu.BackColor = colorPalette[FormColorVariant.SidePanelBright];
+            panel_EditorsSubmenu.BackColor = colorPalette[FormColorVariant.SidePanelBright];
+            panel_OptionsSubmenu.BackColor = colorPalette[FormColorVariant.SidePanelBright];
+
+            List<Button> childFormButtons = new List<Button>()
+            {
+                button_ChildForm_AppearanceOptionsForm,
+                button_ChildForm_Connect,
+                button_ChildForm_Cyclograms,
+                button_ChildForm_Device,
+                button_ChildForm_DeviceSchemes,
+                button_ChildForm_Diagnostic,
+                button_ChildForm_Govern,
+                button_ChildForm_Sensors
+            };
+
+            foreach(Button button in childFormButtons)
+            {
+                button.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.SidePanelButtonDown];
+                button.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.SidePanelButtonOver];
+            }
+
+            button_Console_HideShow.BackColor = colorPalette[FormColorVariant.BrightSecond];
+            button_Console_HideShow.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+
+            button_Console_HideShow.FlatAppearance.MouseDownBackColor = colorPalette[FormColorVariant.ButtonMouseDown];
+            button_Console_HideShow.FlatAppearance.MouseOverBackColor = colorPalette[FormColorVariant.ButtonMouseOver];
+        }
+
+        private void button_Send_Click(object sender, EventArgs e)
+        {
+            _consolHideStatus = !_consolHideStatus;
+
+            if(_consolHideStatus)
+            {
+                this.button_Console_HideShow.Text = @"/\ Show Console /\";
+
+                this.customConsole1.Hide();
+
+                this.panel1.Height = panel2.Height;
+            }
+            else
+            {
+                this.button_Console_HideShow.Text = @"\/ Hide Console \/";
+
+                this.panel1.Height = _consolePanelHeight;
+
+                this.customConsole1.Show();
+            }
         }
     }
 }

@@ -3,32 +3,44 @@
     {
       "name": "d1",
       "type": "Temperature",
-      "maxReadingsCount": 600
+      "maxReadingsCount": 600,
+      "minimumValue": 0.0,
+      "maximumValue": 55.0
     },
     {
       "name": "d2",
       "type": "Pressure",
-      "maxReadingsCount": 600
+      "maxReadingsCount": 600,
+      "minimumValue": 15.0,
+      "maximumValue": 125.0
     },
     {
       "name": "d3",
       "type": "Volume",
-      "maxReadingsCount": 600
+      "maxReadingsCount": 600,
+      "minimumValue": -100.0,
+      "maximumValue": 200.0
     },
     {
       "name": "d4",
       "type": "Unknown",
-      "maxReadingsCount": 600
+      "maxReadingsCount": 600,
+      "minimumValue": -10.0,
+      "maximumValue": 1505.0
     },
     {
       "name": "d5",
       "type": "Temperature",
-      "maxReadingsCount": 600
+      "maxReadingsCount": 600,
+      "minimumValue": 0.0,
+      "maximumValue": 1000.0
     },
     {
       "name": "d6",
       "type": "Temperature",
-      "maxReadingsCount": 600
+      "maxReadingsCount": 600,
+      "minimumValue": 0.0,
+      "maximumValue": 10000.0
     }
   ]
 }

@@ -151,7 +151,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer12);
-            this.splitContainer1.Size = new System.Drawing.Size(882, 584);
+            this.splitContainer1.Size = new System.Drawing.Size(882, 539);
             this.splitContainer1.SplitterDistance = 293;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -170,8 +170,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer8);
-            this.splitContainer2.Size = new System.Drawing.Size(293, 584);
-            this.splitContainer2.SplitterDistance = 212;
+            this.splitContainer2.Size = new System.Drawing.Size(293, 539);
+            this.splitContainer2.SplitterDistance = 187;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -189,7 +189,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(293, 212);
+            this.splitContainer3.Size = new System.Drawing.Size(293, 187);
             this.splitContainer3.SplitterDistance = 77;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -251,8 +251,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer5.Size = new System.Drawing.Size(293, 131);
-            this.splitContainer5.SplitterDistance = 77;
+            this.splitContainer5.Size = new System.Drawing.Size(293, 106);
+            this.splitContainer5.SplitterDistance = 72;
             this.splitContainer5.TabIndex = 0;
             // 
             // splitContainer7
@@ -270,7 +270,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.comboBox_SelectCyclogram);
-            this.splitContainer7.Size = new System.Drawing.Size(293, 77);
+            this.splitContainer7.Size = new System.Drawing.Size(293, 72);
             this.splitContainer7.SplitterDistance = 29;
             this.splitContainer7.TabIndex = 0;
             // 
@@ -311,7 +311,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.button_DeleteCyclogram);
-            this.splitContainer6.Size = new System.Drawing.Size(293, 50);
+            this.splitContainer6.Size = new System.Drawing.Size(293, 30);
             this.splitContainer6.SplitterDistance = 146;
             this.splitContainer6.TabIndex = 0;
             // 
@@ -328,7 +328,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_NewCyclogram.Location = new System.Drawing.Point(0, 0);
             this.button_NewCyclogram.Margin = new System.Windows.Forms.Padding(4);
             this.button_NewCyclogram.Name = "button_NewCyclogram";
-            this.button_NewCyclogram.Size = new System.Drawing.Size(146, 50);
+            this.button_NewCyclogram.Size = new System.Drawing.Size(146, 30);
             this.button_NewCyclogram.TabIndex = 10;
             this.button_NewCyclogram.Text = "New";
             this.button_NewCyclogram.UseVisualStyleBackColor = false;
@@ -347,7 +347,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_DeleteCyclogram.Location = new System.Drawing.Point(0, 0);
             this.button_DeleteCyclogram.Margin = new System.Windows.Forms.Padding(4);
             this.button_DeleteCyclogram.Name = "button_DeleteCyclogram";
-            this.button_DeleteCyclogram.Size = new System.Drawing.Size(143, 50);
+            this.button_DeleteCyclogram.Size = new System.Drawing.Size(143, 30);
             this.button_DeleteCyclogram.TabIndex = 11;
             this.button_DeleteCyclogram.Text = "Delete";
             this.button_DeleteCyclogram.UseVisualStyleBackColor = false;
@@ -368,7 +368,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer8.Size = new System.Drawing.Size(293, 368);
+            this.splitContainer8.Size = new System.Drawing.Size(293, 348);
             this.splitContainer8.SplitterDistance = 30;
             this.splitContainer8.TabIndex = 0;
             // 
@@ -399,8 +399,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.splitContainer11);
-            this.splitContainer9.Size = new System.Drawing.Size(293, 334);
-            this.splitContainer9.SplitterDistance = 168;
+            this.splitContainer9.Size = new System.Drawing.Size(293, 314);
+            this.splitContainer9.SplitterDistance = 165;
             this.splitContainer9.TabIndex = 0;
             // 
             // splitContainer17
@@ -416,7 +416,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer17.Panel2
             // 
             this.splitContainer17.Panel2.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer17.Size = new System.Drawing.Size(293, 168);
+            this.splitContainer17.Size = new System.Drawing.Size(293, 165);
             this.splitContainer17.SplitterDistance = 215;
             this.splitContainer17.TabIndex = 1;
             // 
@@ -429,7 +429,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.listBox_Steps.ItemHeight = 16;
             this.listBox_Steps.Location = new System.Drawing.Point(0, 0);
             this.listBox_Steps.Name = "listBox_Steps";
-            this.listBox_Steps.Size = new System.Drawing.Size(215, 168);
+            this.listBox_Steps.Size = new System.Drawing.Size(215, 165);
             this.listBox_Steps.TabIndex = 0;
             this.listBox_Steps.SelectedIndexChanged += new System.EventHandler(this.control_Event);
             // 
@@ -449,7 +449,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(74, 168);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(74, 165);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // button_MoveDownEnd
@@ -462,7 +462,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_MoveDownEnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_MoveDownEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_MoveDownEnd.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button_MoveDownEnd.Location = new System.Drawing.Point(4, 130);
+            this.button_MoveDownEnd.Location = new System.Drawing.Point(4, 127);
             this.button_MoveDownEnd.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveDownEnd.Name = "button_MoveDownEnd";
             this.button_MoveDownEnd.Size = new System.Drawing.Size(66, 34);
@@ -484,7 +484,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_MoveUpEnd.Location = new System.Drawing.Point(4, 4);
             this.button_MoveUpEnd.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveUpEnd.Name = "button_MoveUpEnd";
-            this.button_MoveUpEnd.Size = new System.Drawing.Size(66, 34);
+            this.button_MoveUpEnd.Size = new System.Drawing.Size(66, 33);
             this.button_MoveUpEnd.TabIndex = 8;
             this.button_MoveUpEnd.Text = "/\\/\\";
             this.button_MoveUpEnd.UseVisualStyleBackColor = false;
@@ -500,10 +500,10 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_MoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_MoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_MoveUp.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button_MoveUp.Location = new System.Drawing.Point(4, 46);
+            this.button_MoveUp.Location = new System.Drawing.Point(4, 45);
             this.button_MoveUp.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveUp.Name = "button_MoveUp";
-            this.button_MoveUp.Size = new System.Drawing.Size(66, 34);
+            this.button_MoveUp.Size = new System.Drawing.Size(66, 33);
             this.button_MoveUp.TabIndex = 9;
             this.button_MoveUp.Text = "/\\";
             this.button_MoveUp.UseVisualStyleBackColor = false;
@@ -519,10 +519,10 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_MoveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_MoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_MoveDown.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button_MoveDown.Location = new System.Drawing.Point(4, 88);
+            this.button_MoveDown.Location = new System.Drawing.Point(4, 86);
             this.button_MoveDown.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveDown.Name = "button_MoveDown";
-            this.button_MoveDown.Size = new System.Drawing.Size(66, 34);
+            this.button_MoveDown.Size = new System.Drawing.Size(66, 33);
             this.button_MoveDown.TabIndex = 10;
             this.button_MoveDown.Text = "\\/";
             this.button_MoveDown.UseVisualStyleBackColor = false;
@@ -543,13 +543,14 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer11.Panel2
             // 
             this.splitContainer11.Panel2.Controls.Add(this.button_RemoveStep);
-            this.splitContainer11.Size = new System.Drawing.Size(293, 162);
-            this.splitContainer11.SplitterDistance = 120;
+            this.splitContainer11.Size = new System.Drawing.Size(293, 145);
+            this.splitContainer11.SplitterDistance = 109;
             this.splitContainer11.TabIndex = 7;
             // 
             // splitContainer15
             // 
             this.splitContainer15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer15.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer15.Location = new System.Drawing.Point(0, 0);
             this.splitContainer15.Name = "splitContainer15";
             this.splitContainer15.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -561,8 +562,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.splitContainer16);
-            this.splitContainer15.Size = new System.Drawing.Size(293, 120);
-            this.splitContainer15.SplitterDistance = 74;
+            this.splitContainer15.Size = new System.Drawing.Size(293, 109);
+            this.splitContainer15.SplitterDistance = 73;
             this.splitContainer15.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -580,7 +581,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(293, 74);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(293, 73);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // textBox_AddStep_LengthInMilliseconds
@@ -588,7 +589,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.textBox_AddStep_LengthInMilliseconds.BackColor = System.Drawing.Color.Gainsboro;
             this.textBox_AddStep_LengthInMilliseconds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_AddStep_LengthInMilliseconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_AddStep_LengthInMilliseconds.Location = new System.Drawing.Point(149, 40);
+            this.textBox_AddStep_LengthInMilliseconds.Location = new System.Drawing.Point(149, 39);
             this.textBox_AddStep_LengthInMilliseconds.Name = "textBox_AddStep_LengthInMilliseconds";
             this.textBox_AddStep_LengthInMilliseconds.Size = new System.Drawing.Size(141, 32);
             this.textBox_AddStep_LengthInMilliseconds.TabIndex = 10;
@@ -599,7 +600,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(3, 37);
+            this.label4.Location = new System.Drawing.Point(3, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(140, 37);
             this.label4.TabIndex = 9;
@@ -614,7 +615,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(140, 37);
+            this.label7.Size = new System.Drawing.Size(140, 36);
             this.label7.TabIndex = 8;
             this.label7.Text = "Name:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -642,7 +643,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer16.Panel2
             // 
             this.splitContainer16.Panel2.Controls.Add(this.button_AddStep);
-            this.splitContainer16.Size = new System.Drawing.Size(293, 42);
+            this.splitContainer16.Size = new System.Drawing.Size(293, 32);
             this.splitContainer16.SplitterDistance = 145;
             this.splitContainer16.TabIndex = 0;
             // 
@@ -656,7 +657,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_SaveStep.ForeColor = System.Drawing.Color.Gainsboro;
             this.button_SaveStep.Location = new System.Drawing.Point(0, 0);
             this.button_SaveStep.Name = "button_SaveStep";
-            this.button_SaveStep.Size = new System.Drawing.Size(145, 42);
+            this.button_SaveStep.Size = new System.Drawing.Size(145, 32);
             this.button_SaveStep.TabIndex = 3;
             this.button_SaveStep.Text = "Save Editing";
             this.button_SaveStep.UseVisualStyleBackColor = false;
@@ -672,7 +673,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_AddStep.ForeColor = System.Drawing.Color.Gainsboro;
             this.button_AddStep.Location = new System.Drawing.Point(0, 0);
             this.button_AddStep.Name = "button_AddStep";
-            this.button_AddStep.Size = new System.Drawing.Size(144, 42);
+            this.button_AddStep.Size = new System.Drawing.Size(144, 32);
             this.button_AddStep.TabIndex = 1;
             this.button_AddStep.Text = "Add";
             this.button_AddStep.UseVisualStyleBackColor = false;
@@ -690,8 +691,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_RemoveStep.ForeColor = System.Drawing.Color.Gainsboro;
             this.button_RemoveStep.Location = new System.Drawing.Point(0, 0);
             this.button_RemoveStep.Margin = new System.Windows.Forms.Padding(4);
+            this.button_RemoveStep.MaximumSize = new System.Drawing.Size(0, 41);
             this.button_RemoveStep.Name = "button_RemoveStep";
-            this.button_RemoveStep.Size = new System.Drawing.Size(293, 38);
+            this.button_RemoveStep.Size = new System.Drawing.Size(293, 32);
             this.button_RemoveStep.TabIndex = 6;
             this.button_RemoveStep.Text = "Remove";
             this.button_RemoveStep.UseVisualStyleBackColor = false;
@@ -711,8 +713,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer12.Panel2
             // 
             this.splitContainer12.Panel2.Controls.Add(this.splitContainer10);
-            this.splitContainer12.Size = new System.Drawing.Size(585, 584);
-            this.splitContainer12.SplitterDistance = 276;
+            this.splitContainer12.Size = new System.Drawing.Size(585, 539);
+            this.splitContainer12.SplitterDistance = 254;
             this.splitContainer12.TabIndex = 0;
             // 
             // cyclogramComponentStatusList1
@@ -722,7 +724,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.cyclogramComponentStatusList1.GroupBoxHeight = 60;
             this.cyclogramComponentStatusList1.Location = new System.Drawing.Point(0, 0);
             this.cyclogramComponentStatusList1.Name = "cyclogramComponentStatusList1";
-            this.cyclogramComponentStatusList1.Size = new System.Drawing.Size(585, 276);
+            this.cyclogramComponentStatusList1.Size = new System.Drawing.Size(585, 254);
             this.cyclogramComponentStatusList1.TabIndex = 0;
             // 
             // splitContainer10
@@ -738,7 +740,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.compressorDevice1);
-            this.splitContainer10.Size = new System.Drawing.Size(585, 304);
+            this.splitContainer10.Size = new System.Drawing.Size(585, 281);
             this.splitContainer10.SplitterDistance = 288;
             this.splitContainer10.TabIndex = 0;
             // 
@@ -756,8 +758,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // splitContainer14.Panel2
             // 
             this.splitContainer14.Panel2.Controls.Add(this.controlPanel1);
-            this.splitContainer14.Size = new System.Drawing.Size(288, 304);
-            this.splitContainer14.SplitterDistance = 219;
+            this.splitContainer14.Size = new System.Drawing.Size(288, 281);
+            this.splitContainer14.SplitterDistance = 202;
             this.splitContainer14.TabIndex = 0;
             // 
             // cyclogram1
@@ -776,7 +778,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.cyclogram1.MinimumSize = new System.Drawing.Size(200, 200);
             this.cyclogram1.Name = "cyclogram1";
             this.cyclogram1.PlayMode = Bachelor_Project.Cyclogram.CyclogramPlayMode.Single;
-            this.cyclogram1.Size = new System.Drawing.Size(288, 219);
+            this.cyclogram1.Size = new System.Drawing.Size(288, 202);
             this.cyclogram1.TabIndex = 0;
             this.cyclogram1.TitleWidthRatio = 0.2F;
             // 
@@ -787,7 +789,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.controlPanel1.Location = new System.Drawing.Point(0, 0);
             this.controlPanel1.Name = "controlPanel1";
             this.controlPanel1.PlayButtonStatus = false;
-            this.controlPanel1.Size = new System.Drawing.Size(288, 81);
+            this.controlPanel1.Size = new System.Drawing.Size(288, 75);
             this.controlPanel1.TabIndex = 0;
             // 
             // compressorDevice1
@@ -798,7 +800,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.compressorDevice1.EditorMode = false;
             this.compressorDevice1.Location = new System.Drawing.Point(0, 0);
             this.compressorDevice1.Name = "compressorDevice1";
-            this.compressorDevice1.Size = new System.Drawing.Size(293, 304);
+            this.compressorDevice1.Size = new System.Drawing.Size(293, 281);
             this.compressorDevice1.StretchImageLayout = false;
             this.compressorDevice1.TabIndex = 0;
             this.compressorDevice1.TilemapSize = new System.Drawing.Size(10, 10);
@@ -807,8 +809,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(882, 584);
+            this.ClientSize = new System.Drawing.Size(882, 539);
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CyclogramEditorForm";

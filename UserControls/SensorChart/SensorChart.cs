@@ -1,4 +1,6 @@
-﻿using Bachelor_Project.Handlers;
+﻿using Bachelor_Project.Extensions;
+using Bachelor_Project.Forms.Options_Forms;
+using Bachelor_Project.Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,14 +53,13 @@ namespace Bachelor_Project.UserControls
             this.Sensor = sensor;
 
             this.chart1.Titles[0].Text = $"{Sensor.Type.ToString()} Sensor Readings ({Sensor.Name})";
+
+            AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
+
+            if(AppearanceOptionsForm.SelectedColorPalette != null)
+            SetColorPaletteForControls(AppearanceOptionsForm.SelectedColorPalette);
         }
 
-        public SensorChart()
-        {
-            InitializeComponent();
-
-            //SensorReadingHelper.AddSensorChart(this);
-        }
 
         public void SensorChartUpdate()
         {
@@ -152,6 +153,15 @@ namespace Bachelor_Project.UserControls
         private void comboBox_CyclogramList_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshChart();
+        }
+
+        public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
+        {
+            this.BackColor = colorPalette[FormColorVariant.DarkFirst];
+            this.chart1.BackColor = colorPalette[FormColorVariant.NormalSecond];
+
+            this.chart1.ChartAreas[0].BackColor = colorPalette[FormColorVariant.Outline];
+
         }
     }
 }
