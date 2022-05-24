@@ -91,6 +91,11 @@ namespace Bachelor_Project.UserControls.Device
                     namesAndImgs.Add(("", CompressorDeviceRules.GasPipeImages["CrossEmpty"]));
                     break;
 
+                case LayerTypeEnum.OilPipes:
+
+                    namesAndImgs.Add(("", CompressorDeviceRules.GasPipeImages["CrossEmpty"]));
+                    break;
+
                 default:
                     break;
             }

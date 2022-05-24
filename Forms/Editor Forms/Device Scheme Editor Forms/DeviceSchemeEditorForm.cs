@@ -276,6 +276,11 @@ namespace Bachelor_Project.Forms.Editor_Forms.Device_Scheme_Editor_Forms
                             _pictureBoxes.Add(pictureBox, new CompressorPipe(CompressorPipe.PipeType.Gas, CompressorPipe.PipeOrientation.Cross, CompressorPipe.PipeStatus.Empty));
 
                             break;
+                        case CompressorLayer.LayerTypeEnum.OilPipes:
+
+                            _pictureBoxes.Add(pictureBox, new CompressorPipe(CompressorPipe.PipeType.Gas, CompressorPipe.PipeOrientation.Cross, CompressorPipe.PipeStatus.Empty));
+
+                            break;
                         default:
                             _selectedElement = null;
                             break;
