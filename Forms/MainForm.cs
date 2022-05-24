@@ -53,7 +53,7 @@ namespace Bachelor_Project
 
             ManageButtonsOnConnection(false);
 
-            customConsole1.Log("H2 Compressor Operator v1.0");
+            customConsole1.Log(this.Text);
             customConsole1.Log("For brief information on using console commands write /help.");
             customConsole1.BackColor = panel1.BackColor;
 
@@ -73,7 +73,6 @@ namespace Bachelor_Project
             ChildForms = new Dictionary<Button, Form>()
             {
                 [this.button_ChildForm_Connect] = new DeviceConnectionForm(),
-                [this.button_ChildForm_Govern] = new DeviceGovernForm(),
                 [this.button_ChildForm_Diagnostic] = new DeviceDiagnosticForm(),
                 [this.button_ChildForm_Device] = new DeviceForm(),
                 [this.button_ChildForm_Sensors] = new SensorsEditorForm(),
@@ -177,7 +176,6 @@ namespace Bachelor_Project
         {
             button_ChildForm_Device.Enabled = connectionStatus;
             //button_ChildForm_Diagnostic.Enabled = connectionStatus;
-            button_ChildForm_Govern.Enabled = connectionStatus;
 
             button_ChildForm_Sensors.Enabled = !connectionStatus;
             button_ChildForm_DeviceSchemes.Enabled = !connectionStatus;
@@ -208,7 +206,6 @@ namespace Bachelor_Project
                 button_ChildForm_Device,
                 button_ChildForm_DeviceSchemes,
                 button_ChildForm_Diagnostic,
-                button_ChildForm_Govern,
                 button_ChildForm_Sensors
             };
 

@@ -42,19 +42,18 @@ namespace Bachelor_Project
             this.button_SideMenu_Editors = new System.Windows.Forms.Button();
             this.panel_ControlSubmenu = new System.Windows.Forms.Panel();
             this.button_ChildForm_Diagnostic = new System.Windows.Forms.Button();
-            this.button_ChildForm_Govern = new System.Windows.Forms.Button();
             this.button_ChildForm_Device = new System.Windows.Forms.Button();
             this.button_ChildForm_Connect = new System.Windows.Forms.Button();
             this.button_SideMenu_Control = new System.Windows.Forms.Button();
             this.panel_Logo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.customConsole1 = new Bachelor_Project.UserControls.CustomConsole.CustomConsole();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button_Console_HideShow = new System.Windows.Forms.Button();
             this.serialPort_Main = new System.IO.Ports.SerialPort(this.components);
             this.timer_ToSendSerialData = new System.Windows.Forms.Timer(this.components);
             this.panel_ChildForm = new System.Windows.Forms.Panel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.customConsole1 = new Bachelor_Project.UserControls.CustomConsole.CustomConsole();
             this.panel_SideMenu.SuspendLayout();
             this.panel_OptionsSubmenu.SuspendLayout();
             this.panel_EditorsSubmenu.SuspendLayout();
@@ -85,7 +84,7 @@ namespace Bachelor_Project
             this.panel_OptionsSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.panel_OptionsSubmenu.Controls.Add(this.button_ChildForm_AppearanceOptionsForm);
             this.panel_OptionsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_OptionsSubmenu.Location = new System.Drawing.Point(0, 536);
+            this.panel_OptionsSubmenu.Location = new System.Drawing.Point(0, 495);
             this.panel_OptionsSubmenu.Name = "panel_OptionsSubmenu";
             this.panel_OptionsSubmenu.Size = new System.Drawing.Size(250, 50);
             this.panel_OptionsSubmenu.TabIndex = 5;
@@ -115,7 +114,7 @@ namespace Bachelor_Project
             this.button_SideMenu_Options.FlatAppearance.BorderSize = 0;
             this.button_SideMenu_Options.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_SideMenu_Options.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button_SideMenu_Options.Location = new System.Drawing.Point(0, 491);
+            this.button_SideMenu_Options.Location = new System.Drawing.Point(0, 450);
             this.button_SideMenu_Options.Name = "button_SideMenu_Options";
             this.button_SideMenu_Options.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button_SideMenu_Options.Size = new System.Drawing.Size(250, 45);
@@ -132,7 +131,7 @@ namespace Bachelor_Project
             this.panel_EditorsSubmenu.Controls.Add(this.button_ChildForm_Cyclograms);
             this.panel_EditorsSubmenu.Controls.Add(this.button_ChildForm_Sensors);
             this.panel_EditorsSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_EditorsSubmenu.Location = new System.Drawing.Point(0, 361);
+            this.panel_EditorsSubmenu.Location = new System.Drawing.Point(0, 320);
             this.panel_EditorsSubmenu.Name = "panel_EditorsSubmenu";
             this.panel_EditorsSubmenu.Size = new System.Drawing.Size(250, 130);
             this.panel_EditorsSubmenu.TabIndex = 7;
@@ -198,7 +197,7 @@ namespace Bachelor_Project
             this.button_SideMenu_Editors.FlatAppearance.BorderSize = 0;
             this.button_SideMenu_Editors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_SideMenu_Editors.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button_SideMenu_Editors.Location = new System.Drawing.Point(0, 316);
+            this.button_SideMenu_Editors.Location = new System.Drawing.Point(0, 275);
             this.button_SideMenu_Editors.Name = "button_SideMenu_Editors";
             this.button_SideMenu_Editors.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button_SideMenu_Editors.Size = new System.Drawing.Size(250, 45);
@@ -212,13 +211,12 @@ namespace Bachelor_Project
             // 
             this.panel_ControlSubmenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Diagnostic);
-            this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Govern);
             this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Device);
             this.panel_ControlSubmenu.Controls.Add(this.button_ChildForm_Connect);
             this.panel_ControlSubmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_ControlSubmenu.Location = new System.Drawing.Point(0, 145);
             this.panel_ControlSubmenu.Name = "panel_ControlSubmenu";
-            this.panel_ControlSubmenu.Size = new System.Drawing.Size(250, 171);
+            this.panel_ControlSubmenu.Size = new System.Drawing.Size(250, 130);
             this.panel_ControlSubmenu.TabIndex = 2;
             // 
             // button_ChildForm_Diagnostic
@@ -229,7 +227,7 @@ namespace Bachelor_Project
             this.button_ChildForm_Diagnostic.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
             this.button_ChildForm_Diagnostic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_ChildForm_Diagnostic.ForeColor = System.Drawing.Color.LightGray;
-            this.button_ChildForm_Diagnostic.Location = new System.Drawing.Point(0, 120);
+            this.button_ChildForm_Diagnostic.Location = new System.Drawing.Point(0, 80);
             this.button_ChildForm_Diagnostic.Name = "button_ChildForm_Diagnostic";
             this.button_ChildForm_Diagnostic.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.button_ChildForm_Diagnostic.Size = new System.Drawing.Size(250, 40);
@@ -238,24 +236,6 @@ namespace Bachelor_Project
             this.button_ChildForm_Diagnostic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_ChildForm_Diagnostic.UseVisualStyleBackColor = true;
             this.button_ChildForm_Diagnostic.Click += new System.EventHandler(this.ChildFormButton_Click);
-            // 
-            // button_ChildForm_Govern
-            // 
-            this.button_ChildForm_Govern.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button_ChildForm_Govern.FlatAppearance.BorderSize = 0;
-            this.button_ChildForm_Govern.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(48)))), ((int)(((byte)(64)))));
-            this.button_ChildForm_Govern.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(40)))), ((int)(((byte)(48)))));
-            this.button_ChildForm_Govern.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_ChildForm_Govern.ForeColor = System.Drawing.Color.LightGray;
-            this.button_ChildForm_Govern.Location = new System.Drawing.Point(0, 80);
-            this.button_ChildForm_Govern.Name = "button_ChildForm_Govern";
-            this.button_ChildForm_Govern.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button_ChildForm_Govern.Size = new System.Drawing.Size(250, 40);
-            this.button_ChildForm_Govern.TabIndex = 1;
-            this.button_ChildForm_Govern.Text = "Govern";
-            this.button_ChildForm_Govern.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_ChildForm_Govern.UseVisualStyleBackColor = true;
-            this.button_ChildForm_Govern.Click += new System.EventHandler(this.ChildFormButton_Click);
             // 
             // button_ChildForm_Device
             // 
@@ -332,17 +312,6 @@ namespace Bachelor_Project
             this.panel1.Size = new System.Drawing.Size(714, 185);
             this.panel1.TabIndex = 1;
             // 
-            // customConsole1
-            // 
-            this.customConsole1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.customConsole1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customConsole1.Location = new System.Drawing.Point(0, 50);
-            this.customConsole1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.customConsole1.MaxMessagesCount = ((uint)(50u));
-            this.customConsole1.Name = "customConsole1";
-            this.customConsole1.Size = new System.Drawing.Size(714, 135);
-            this.customConsole1.TabIndex = 0;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.button_Console_HideShow);
@@ -399,6 +368,17 @@ namespace Bachelor_Project
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // customConsole1
+            // 
+            this.customConsole1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.customConsole1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customConsole1.Location = new System.Drawing.Point(0, 50);
+            this.customConsole1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.customConsole1.MaxMessagesCount = ((uint)(50u));
+            this.customConsole1.Name = "customConsole1";
+            this.customConsole1.Size = new System.Drawing.Size(714, 135);
+            this.customConsole1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -413,7 +393,7 @@ namespace Bachelor_Project
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(950, 600);
             this.Name = "MainForm";
-            this.Text = "App";
+            this.Text = "H2 Compression Operator v1.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.panel_SideMenu.ResumeLayout(false);
             this.panel_OptionsSubmenu.ResumeLayout(false);
@@ -431,7 +411,6 @@ namespace Bachelor_Project
         private System.Windows.Forms.Panel panel_Logo;
         private System.Windows.Forms.Panel panel_ControlSubmenu;
         private System.Windows.Forms.Button button_ChildForm_Diagnostic;
-        private System.Windows.Forms.Button button_ChildForm_Govern;
         private System.Windows.Forms.Button button_ChildForm_Connect;
         private System.Windows.Forms.Button button_SideMenu_Options;
         private System.Windows.Forms.Panel panel_OptionsSubmenu;

@@ -22,7 +22,7 @@ namespace Bachelor_Project
         public string SelectedSensorSet = string.Empty;
         public string SelectedDeviceScheme = string.Empty;
 
-        public bool GeneratingReadingsStatus => checkBox_GenerateReadings.Checked;
+        public bool GeneratingReadingsStatus => checkBox_SimulationMode.Checked && checkBox_GenerateReadings.Checked;
 
         private bool _connected = false;
 

@@ -1,0 +1,133 @@
+{
+  "cyclogram": {
+    "steps": [
+      {
+        "name": "step_00",
+        "lengthMilliseconds": 150,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Active"
+          }
+        ]
+      },
+      {
+        "name": "step_01",
+        "lengthMilliseconds": 300,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Disabled"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Disabled"
+          }
+        ]
+      },
+      {
+        "name": "step_02",
+        "lengthMilliseconds": 300,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Active"
+          }
+        ]
+      },
+      {
+        "name": "step_03",
+        "lengthMilliseconds": 300,
+        "sequences": [
+          {
+            "componentName": "Buffer",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S5",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_04",
+        "lengthMilliseconds": 300,
+        "sequences": []
+      },
+      {
+        "name": "step_05",
+        "lengthMilliseconds": 300,
+        "sequences": []
+      },
+      {
+        "name": "step_06",
+        "lengthMilliseconds": 300,
+        "sequences": []
+      },
+      {
+        "name": "step_07",
+        "lengthMilliseconds": 1000,
+        "sequences": []
+      },
+      {
+        "name": "step_08",
+        "lengthMilliseconds": 1000,
+        "sequences": []
+      },
+      {
+        "name": "step_09",
+        "lengthMilliseconds": 1000,
+        "sequences": []
+      }
+    ],
+    "deviceScheme": "DeviceSchemes\\deviceScheme1.json"
+  }
+}

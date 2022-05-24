@@ -13,6 +13,19 @@ namespace Bachelor_Project
 
         public static void SaveLogData(string fileName, string data)
         {
+            string[] fileParts = fileName.Split('\\');
+
+            string path = string.Empty;
+
+            foreach(string directory in fileParts.Take(fileParts.Length - 1))
+            {
+                path += directory;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+
             fileName += $"_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}.txt";
 
             if(!File.Exists(fileName))
