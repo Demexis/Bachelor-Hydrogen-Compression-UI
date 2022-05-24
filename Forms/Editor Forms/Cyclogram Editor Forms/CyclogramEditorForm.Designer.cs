@@ -64,9 +64,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_AddStep = new System.Windows.Forms.Button();
             this.button_RemoveStep = new System.Windows.Forms.Button();
             this.splitContainer12 = new System.Windows.Forms.SplitContainer();
-            this.cyclogramComponentStatusList1 = new Bachelor_Project.UserControls.CyclogramComponentStatusList.CyclogramComponentStatusList();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             this.splitContainer14 = new System.Windows.Forms.SplitContainer();
+            this.cyclogramComponentStatusList1 = new Bachelor_Project.UserControls.CyclogramComponentStatusList.CyclogramComponentStatusList();
             this.cyclogram1 = new Bachelor_Project.Cyclogram();
             this.controlPanel1 = new Bachelor_Project.UserControls.ControlPanel.ControlPanel();
             this.compressorDevice1 = new Bachelor_Project.UserControls.Device.CompressorDevice();
@@ -693,7 +693,7 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.button_RemoveStep.Margin = new System.Windows.Forms.Padding(4);
             this.button_RemoveStep.MaximumSize = new System.Drawing.Size(0, 41);
             this.button_RemoveStep.Name = "button_RemoveStep";
-            this.button_RemoveStep.Size = new System.Drawing.Size(293, 32);
+            this.button_RemoveStep.Size = new System.Drawing.Size(0, 32);
             this.button_RemoveStep.TabIndex = 6;
             this.button_RemoveStep.Text = "Remove";
             this.button_RemoveStep.UseVisualStyleBackColor = false;
@@ -716,16 +716,6 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.splitContainer12.Size = new System.Drawing.Size(585, 539);
             this.splitContainer12.SplitterDistance = 254;
             this.splitContainer12.TabIndex = 0;
-            // 
-            // cyclogramComponentStatusList1
-            // 
-            this.cyclogramComponentStatusList1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.cyclogramComponentStatusList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cyclogramComponentStatusList1.GroupBoxHeight = 60;
-            this.cyclogramComponentStatusList1.Location = new System.Drawing.Point(0, 0);
-            this.cyclogramComponentStatusList1.Name = "cyclogramComponentStatusList1";
-            this.cyclogramComponentStatusList1.Size = new System.Drawing.Size(585, 254);
-            this.cyclogramComponentStatusList1.TabIndex = 0;
             // 
             // splitContainer10
             // 
@@ -762,6 +752,16 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.splitContainer14.SplitterDistance = 202;
             this.splitContainer14.TabIndex = 0;
             // 
+            // cyclogramComponentStatusList1
+            // 
+            this.cyclogramComponentStatusList1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            this.cyclogramComponentStatusList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cyclogramComponentStatusList1.GroupBoxHeight = 60;
+            this.cyclogramComponentStatusList1.Location = new System.Drawing.Point(0, 0);
+            this.cyclogramComponentStatusList1.Name = "cyclogramComponentStatusList1";
+            this.cyclogramComponentStatusList1.Size = new System.Drawing.Size(585, 254);
+            this.cyclogramComponentStatusList1.TabIndex = 0;
+            // 
             // cyclogram1
             // 
             this.cyclogram1.Active = false;
@@ -771,7 +771,6 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             this.cyclogram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cyclogram1.FollowSleepTime = 2000;
             this.cyclogram1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cyclogram1.HorizontalVisionRange = 0;
             this.cyclogram1.Location = new System.Drawing.Point(0, 0);
             this.cyclogram1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cyclogram1.MaxSimultaneousRecords = 10;
@@ -918,7 +917,6 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
         private UserControls.Device.CompressorDevice compressorDevice1;
         private System.Windows.Forms.SplitContainer splitContainer14;
         private UserControls.ControlPanel.ControlPanel controlPanel1;
-        private Cyclogram cyclogram1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox textBox_AddStep_LengthInMilliseconds;
         private System.Windows.Forms.Label label4;
@@ -932,7 +930,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
         private System.Windows.Forms.Button button_MoveDown;
         private System.Windows.Forms.Button button_MoveDownEnd;
         private UserControls.CyclogramComponentStatusList.CyclogramComponentStatusList cyclogramComponentStatusList1;
+        private Cyclogram cyclogram1;
 
         #endregion
+
     }
 }

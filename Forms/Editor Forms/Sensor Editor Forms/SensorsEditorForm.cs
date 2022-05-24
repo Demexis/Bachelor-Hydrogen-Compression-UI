@@ -29,6 +29,22 @@ namespace Bachelor_Project.Forms.Editor_Forms
         {
             InitializeComponent();
 
+            dataGridView1.Columns.Add("Name", "Name");
+            dataGridView1.Columns.Add("Type", "Type");
+            dataGridView1.Columns.Add("MaxReadingsCount", "Max Readings Count");
+            dataGridView1.Columns.Add("MinimumValue", "Minimum Value");
+            dataGridView1.Columns.Add("MaximumValue", "Maximum Value");
+
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
             VisibleChanged += (s, e) => { RefreshSensorSetFilesComboBox(); };
 
             RefreshSensorSetFilesComboBox();
@@ -41,22 +57,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
 
             InitializeButtonEvents();
 
+            UpdateSensorEditingPanel();
+
             AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
-        }
-
-        private void RefreshSensorSetFilesComboBox()
-        {
-            this.comboBox_SelectSensor.Items.Clear();
-
-            foreach (string file in FileManager.GetFiles(FileManager.JsonFileStructure.Sensors))
-            {
-                this.comboBox_SelectSensor.Items.Add(file);
-            }
-
-            if (this.comboBox_SelectSensor.Items.Count > 0)
-            {
-                this.comboBox_SelectSensor.SelectedIndex = 0; // UpdateSensorsDatabase();
-            }
         }
 
         private void InitializeButtonEvents()
@@ -70,8 +73,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
                 [this.button_MoveDown] = () => { MoveSensorRecordDown(); SerializeAll(); },
                 [this.button_MoveDownEnd] = () => { MoveSensorRecordToTheBottom(); SerializeAll(); },
                 [this.button_EditSensor_Save] = () => { TryToSaveEditedSensor(); SerializeAll(); },
-                [this.button_NewSensorSet] = () => { CreateNewSensorSetFile(); RefreshSensorSetFilesComboBox(); SerializeAll(); },
-                [this.button_DeleteSensorSet] = () => { if(DeleteCurrentSensorSet()) RefreshSensorSetFilesComboBox(); SerializeAll(); }
+                [this.button_NewSensorSet] = () => { if (CreateNewSensorSetFile()) { RefreshSensorSetFilesComboBox(); } },
+                [this.button_DeleteSensorSet] = () => { if(DeleteCurrentSensorSet()) RefreshSensorSetFilesComboBox(); }
             };
         }
 
@@ -79,24 +82,57 @@ namespace Bachelor_Project.Forms.Editor_Forms
         {
             _buttonEvents[(Button)sender]?.Invoke();
         }
+
+        private void RefreshSensorSetFilesComboBox()
+        {
+            try
+            {
+                try
+                {
+                    if(this.dataGridView1.Rows.Count > 0)
+                    {
+                        this.dataGridView1.Rows.Clear();
+                    }
+                }
+                catch (Exception ex)
+                { }
+
+                this.comboBox_SelectSensor.Items.Clear();
+
+                foreach (string file in FileManager.GetFiles(FileManager.JsonFileStructure.Sensors))
+                {
+                    this.comboBox_SelectSensor.Items.Add(file);
+                }
+
+                if (this.comboBox_SelectSensor.Items.Count > 0)
+                {
+                    this.comboBox_SelectSensor.SelectedIndex = 0; // UpdateSensorsDatabase();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
         
         private void UpdateSensorsDatabase()
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = GetSensors;
+            if(dataGridView1.Rows.Count > 0)
+            {
+                dataGridView1.Rows.Clear();
+            }
+
+            foreach(Sensor sensor in GetSensors)
+            {
+                dataGridView1.Rows.Add(sensor.Name, sensor.Type, sensor.MaxReadingsCount, sensor.MinimumValue, sensor.MaximumValue);
+            }
+
+            //dataGridView1.Update();
+            //dataGridView1.Refresh();
 
             UpdateSensorEditingPanel();
             MainForm.Instance.SensorReadingHelper.OnSensorsChanged?.Invoke();
         }
-
-        private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i <= dataGridView1.Columns.Count - 1; i++)
-            {
-                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
-        }
-
 
         private void AddSensorRecord()
         {
@@ -126,10 +162,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
 
                 MainForm.Instance.SensorReadingHelper.Sensors?.Add(sensor);
 
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = MainForm.Instance.SensorReadingHelper.Sensors;
-                dataGridView1.Update();
-                dataGridView1.Refresh();
+                UpdateSensorsDatabase();
             }
             catch (Exception ex)
             {
@@ -147,15 +180,12 @@ namespace Bachelor_Project.Forms.Editor_Forms
                     {
                         if (MainForm.Instance.SensorReadingHelper.Sensors[i].Name.Equals(row.Cells[0].Value.ToString()))
                         {
-                            switch (MessageBox.Show("Are you really want to delete sensor(-s)?", "Confirmation", MessageBoxButtons.YesNoCancel))
+                            switch (MessageBox.Show("Do you really want to delete sensor?", "Confirmation", MessageBoxButtons.YesNoCancel))
                             {
                                 case DialogResult.OK:
                                 case DialogResult.Yes:
                                     MainForm.Instance.SensorReadingHelper.Sensors.RemoveAt(i);
-                                    dataGridView1.DataSource = null;
-                                    dataGridView1.DataSource = MainForm.Instance.SensorReadingHelper.Sensors;
-                                    dataGridView1.Update();
-                                    dataGridView1.Refresh();
+                                    UpdateSensorsDatabase();
                                     break;
                                 default:
                                     break;
@@ -167,6 +197,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
                 }
             }
         }
+
+        #region ChangeRecordIndexPosition
 
         private void MoveSensorRecordUp()
         {
@@ -233,18 +265,17 @@ namespace Bachelor_Project.Forms.Editor_Forms
                 GetSensors.RemoveAt(index);
                 GetSensors.Insert(insertIndex, sensor);
 
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = GetSensors;
+                UpdateSensorsDatabase();
 
                 dataGridView1.Rows[selectRowIndex].Selected = true;
-                dataGridView1.Update();
-                dataGridView1.Refresh();
 
                 return true;
             }
 
             return false;
         }
+
+        #endregion
 
         private void UpdateSensorEditingPanel()
         {
@@ -284,6 +315,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
 
                     textBox_EditSensor_MinValue.Enabled = true;
                     textBox_EditSensor_MaxValue.Enabled = true;
+
+                    button_EditSensor_Save.Enabled = true;
                 }
                 else
                 {
@@ -293,20 +326,20 @@ namespace Bachelor_Project.Forms.Editor_Forms
                     comboBox_EditSensor_Type.SelectedItem = null;
                     textBox_EditSensor_MaxRecords.Text = string.Empty;
 
+                    textBox_EditSensor_MinValue.Text = string.Empty;
+                    textBox_EditSensor_MaxValue.Text = string.Empty;
+
                     textBox_EditSensor_Name.Enabled = false;
                     comboBox_EditSensor_Type.Enabled = false;
                     textBox_EditSensor_MaxRecords.Enabled = false;
 
                     textBox_EditSensor_MinValue.Enabled = false;
                     textBox_EditSensor_MaxValue.Enabled = false;
+
+                    button_EditSensor_Save.Enabled = false;
                 }
             }
-            catch { }
-        }
-
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            UpdateSensorEditingPanel();
+            catch(Exception ex) { }
         }
 
         private void TryToSaveEditedSensor()
@@ -336,11 +369,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
                 _lastEditedSensor.MinimumValue = minValue;
                 _lastEditedSensor.MaximumValue = maxValue;
 
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = GetSensors;
-
-                dataGridView1.Update();
-                dataGridView1.Refresh();
+                UpdateSensorsDatabase();
 
                 SerializeAll();
             }
@@ -422,33 +451,34 @@ namespace Bachelor_Project.Forms.Editor_Forms
 
         }
 
-        private void CreateNewSensorSetFile()
+        private bool CreateNewSensorSetFile()
         {
-            string json = string.Empty;
-
-            JObject rootObj = new JObject();
-            JArray sensorsArray = new JArray();
-
-            rootObj.Add("sensors", sensorsArray);
-
-            json = rootObj.ToString();
-
-            Stream myStream;
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-            int i;
-            for (i = 1; File.Exists(@"Sensors\sensors" + $"{i}.json"); i++) ;
-
-            saveFileDialog1.FileName = $"sensors{i}.json";
-            saveFileDialog1.Filter = "JSON (*.json)|*.json|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.InitialDirectory = Path.GetFullPath(@"Sensors");
-            saveFileDialog1.RestoreDirectory = true;
-
-            switch (saveFileDialog1.ShowDialog())
+            try
             {
-                case DialogResult.OK:
+                string json = string.Empty;
 
+                JObject rootObj = new JObject();
+                JArray sensorsArray = new JArray();
+
+                rootObj.Add("sensors", sensorsArray);
+
+                json = rootObj.ToString();
+
+                Stream myStream;
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                int i;
+                for (i = 1; File.Exists(@"Sensors\sensors" + $"{i}.json"); i++) ;
+
+                saveFileDialog1.FileName = $"sensors{i}.json";
+                saveFileDialog1.Filter = "JSON (*.json)|*.json|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.InitialDirectory = Path.GetFullPath(@"Sensors");
+                saveFileDialog1.RestoreDirectory = true;
+                saveFileDialog1.CheckPathExists = true;
+
+                if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
                     if ((myStream = saveFileDialog1.OpenFile()) != null)
                     {
                         byte[] data = Encoding.ASCII.GetBytes(json);
@@ -456,10 +486,17 @@ namespace Bachelor_Project.Forms.Editor_Forms
                         myStream.Write(data, 0, data.Length);
 
                         myStream.Close();
+
+                        return true;
                     }
-                    break;
-                default:
-                    return;
+                }
+
+                return false;
+                
+            }
+            catch(Exception ex)
+            {
+                return false;
             }
         }
 
@@ -474,11 +511,18 @@ namespace Bachelor_Project.Forms.Editor_Forms
 
                         if (File.Exists(filePath))
                         {
-                            File.Delete(filePath);
-
-                            if (File.Exists(filePath + ".bak"))
+                            try
                             {
-                                File.Delete(filePath + ".bak");
+                                File.Delete(filePath);
+
+                                if (File.Exists(filePath + ".bak"))
+                                {
+                                    File.Delete(filePath + ".bak");
+                                }
+                            }
+                            catch(Exception ex)
+                            {
+                                return false;
                             }
                         }
 
@@ -531,5 +575,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
 
         }
 
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            UpdateSensorEditingPanel();
+        }
     }
 }

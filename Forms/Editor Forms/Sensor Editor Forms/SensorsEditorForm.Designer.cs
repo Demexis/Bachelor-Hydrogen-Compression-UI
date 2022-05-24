@@ -177,7 +177,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer1.Size = new System.Drawing.Size(777, 562);
+            this.splitContainer1.Size = new System.Drawing.Size(777, 612);
             this.splitContainer1.SplitterDistance = 450;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -196,7 +196,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(450, 562);
+            this.splitContainer2.Size = new System.Drawing.Size(450, 612);
             this.splitContainer2.SplitterDistance = 25;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -226,8 +226,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(450, 533);
-            this.splitContainer3.SplitterDistance = 474;
+            this.splitContainer3.Size = new System.Drawing.Size(450, 583);
+            this.splitContainer3.SplitterDistance = 524;
             this.splitContainer3.TabIndex = 0;
             // 
             // splitContainer4
@@ -244,7 +244,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer4.Size = new System.Drawing.Size(450, 474);
+            this.splitContainer4.Size = new System.Drawing.Size(450, 524);
             this.splitContainer4.SplitterDistance = 379;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -293,9 +293,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(379, 474);
+            this.dataGridView1.Size = new System.Drawing.Size(379, 524);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // splitContainer6
@@ -312,8 +311,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.splitContainer11);
-            this.splitContainer6.Size = new System.Drawing.Size(67, 474);
-            this.splitContainer6.SplitterDistance = 231;
+            this.splitContainer6.Size = new System.Drawing.Size(67, 524);
+            this.splitContainer6.SplitterDistance = 255;
             this.splitContainer6.TabIndex = 0;
             // 
             // splitContainer10
@@ -330,8 +329,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.button_MoveUp);
-            this.splitContainer10.Size = new System.Drawing.Size(67, 231);
-            this.splitContainer10.SplitterDistance = 108;
+            this.splitContainer10.Size = new System.Drawing.Size(67, 255);
+            this.splitContainer10.SplitterDistance = 119;
             this.splitContainer10.TabIndex = 7;
             // 
             // button_MoveUpEnd
@@ -347,7 +346,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveUpEnd.Location = new System.Drawing.Point(0, 0);
             this.button_MoveUpEnd.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveUpEnd.Name = "button_MoveUpEnd";
-            this.button_MoveUpEnd.Size = new System.Drawing.Size(67, 108);
+            this.button_MoveUpEnd.Size = new System.Drawing.Size(67, 119);
             this.button_MoveUpEnd.TabIndex = 7;
             this.button_MoveUpEnd.Text = "/\\/\\";
             this.button_MoveUpEnd.UseVisualStyleBackColor = false;
@@ -366,7 +365,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveUp.Location = new System.Drawing.Point(0, 0);
             this.button_MoveUp.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveUp.Name = "button_MoveUp";
-            this.button_MoveUp.Size = new System.Drawing.Size(67, 119);
+            this.button_MoveUp.Size = new System.Drawing.Size(67, 132);
             this.button_MoveUp.TabIndex = 6;
             this.button_MoveUp.Text = "/\\";
             this.button_MoveUp.UseVisualStyleBackColor = false;
@@ -386,8 +385,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer11.Panel2
             // 
             this.splitContainer11.Panel2.Controls.Add(this.button_MoveDownEnd);
-            this.splitContainer11.Size = new System.Drawing.Size(67, 239);
-            this.splitContainer11.SplitterDistance = 113;
+            this.splitContainer11.Size = new System.Drawing.Size(67, 265);
+            this.splitContainer11.SplitterDistance = 125;
             this.splitContainer11.TabIndex = 7;
             // 
             // button_MoveDown
@@ -403,7 +402,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveDown.Location = new System.Drawing.Point(0, 0);
             this.button_MoveDown.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveDown.Name = "button_MoveDown";
-            this.button_MoveDown.Size = new System.Drawing.Size(67, 113);
+            this.button_MoveDown.Size = new System.Drawing.Size(67, 125);
             this.button_MoveDown.TabIndex = 6;
             this.button_MoveDown.Text = "\\/";
             this.button_MoveDown.UseVisualStyleBackColor = false;
@@ -422,7 +421,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.button_MoveDownEnd.Location = new System.Drawing.Point(0, 0);
             this.button_MoveDownEnd.Margin = new System.Windows.Forms.Padding(4);
             this.button_MoveDownEnd.Name = "button_MoveDownEnd";
-            this.button_MoveDownEnd.Size = new System.Drawing.Size(67, 122);
+            this.button_MoveDownEnd.Size = new System.Drawing.Size(67, 136);
             this.button_MoveDownEnd.TabIndex = 8;
             this.button_MoveDownEnd.Text = "\\/\\/";
             this.button_MoveDownEnd.UseVisualStyleBackColor = false;
@@ -475,7 +474,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.splitContainer12);
-            this.splitContainer7.Size = new System.Drawing.Size(323, 562);
+            this.splitContainer7.Size = new System.Drawing.Size(323, 612);
             this.splitContainer7.SplitterDistance = 268;
             this.splitContainer7.TabIndex = 0;
             // 
@@ -701,8 +700,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer12.Panel1
             // 
             this.splitContainer12.Panel1.Controls.Add(this.splitContainer13);
-            this.splitContainer12.Size = new System.Drawing.Size(323, 290);
-            this.splitContainer12.SplitterDistance = 261;
+            this.splitContainer12.Size = new System.Drawing.Size(323, 340);
+            this.splitContainer12.SplitterDistance = 268;
             this.splitContainer12.TabIndex = 0;
             // 
             // splitContainer13
@@ -719,8 +718,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer13.Panel2
             // 
             this.splitContainer13.Panel2.Controls.Add(this.splitContainer14);
-            this.splitContainer13.Size = new System.Drawing.Size(323, 261);
-            this.splitContainer13.SplitterDistance = 44;
+            this.splitContainer13.Size = new System.Drawing.Size(323, 268);
+            this.splitContainer13.SplitterDistance = 45;
             this.splitContainer13.TabIndex = 0;
             // 
             // label6
@@ -751,8 +750,8 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer14.Panel2
             // 
             this.splitContainer14.Panel2.Controls.Add(this.button_EditSensor_Save);
-            this.splitContainer14.Size = new System.Drawing.Size(323, 213);
-            this.splitContainer14.SplitterDistance = 171;
+            this.splitContainer14.Size = new System.Drawing.Size(323, 219);
+            this.splitContainer14.SplitterDistance = 177;
             this.splitContainer14.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -779,14 +778,14 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(323, 171);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(323, 177);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // textBox_EditSensor_MaxRecords
             // 
             this.textBox_EditSensor_MaxRecords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_EditSensor_MaxRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_EditSensor_MaxRecords.Location = new System.Drawing.Point(134, 71);
+            this.textBox_EditSensor_MaxRecords.Location = new System.Drawing.Point(134, 73);
             this.textBox_EditSensor_MaxRecords.Name = "textBox_EditSensor_MaxRecords";
             this.textBox_EditSensor_MaxRecords.Size = new System.Drawing.Size(186, 32);
             this.textBox_EditSensor_MaxRecords.TabIndex = 9;
@@ -798,7 +797,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.comboBox_EditSensor_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_EditSensor_Type.FormattingEnabled = true;
             this.comboBox_EditSensor_Type.ItemHeight = 25;
-            this.comboBox_EditSensor_Type.Location = new System.Drawing.Point(135, 38);
+            this.comboBox_EditSensor_Type.Location = new System.Drawing.Point(135, 39);
             this.comboBox_EditSensor_Type.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_EditSensor_Type.Name = "comboBox_EditSensor_Type";
             this.comboBox_EditSensor_Type.Size = new System.Drawing.Size(184, 33);
@@ -819,9 +818,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(3, 68);
+            this.label7.Location = new System.Drawing.Point(3, 70);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(125, 34);
+            this.label7.Size = new System.Drawing.Size(125, 35);
             this.label7.TabIndex = 4;
             this.label7.Text = "Max Records: ";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -832,9 +831,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(3, 34);
+            this.label8.Location = new System.Drawing.Point(3, 35);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(125, 34);
+            this.label8.Size = new System.Drawing.Size(125, 35);
             this.label8.TabIndex = 3;
             this.label8.Text = "Type: ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -847,7 +846,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Location = new System.Drawing.Point(3, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(125, 34);
+            this.label9.Size = new System.Drawing.Size(125, 35);
             this.label9.TabIndex = 2;
             this.label9.Text = "Name: ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -858,9 +857,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label13.Location = new System.Drawing.Point(3, 102);
+            this.label13.Location = new System.Drawing.Point(3, 105);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(125, 34);
+            this.label13.Size = new System.Drawing.Size(125, 35);
             this.label13.TabIndex = 10;
             this.label13.Text = "Min Value:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -871,9 +870,9 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label14.Location = new System.Drawing.Point(3, 136);
+            this.label14.Location = new System.Drawing.Point(3, 140);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(125, 35);
+            this.label14.Size = new System.Drawing.Size(125, 37);
             this.label14.TabIndex = 11;
             this.label14.Text = "Max Value:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -882,7 +881,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // 
             this.textBox_EditSensor_MinValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_EditSensor_MinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_EditSensor_MinValue.Location = new System.Drawing.Point(134, 105);
+            this.textBox_EditSensor_MinValue.Location = new System.Drawing.Point(134, 108);
             this.textBox_EditSensor_MinValue.Name = "textBox_EditSensor_MinValue";
             this.textBox_EditSensor_MinValue.Size = new System.Drawing.Size(186, 32);
             this.textBox_EditSensor_MinValue.TabIndex = 12;
@@ -891,7 +890,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // 
             this.textBox_EditSensor_MaxValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_EditSensor_MaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox_EditSensor_MaxValue.Location = new System.Drawing.Point(134, 139);
+            this.textBox_EditSensor_MaxValue.Location = new System.Drawing.Point(134, 143);
             this.textBox_EditSensor_MaxValue.Name = "textBox_EditSensor_MaxValue";
             this.textBox_EditSensor_MaxValue.Size = new System.Drawing.Size(186, 32);
             this.textBox_EditSensor_MaxValue.TabIndex = 13;
@@ -931,7 +930,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer15.Size = new System.Drawing.Size(779, 600);
+            this.splitContainer15.Size = new System.Drawing.Size(779, 650);
             this.splitContainer15.SplitterDistance = 32;
             this.splitContainer15.TabIndex = 1;
             // 
@@ -1053,7 +1052,7 @@ namespace Bachelor_Project.Forms.Editor_Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(779, 600);
+            this.ClientSize = new System.Drawing.Size(779, 650);
             this.Controls.Add(this.splitContainer15);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SensorsEditorForm";

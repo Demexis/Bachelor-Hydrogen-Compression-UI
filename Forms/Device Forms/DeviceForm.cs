@@ -310,21 +310,23 @@ namespace Bachelor_Project
 
         private void ClaimReading(string sensorName, float readingValue)
         {
-            Sensor sensor = null;
+            List<Sensor> sensors = new List<Sensor>();
+
+            //Sensor sensor = null;
 
             foreach (Sensor s in _sensorReadingHelper.Sensors)
             {
                 if (s.Name.Equals(sensorName))
                 {
-                    sensor = s;
-                    break;
+                    sensors.Add(s);
+                    //sensor = s;
+                    //break;
                 }
             }
 
-
-            if (sensor != null)
+            bool refresh = false;
+            foreach(Sensor sensor in sensors)
             {
-
                 foreach (CompressorComponent component in compressorDevice1.GetComponentsArray())
                 {
                     if (component != null && component.SensorName != null)
@@ -351,12 +353,17 @@ namespace Bachelor_Project
                                 component.FillAmount = fillAmount;
                             }
 
-                            compressorDevice1.Refresh();
-                            break;
+                            refresh = true;
+                            //break;
                         }
                     }
 
                 }
+            }
+
+            if(refresh)
+            {
+                compressorDevice1.Refresh();
             }
         }
 

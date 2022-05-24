@@ -115,19 +115,23 @@ namespace Bachelor_Project.UserControls.CyclogramComponentStatusList
 
                     radioButton.CheckedChanged += (s, e) =>
                     {
-                        CyclogramComponentElement comp;
-                        CyclogramStatusElement compStatus;
-
-                        (comp, compStatus) = _radioButtonComponentStatuses[(RadioButton)s];
-
-                        if (CurrentStep != null)
+                        if(((RadioButton)s).Checked)
                         {
-                            CurrentStep.Sequences.RemoveAll(x => x.ComponentName.Equals(comp.Name) && x.StatusName.Equals(compStatus.Name));
-                            if (((RadioButton)s).Checked)
-                                CurrentStep.Sequences.Add(new CyclogramSequenceElement(comp.Name, compStatus.Name));
+                            CyclogramComponentElement comp;
+                            CyclogramStatusElement compStatus;
 
-                            OnRadioButtonCheckedChanged?.Invoke();
+                            (comp, compStatus) = _radioButtonComponentStatuses[(RadioButton)s];
+
+                            if (CurrentStep != null)
+                            {
+                                CurrentStep.Sequences.RemoveAll(x => x.ComponentName.Equals(comp.Name) && !x.StatusName.Equals(compStatus.Name));
+                                if (((RadioButton)s).Checked)
+                                    CurrentStep.Sequences.Add(new CyclogramSequenceElement(comp.Name, compStatus.Name));
+
+                                OnRadioButtonCheckedChanged?.Invoke();
+                            }
                         }
+
                     };
 
 

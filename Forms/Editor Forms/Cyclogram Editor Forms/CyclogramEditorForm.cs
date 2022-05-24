@@ -41,7 +41,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             };
 
             AppearanceOptionsForm.OnColorPaletteChange += SetColorPaletteForControls;
+
         }
+
 
         #region Initialization
 
@@ -85,6 +87,8 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
                 [this.comboBox_SelectCyclogram] = () =>
                 {
                     textBox_AddStep_Name.Enabled = (comboBox_SelectCyclogram.SelectedItem != null);
+                    textBox_AddStep_LengthInMilliseconds.Enabled = (comboBox_SelectCyclogram.SelectedItem != null);
+
                     button_AddStep.Enabled = (comboBox_SelectCyclogram.SelectedItem != null);
 
                     button_RemoveStep.Enabled = false;
@@ -106,6 +110,9 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
                 [this.button_RemoveStep] = () =>
                 {
                     button_RemoveStep.Enabled = (listBox_Steps.SelectedItem != null);
+                    button_SaveStep.Enabled = (listBox_Steps.SelectedItem != null);
+                    textBox_AddStep_LengthInMilliseconds.Text = string.Empty;
+                    textBox_AddStep_Name.Text = string.Empty;
                 },
                 [this.button_MoveUpEnd] = () =>
                 {
@@ -173,12 +180,17 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
             comboBox_SelectCyclogram.Enabled = false;
 
             textBox_AddStep_Name.Enabled = false;
+            textBox_AddStep_LengthInMilliseconds.Enabled = false;
 
             button_NewCyclogram.Enabled = false;
             button_DeleteCyclogram.Enabled = false;
             button_AddStep.Enabled = false;
             button_SaveStep.Enabled = false;
             button_RemoveStep.Enabled = false;
+
+            textBox_AddStep_Name.Text = string.Empty;
+            textBox_AddStep_LengthInMilliseconds.Text = string.Empty;
+
         }
 
 
@@ -242,8 +254,10 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
         {
             if (comboBox_SelectDeviceScheme.SelectedItem == null) return;
 
-            List<string> filePaths = Directory.GetFiles(@"Cyclograms", "*.*", SearchOption.AllDirectories)
-            .Where(s => s.EndsWith(".json")).ToList();
+            List<string> filePaths = FileManager.GetFiles(FileManager.JsonFileStructure.Cyclograms).ToList();
+
+            //List<string> filePaths = Directory.GetFiles(@"Cyclograms", "*.*", SearchOption.AllDirectories)
+            //.Where(s => s.EndsWith(".json")).ToList();
 
             {
                 List<string> toDelete = new List<string>();
