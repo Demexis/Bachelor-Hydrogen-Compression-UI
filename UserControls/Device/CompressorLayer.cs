@@ -111,6 +111,8 @@ namespace Bachelor_Project.UserControls.Device
             {
                 case LayerTypeEnum.Components:
                     break;
+
+                case LayerTypeEnum.OilPipes:
                 case LayerTypeEnum.GasPipes:
 
                     CompressorPipe.PipeType pipeType = CompressorPipe.PipeType.Gas;

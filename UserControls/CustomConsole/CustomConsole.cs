@@ -91,15 +91,27 @@ namespace Bachelor_Project.UserControls.CustomConsole
 
         public void UpdateConsole()
         {
-            richTextBox1.Clear();
-
-            foreach (CustomConsoleMessage msg in _customConsoleMessages)
+            try
             {
-                richTextBox1.AppendText(msg.Text, msg.Color);
-                richTextBox1.AppendText(System.Environment.NewLine);
+                richTextBox_Console.Invoke(new Action(() =>
+                {
+                    richTextBox_Console.Clear();
+
+                    foreach (CustomConsoleMessage msg in _customConsoleMessages)
+                    {
+                        richTextBox_Console.AppendText(msg.Text, msg.Color);
+                        richTextBox_Console.AppendText(System.Environment.NewLine);
+                    }
+
+                    richTextBox_Console.ScrollToCaret();
+                }));
+            }
+            catch(Exception ex)
+            {
+                // Skip...
+                // Window hasn't been created yet...
             }
 
-            richTextBox1.ScrollToCaret();
         }
 
         private void button_Send_Click(object sender, EventArgs e)
@@ -149,8 +161,8 @@ namespace Bachelor_Project.UserControls.CustomConsole
         public void SetColorPaletteForControls(Dictionary<FormColorVariant, Color> colorPalette)
         {
             this.BackColor = colorPalette[FormColorVariant.DarkSecond];
-            this.richTextBox1.BackColor = colorPalette[FormColorVariant.DarkSecond];
-            this.richTextBox1.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
+            this.richTextBox_Console.BackColor = colorPalette[FormColorVariant.DarkSecond];
+            this.richTextBox_Console.ForeColor = colorPalette[FormColorVariant.TextColorFirst];
 
             foreach (Button button in this.GetAllControlsRecusrvive<Button>())
             {

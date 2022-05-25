@@ -30,7 +30,7 @@ namespace Bachelor_Project.UserControls.CustomConsole
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_Console = new System.Windows.Forms.RichTextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.textBox = new System.Windows.Forms.TextBox();
             this.button_Send = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@ namespace Bachelor_Project.UserControls.CustomConsole
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.richTextBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.richTextBox_Console);
             // 
             // splitContainer1.Panel2
             // 
@@ -63,18 +63,18 @@ namespace Bachelor_Project.UserControls.CustomConsole
             this.splitContainer1.SplitterDistance = 110;
             this.splitContainer1.TabIndex = 0;
             // 
-            // richTextBox1
+            // richTextBox_Console
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(627, 110);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBox_Console.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.richTextBox_Console.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox_Console.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox_Console.ForeColor = System.Drawing.Color.Gainsboro;
+            this.richTextBox_Console.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox_Console.Name = "richTextBox_Console";
+            this.richTextBox_Console.ReadOnly = true;
+            this.richTextBox_Console.Size = new System.Drawing.Size(627, 110);
+            this.richTextBox_Console.TabIndex = 0;
+            this.richTextBox_Console.Text = "";
             // 
             // splitContainer2
             // 
@@ -149,6 +149,6 @@ namespace Bachelor_Project.UserControls.CustomConsole
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button button_Send;
         private System.Windows.Forms.TextBox textBox;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox_Console;
     }
 }

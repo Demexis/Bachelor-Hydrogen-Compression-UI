@@ -35,6 +35,8 @@ namespace Bachelor_Project
 
         public static bool TempTestingFlag = true;
 
+        private List<string> _messagesFromCyclogram = new List<string>(); 
+
         public DeviceForm()
         {
             InitializeComponent();
@@ -48,6 +50,7 @@ namespace Bachelor_Project
             InitializeControlPanel();
 
             //SendTestData();
+            //Console.WriteLine("DeviceForm has been created.");
 
             this.VisibleChanged += (s, e) =>
             {
@@ -60,31 +63,48 @@ namespace Bachelor_Project
             {
                 try
                 {
-                    string[] split = x.Split('_');
-
-                    if (split.Length == 2)
+                    this.Invoke(new Action(() => 
                     {
-                        string sensorName = split[0];
-                        float readingValue = float.Parse(split[1]);
+                        //Console.WriteLine("Receiving data.");
 
-                        if(!_sensorReadingHelper.AddReadingToTheSensor(sensorName, readingValue))
+                        string[] split = x.Split('_');
+
+                        if (split.Length == 2)
                         {
-                            throw new Exception("The program was unable to add a new value to the sensor because it does not exist in the current set of sensors.");
-                        }
+                            string sensorName = split[0];
+                            float readingValue = float.Parse(split[1]);
 
-                        DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{sensorName}_{readingValue}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-                        ClaimReading(sensorName, readingValue);
-                        
-                    }
-                    else
-                    {
-                        throw new Exception("Incoming serial data has invalid format. " +
-                            "The line should consist of the name of the sensor and the sensor value, separated by an underline. Example: \"sensor1_12.34\".");
-                    }
+                            if (!_sensorReadingHelper.AddReadingToTheSensor(sensorName, readingValue))
+                            {
+                                throw new Exception("The program was unable to add a new value to the sensor because it does not exist in the current set of sensors.");
+                            }
+
+                            DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{sensorName}_{readingValue}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                            ClaimReading(sensorName, readingValue);
+
+                        }
+                        else
+                        {
+                            throw new Exception("Incoming serial data has invalid format. " +
+                                "The line should consist of the name of the sensor and the sensor value, separated by an underline. Example: \"sensor1_12.34\".");
+                        }
+                    }));
+                    
                 }
                 catch (Exception ex)
                 {
-                    CustomConsole.Instance.LogError($"Couldn't parse incoming serial data. Error message: {ex.Message}");
+                    try
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            CustomConsole.Instance.LogError($"Couldn't parse incoming serial data. Error message: {ex.Message}");
+                        }));
+                    }
+                    catch(Exception ex2)
+                    {
+                        // Skip
+                    }
+
                 }
                 
             };
@@ -205,7 +225,7 @@ namespace Bachelor_Project
                     {
                         string msg = $"{(c as CyclogramComponentElement).Name}_{(s as CyclogramStatusElement).Name}";
 
-                        CustomConsole.Instance.Log("Sent message to the SerialPort: " + msg);
+                        _messagesFromCyclogram.Add(msg);
 
                         COM_Handler.MainSerialPort.WriteLine(msg);
                     }
@@ -219,6 +239,22 @@ namespace Bachelor_Project
                                 );
                         }
                     }
+                }
+            };
+
+            this.cyclogram1.OnStepChange += (CyclogramStepElement x) =>
+            {
+                if (CustomConsole.Instance.DebugMode)
+                {
+                    CustomConsole.Instance.Log($"Cyclogram's current step was changed to {x.Name} [{x.LengthMilliseconds} ms].");
+
+                    string msg = string.Empty;
+
+                    _messagesFromCyclogram.ForEach((s) => msg += $"{s}  ");
+
+                    CustomConsole.Instance.Log("Sent message to the SerialPort: " + msg);
+
+                    _messagesFromCyclogram.Clear();
                 }
             };
 

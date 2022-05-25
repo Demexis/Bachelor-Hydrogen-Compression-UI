@@ -13,7 +13,7 @@ namespace Bachelor_Project
 
         public static SerialPort MainSerialPort { get; set; }
 
-        public static Action<string> SerialPortDataSender;
+        public static Action<string> SerialPortDataSender { get; set; }
 
         
     }

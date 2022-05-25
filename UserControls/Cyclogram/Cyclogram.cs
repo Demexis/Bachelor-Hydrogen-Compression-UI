@@ -148,6 +148,7 @@ namespace Bachelor_Project
         #region Actions
 
         public Action<CyclogramComponentElement, CyclogramStatusElement> OnComponentStatusChange;
+        public Action<CyclogramStepElement> OnStepChange;
         public Action OnSingleExecutionEnd;
 
 
@@ -459,6 +460,8 @@ namespace Bachelor_Project
                 bool shouldBeActive = this.CurrentTimeStamp >= traveledLength
                     && this.CurrentTimeStamp < traveledLength + this.Steps[i].LengthMilliseconds;
 
+                bool stepChanged = false;
+
                 foreach (CyclogramSequenceElement sequence in this.Steps[i].Sequences)
                 {
                     if (sequence.Active ^ shouldBeActive) // ^ stands for XOR - means (1 && 0 or 0 && 1)
@@ -475,6 +478,8 @@ namespace Bachelor_Project
                                 CyclogramStatusElement status = component.Statuses.First(x => x.Name == sequence.StatusName);
 
                                 OnComponentStatusChange?.Invoke(component, status);
+
+                                stepChanged = true;
                             }
                             catch(Exception ex)
                             {
@@ -482,24 +487,12 @@ namespace Bachelor_Project
                             }
                         }
 
-                            /// TODO: HERE
-
-                            //if (title.TitleID.Equals(sequence.TitleID))
-                            //{
-                            //    //Console.WriteLine($"Title [{title.Text}] has been {(sequence.Active ? "activated" : "deactivated")}");
-
-                            //    if (sequence.Active)
-                            //    {
-                            //        string[] words = title.TitleID.Split('_');
-                            //        if (words.Length == 2)
-                            //        {
-                            //            OnComponentStatusChange?.Invoke(words[0], words[1]);
-                            //        }
-                            //    }
-
-                            //    break;
-                            //}
                     }
+                }
+
+                if(stepChanged)
+                {
+                    OnStepChange?.Invoke(this.Steps[i]);
                 }
 
             }

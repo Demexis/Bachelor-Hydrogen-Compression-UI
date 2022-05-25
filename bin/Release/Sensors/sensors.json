@@ -3,21 +3,21 @@
     {
       "name": "d1",
       "type": "Temperature",
-      "maxReadingsCount": 600,
+      "maxReadingsCount": 100,
       "minimumValue": 0.0,
       "maximumValue": 55.0
     },
     {
       "name": "d2",
       "type": "Pressure",
-      "maxReadingsCount": 600,
+      "maxReadingsCount": 50,
       "minimumValue": 15.0,
       "maximumValue": 125.0
     },
     {
       "name": "d3",
       "type": "Volume",
-      "maxReadingsCount": 600,
+      "maxReadingsCount": 25,
       "minimumValue": -100.0,
       "maximumValue": 200.0
     },
