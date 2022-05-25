@@ -72,6 +72,7 @@ namespace Bachelor_Project
                             throw new Exception("The program was unable to add a new value to the sensor because it does not exist in the current set of sensors.");
                         }
 
+                        DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{sensorName}_{readingValue}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
                         ClaimReading(sensorName, readingValue);
                         
                     }
@@ -260,47 +261,16 @@ namespace Bachelor_Project
                     string name;
                     float value;
 
-                    name = "d1";
-                    value = (float)new Random().NextDouble() * 3 + 10;
-                    _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    ClaimReading(name, value);
-                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-                    await Task.Delay(1);
-
-                    name = "d2";
-                    value = (float)new Random().NextDouble() * 15 + 25;
-                    _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    ClaimReading(name, value);
-                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-                    await Task.Delay(1);
-
-                    name = "d3";
-                    value = (float)new Random().NextDouble() * 5 + 15;
-                    _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    ClaimReading(name, value);
-                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-                    await Task.Delay(1);
-
-                    name = "d4";
-                    value = (float)new Random().NextDouble() * 10 + 45;
-                    _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    ClaimReading(name, value);
-                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-                    await Task.Delay(1);
-
-                    name = "d5";
-                    value = (float)new Random().NextDouble() * 200 + 100;
-                    _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    ClaimReading(name, value);
-                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-                    await Task.Delay(1);
-
-                    name = "d6";
-                    value = (float)new Random().NextDouble() * 500 + 1000;
-                    _sensorReadingHelper.AddReadingToTheSensor(name, value);
-                    ClaimReading(name, value);
-                    DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
-
+                    foreach(Sensor sensor in _sensorReadingHelper.Sensors)
+                    {
+                        name = sensor.Name;
+                        value = (float)new Random().NextDouble() * (sensor.MaximumValue - sensor.MinimumValue) + sensor.MinimumValue;
+                        _sensorReadingHelper.AddReadingToTheSensor(name, value);
+                        ClaimReading(name, value);
+                        DataLogger.SaveLogData($"Logs\\logfile_{DeviceConnectionForm.Instance.SelectedSensorSet.Split('\\').Last()}_{comboBox_SelectCyclogram.SelectedItem.ToString().Split('\\').Last()}", $"{name}_{value}_{cyclogram1.Active}_{cyclogram1.CurrentTimeStamp}");
+                        await Task.Delay(1);
+                    }
+                    
                 }
 
 
