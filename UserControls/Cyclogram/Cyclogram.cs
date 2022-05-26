@@ -96,7 +96,7 @@ namespace Bachelor_Project
             }
         }
         private int _horizontalVisionRange = _defaultHorizontalVisionRange;
-        private const int _defaultHorizontalVisionRange = 2000;
+        private const int _defaultHorizontalVisionRange = 15000;
 
         [Category("Behavior"), Description("The time after which the cyclogram will focus on the current position of the timestamp.")]
         public int FollowSleepTime { get; set; } = 2000;

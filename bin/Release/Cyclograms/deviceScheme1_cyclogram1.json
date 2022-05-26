@@ -2,140 +2,337 @@
   "cyclogram": {
     "steps": [
       {
-        "name": "step_0",
-        "lengthMilliseconds": 100,
-        "sequences": [
-          {
-            "componentName": "S1",
-            "statusName": "Disabled"
-          },
-          {
-            "componentName": "S2",
-            "statusName": "Disabled"
-          },
-          {
-            "componentName": "Buffer",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "V1",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "H1",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "V2",
-            "statusName": "Active"
-          }
-        ]
-      },
-      {
-        "name": "step_123",
-        "lengthMilliseconds": 100,
+        "name": "init",
+        "lengthMilliseconds": 1000,
         "sequences": [
           {
             "componentName": "S1",
             "statusName": "Inactive"
           },
           {
-            "componentName": "Buffer",
+            "componentName": "S2",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S5",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S6",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S7",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S9",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "P1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S8",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S10",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S5",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S6",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S7",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S9",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "P1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S8",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S10",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S5",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S6",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S7",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S9",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "P1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S8",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S10",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_0",
+        "lengthMilliseconds": 10000,
+        "sequences": [
+          {
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "V1",
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "H1",
+            "componentName": "S1",
             "statusName": "Active"
           },
           {
-            "componentName": "V2",
+            "componentName": "S2",
             "statusName": "Active"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S5",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S6",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S7",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S9",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S8",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S10",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_1",
+        "lengthMilliseconds": 15000,
+        "sequences": [
+          {
+            "componentName": "P1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "P1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "P1",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S7",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S6",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S9",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S1",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S2",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S5",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S8",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S10",
+            "statusName": "Inactive"
           }
         ]
       },
       {
         "name": "step_2",
-        "lengthMilliseconds": 200,
+        "lengthMilliseconds": 15000,
         "sequences": [
           {
-            "componentName": "S2",
-            "statusName": "Disabled"
-          },
-          {
-            "componentName": "Buffer",
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "V1",
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "H1",
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "V2",
+            "componentName": "S10",
             "statusName": "Active"
-          }
-        ]
-      },
-      {
-        "name": "step_03",
-        "lengthMilliseconds": 100,
-        "sequences": [
+          },
           {
-            "componentName": "S1",
+            "componentName": "S8",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S9",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S7",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S6",
+            "statusName": "Inactive"
+          },
+          {
+            "componentName": "S5",
             "statusName": "Active"
+          },
+          {
+            "componentName": "S4",
+            "statusName": "Active"
+          },
+          {
+            "componentName": "S3",
+            "statusName": "Inactive"
           },
           {
             "componentName": "S2",
             "statusName": "Inactive"
           },
           {
-            "componentName": "Buffer",
+            "componentName": "S1",
+            "statusName": "Inactive"
+          }
+        ]
+      },
+      {
+        "name": "step_3",
+        "lengthMilliseconds": 15000,
+        "sequences": [
+          {
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "V1",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "H1",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "V2",
+            "componentName": "P1",
             "statusName": "Active"
           }
         ]
       },
       {
-        "name": "step_04",
-        "lengthMilliseconds": 100,
-        "sequences": []
-      },
-      {
-        "name": "step_05",
-        "lengthMilliseconds": 100,
+        "name": "step_4",
+        "lengthMilliseconds": 15000,
         "sequences": [
           {
-            "componentName": "Buffer",
+            "componentName": "P1",
             "statusName": "Active"
           },
           {
-            "componentName": "V1",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "H1",
-            "statusName": "Active"
-          },
-          {
-            "componentName": "V2",
+            "componentName": "P1",
             "statusName": "Active"
           }
         ]

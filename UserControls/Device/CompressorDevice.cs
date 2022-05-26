@@ -180,6 +180,14 @@ namespace Bachelor_Project.UserControls.Device
                                 tileWidth + 1,
                                 tileHeight + 1
                             );
+
+                        if(layer.LayerType == CompressorLayer.LayerTypeEnum.Components)
+                        {
+                            g.DrawString(((CompressorComponent)layer.GetElement(i, j)).Name,
+                                this.Font,
+                                new SolidBrush(Color.White),
+                                new Point(x, y));
+                        }
                     }
 
                     //g.Dispose();

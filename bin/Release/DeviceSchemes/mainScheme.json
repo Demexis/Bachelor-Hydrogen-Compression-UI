@@ -363,31 +363,10 @@
           },
           {
             "position": [
-              9,
-              8
-            ],
-            "pipeOrientation": "RU_Corner"
-          },
-          {
-            "position": [
-              10,
-              8
-            ],
-            "pipeOrientation": "StraightVertical"
-          },
-          {
-            "position": [
               11,
               8
             ],
-            "pipeOrientation": "Cross"
-          },
-          {
-            "position": [
-              12,
-              8
-            ],
-            "pipeOrientation": "StraightVertical"
+            "pipeOrientation": "StraightHorizontal"
           },
           {
             "position": [
@@ -433,38 +412,17 @@
           },
           {
             "position": [
-              2,
-              10
-            ],
-            "pipeOrientation": "RU_Corner"
-          },
-          {
-            "position": [
-              3,
-              10
-            ],
-            "pipeOrientation": "StraightVertical"
-          },
-          {
-            "position": [
               4,
               10
             ],
-            "pipeOrientation": "Cross"
-          },
-          {
-            "position": [
-              5,
-              10
-            ],
-            "pipeOrientation": "StraightVertical"
+            "pipeOrientation": "StraightHorizontal"
           },
           {
             "position": [
               6,
               10
             ],
-            "pipeOrientation": "Cross"
+            "pipeOrientation": "T_Down"
           },
           {
             "position": [
@@ -577,12 +535,118 @@
               14
             ],
             "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              8,
+              14
+            ],
+            "pipeOrientation": "StraightVertical"
           }
         ]
       },
       {
         "layerType": "OilPipes",
-        "elements": []
+        "elements": [
+          {
+            "position": [
+              9,
+              7
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              9,
+              8
+            ],
+            "pipeOrientation": "RU_Corner"
+          },
+          {
+            "position": [
+              10,
+              8
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              11,
+              8
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              12,
+              8
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              2,
+              9
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              6,
+              9
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          },
+          {
+            "position": [
+              2,
+              10
+            ],
+            "pipeOrientation": "RU_Corner"
+          },
+          {
+            "position": [
+              3,
+              10
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              4,
+              10
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              5,
+              10
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              6,
+              10
+            ],
+            "pipeOrientation": "Cross"
+          },
+          {
+            "position": [
+              7,
+              10
+            ],
+            "pipeOrientation": "StraightVertical"
+          },
+          {
+            "position": [
+              6,
+              11
+            ],
+            "pipeOrientation": "StraightHorizontal"
+          }
+        ]
       },
       {
         "layerType": "Components",

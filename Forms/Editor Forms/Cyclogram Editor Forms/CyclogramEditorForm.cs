@@ -179,12 +179,12 @@ namespace Bachelor_Project.Forms.Editor_Forms.Cyclogram_Editor_Form
         {
             comboBox_SelectCyclogram.Enabled = false;
 
-            textBox_AddStep_Name.Enabled = false;
-            textBox_AddStep_LengthInMilliseconds.Enabled = false;
+            textBox_AddStep_Name.Enabled = (comboBox_SelectCyclogram.SelectedItem != null);
+            textBox_AddStep_LengthInMilliseconds.Enabled = (comboBox_SelectCyclogram.SelectedItem != null);
 
             button_NewCyclogram.Enabled = false;
             button_DeleteCyclogram.Enabled = false;
-            button_AddStep.Enabled = false;
+            button_AddStep.Enabled = (comboBox_SelectCyclogram.SelectedItem != null);
             button_SaveStep.Enabled = false;
             button_RemoveStep.Enabled = false;
 
